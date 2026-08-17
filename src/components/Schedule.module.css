@@ -1,0 +1,179 @@
+.scheduleSection {
+  padding: var(--section-padding) 0;
+  background-color: var(--bg-color);
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: 3rem;
+}
+
+.header {
+  text-align: center;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.sectionTitle {
+  font-size: clamp(2.5rem, 5vw, 4rem);
+  margin-bottom: 1rem;
+}
+
+.sectionDesc {
+  color: var(--text-secondary);
+  font-size: 1.1rem;
+}
+
+.daysFilter {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+  margin-bottom: 1rem;
+}
+
+.dayBtn {
+  background-color: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: var(--text-primary);
+  padding: 10px 24px;
+  border-radius: 30px;
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+
+.dayBtn:hover {
+  border-color: var(--accent-color);
+  color: var(--accent-color);
+}
+
+.activeDay {
+  background-color: var(--accent-color);
+  color: #fff;
+  border-color: var(--accent-color);
+}
+
+.activeDay:hover {
+  color: #fff;
+}
+
+.tableContainer {
+  overflow-x: auto;
+  background-color: var(--surface-color);
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: left;
+}
+
+.table th {
+  background-color: var(--surface-color-light);
+  padding: 1.5rem;
+  font-family: var(--font-heading);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--text-secondary);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.table td {
+  padding: 1.5rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  vertical-align: middle;
+}
+
+.table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+.table tbody tr {
+  transition: background-color 0.3s ease;
+}
+
+.table tbody tr:hover {
+  background-color: rgba(255, 255, 255, 0.02);
+}
+
+.timeCell {
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+.classCell {
+  font-family: var(--font-heading);
+  font-size: 1.25rem;
+  color: var(--accent-color);
+  letter-spacing: 0.05em;
+}
+
+.trainerCell {
+  color: var(--text-secondary);
+}
+
+.bookBtn {
+  background-color: transparent;
+  color: var(--text-primary);
+  border: 1px solid var(--accent-color);
+  padding: 8px 16px;
+  border-radius: 4px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  transition: all 0.3s ease;
+}
+
+.bookBtn:hover {
+  background-color: var(--accent-color);
+  color: #fff;
+}
+
+@media (max-width: 768px) {
+  .tableContainer {
+    background-color: transparent;
+    border: none;
+  }
+  
+  .table, .table tbody, .table tr, .table td {
+    display: block;
+    width: 100%;
+  }
+  
+  .table thead {
+    display: none;
+  }
+  
+  .table tr {
+    background-color: var(--surface-color);
+    margin-bottom: 1.5rem;
+    border-radius: 8px;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    padding: 1.5rem;
+  }
+  
+  .table td {
+    text-align: left;
+    padding: 0.75rem 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  }
+  
+  .table td:last-child {
+    border-bottom: none;
+    padding-bottom: 0;
+  }
+
+  .classCell {
+    font-size: 1.5rem;
+    padding-bottom: 0.5rem;
+    border-bottom: none !important;
+  }
+  
+  .bookBtn {
+    width: 100%;
+    margin-top: 1rem;
+  }
+}

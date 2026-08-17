@@ -1,0 +1,95 @@
+.bmiSection {
+  padding: var(--section-padding) 0;
+  background-color: var(--surface-color-light);
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4rem;
+  align-items: center;
+}
+
+@media (max-width: 768px) {
+  .container {
+    grid-template-columns: 1fr;
+  }
+}
+
+.title {
+  font-size: clamp(2.5rem, 5vw, 4rem);
+  margin-bottom: 1.5rem;
+}
+
+.desc {
+  color: var(--text-secondary);
+  font-size: 1.1rem;
+  max-width: 500px;
+}
+
+.calculatorBox {
+  background-color: var(--bg-color);
+  padding: 3rem;
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.inputGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.inputGroup label {
+  font-weight: 600;
+  color: var(--text-secondary);
+}
+
+.inputGroup input {
+  padding: 12px 16px;
+  background-color: var(--surface-color);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 4px;
+  color: var(--text-primary);
+  font-family: var(--font-body);
+  font-size: 1rem;
+  outline: none;
+  transition: border-color 0.3s ease;
+}
+
+.inputGroup input:focus {
+  border-color: var(--accent-color);
+}
+
+.submitBtn {
+  width: 100%;
+  margin-top: 1rem;
+}
+
+.resultBox {
+  margin-top: 2rem;
+  padding: 1.5rem;
+  background-color: rgba(229, 9, 20, 0.05);
+  border-left: 4px solid var(--accent-color);
+  border-radius: 0 4px 4px 0;
+  animation: fadeIn 0.5s ease;
+}
+
+.resultBox h3 {
+  font-family: var(--font-heading);
+  font-size: 2rem;
+  margin-bottom: 0.5rem;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(-10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
