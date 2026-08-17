@@ -13,12 +13,17 @@
 }
 
 .logo {
-  font-family: var(--font-heading);
-  font-size: 1.5rem;
-  font-weight: 700;
-  letter-spacing: 0.1em;
   position: relative;
   z-index: 60;
+  display: flex;
+  align-items: center;
+}
+
+.logoImg {
+  height: 65px;
+  width: auto;
+  max-width: 250px;
+  object-fit: contain;
 }
 
 .desktopMenu {
@@ -90,5 +95,8 @@
   }
   .hamburger {
     display: block;
+  }
+  .logoImg {
+    height: 50px;
   }
 }

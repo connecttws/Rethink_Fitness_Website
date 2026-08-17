@@ -17,7 +17,7 @@ export default function Navbar() {
       <nav className={styles.nav}>
         <div className={`container ${styles.container}`}>
           <Link href="/" className={styles.logo} onClick={closeMobileMenu}>
-            RETHINK<span className="text-accent">FIT</span>
+            <img src="/Images/Logo/RF%20LOGO-01.png" alt="RethinkFit Logo" className={styles.logoImg} />
           </Link>
           
           {/* Desktop Menu */}

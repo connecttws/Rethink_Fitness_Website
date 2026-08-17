@@ -7,7 +7,7 @@ export default function Footer() {
       <div className={`container ${styles.container}`}>
         <div className={styles.brandCol}>
           <Link href="/" className={styles.logo}>
-            RETHINK<span className="text-accent">FIT</span>
+            <img src="/Images/Logo/RF%20LOGO-01.png" alt="RethinkFit Logo" className={styles.logoImg} />
           </Link>
           <p className={styles.brandDesc}>
             The ultimate fitness experience designed to push your boundaries. 
