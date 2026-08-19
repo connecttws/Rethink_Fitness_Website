@@ -2,21 +2,19 @@
 
 import { useState } from 'react';
 import styles from './Schedule.module.css';
-import BookingModal from './BookingModal';
+import BookingModal from '../BookingModal';
+import Link from 'next/link';
 
 const scheduleData = [
   { time: '06:00 AM', class: 'HIIT Burn', trainer: 'Sarah Jenkins', duration: '45 Min' },
   { time: '07:30 AM', class: 'Powerlifting', trainer: 'Marcus Vance', duration: '60 Min' },
-  { time: '09:00 AM', class: 'Yoga Flow', trainer: 'David Chen', duration: '60 Min' },
-  { time: '05:00 PM', class: 'CrossFit WOD', trainer: 'Marcus Vance', duration: '60 Min' },
-  { time: '06:30 PM', class: 'Spin Class', trainer: 'Sarah Jenkins', duration: '45 Min' },
-  { time: '08:00 PM', class: 'Mobility & Stretch', trainer: 'David Chen', duration: '30 Min' }
+  { time: '09:00 AM', class: 'Yoga Flow', trainer: 'David Chen', duration: '60 Min' }
 ];
 
 export default function Schedule() {
   const [isModalOpen, setModalOpen] = useState(false);
   return (
-    <section className={styles.scheduleSection}>
+    <section id="schedule" className={styles.scheduleSection}>
       <div className={`container ${styles.container}`}>
         <div className={styles.header}>
           <h2 className={styles.sectionTitle}>
@@ -25,14 +23,6 @@ export default function Schedule() {
           <p className={styles.sectionDesc}>
             Plan your workouts. Never miss a session.
           </p>
-        </div>
-
-        <div className={styles.daysFilter}>
-          {['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'].map((day, idx) => (
-            <button key={day} className={`${styles.dayBtn} ${idx === 0 ? styles.activeDay : ''}`}>
-              {day}
-            </button>
-          ))}
         </div>
 
         <div className={styles.tableContainer}>
@@ -60,6 +50,10 @@ export default function Schedule() {
               ))}
             </tbody>
           </table>
+        </div>
+        
+        <div style={{ textAlign: 'center', marginTop: '4rem' }}>
+          <Link href="/schedule" className="btn">View Full Schedule</Link>
         </div>
       </div>
       <BookingModal 

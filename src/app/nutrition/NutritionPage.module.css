@@ -1,0 +1,159 @@
+.pageContainer {
+  padding-top: 100px;
+  min-height: 100vh;
+  background-color: var(--bg-color);
+}
+
+.hero {
+  padding: 4rem 0;
+  text-align: center;
+  background-color: var(--bg-color-alt);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  position: relative;
+  overflow: hidden;
+}
+
+.hero::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url('https://images.unsplash.com/photo-1490645935967-10de6ba17061?q=80&w=2053&auto=format&fit=crop');
+  background-size: cover;
+  background-position: center;
+  opacity: 0.1;
+  z-index: 0;
+}
+
+.containerRelative {
+  position: relative;
+  z-index: 1;
+}
+
+.heroTitle {
+  font-size: clamp(2.5rem, 6vw, 4rem);
+  margin-bottom: 1.5rem;
+}
+
+.heroDesc {
+  color: var(--text-secondary);
+  font-size: 1.2rem;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+/* Pillars Section */
+.pillarsSection {
+  padding: 6rem 0;
+}
+
+.sectionTitle {
+  text-align: center;
+  font-size: clamp(2rem, 4vw, 3rem);
+  margin-bottom: 4rem;
+}
+
+.pillarsGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+}
+
+.pillarCard {
+  background-color: var(--surface-color);
+  padding: 3rem 2rem;
+  border-radius: var(--border-radius);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  text-align: center;
+  transition: transform 0.3s ease;
+}
+
+.pillarCard:hover {
+  transform: translateY(-5px);
+  border-color: rgba(255, 255, 255, 0.2);
+}
+
+.pillarIcon {
+  width: 64px;
+  height: 64px;
+  color: var(--accent-color);
+  margin: 0 auto 1.5rem auto;
+}
+
+.pillarTitle {
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+  font-family: var(--font-heading);
+}
+
+.pillarDesc {
+  color: var(--text-secondary);
+  line-height: 1.6;
+}
+
+/* Packages Section */
+.packagesSection {
+  padding: 6rem 0;
+  background-color: var(--bg-color-alt);
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.packagesGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+}
+
+.packageCard {
+  background-color: var(--bg-color);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  border-radius: var(--border-radius);
+  padding: 3rem 2rem;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+
+.packageTitle {
+  font-size: 1.8rem;
+  margin-bottom: 1rem;
+  color: var(--text-primary);
+  font-family: var(--font-heading);
+}
+
+.packagePrice {
+  font-size: 2.5rem;
+  font-weight: 800;
+  color: var(--accent-color);
+  margin-bottom: 2rem;
+}
+
+.packageList {
+  list-style: none;
+  margin-bottom: 2.5rem;
+  text-align: left;
+  flex: 1;
+}
+
+.packageItem {
+  margin-bottom: 1rem;
+  color: var(--text-secondary);
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+}
+
+.checkIcon {
+  width: 20px;
+  height: 20px;
+  color: var(--accent-color);
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+.btnFull {
+  width: 100%;
+}

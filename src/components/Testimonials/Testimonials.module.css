@@ -70,11 +70,27 @@
   font-style: italic;
 }
 
-.author {
+.authorContainer {
   position: relative;
   z-index: 2;
   border-top: 1px solid rgba(255, 255, 255, 0.1);
-  padding-top: 1rem;
+  padding-top: 1.5rem;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.avatar {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid var(--accent-color);
+}
+
+.authorInfo {
+  display: flex;
+  flex-direction: column;
 }
 
 .name {

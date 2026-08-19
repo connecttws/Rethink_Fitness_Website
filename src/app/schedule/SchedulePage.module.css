@@ -1,0 +1,154 @@
+.pageContainer {
+  padding-top: 100px;
+  min-height: 100vh;
+  background-color: var(--bg-color);
+}
+
+.hero {
+  padding: 4rem 0;
+  text-align: center;
+  background-color: var(--bg-color-alt);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.heroTitle {
+  font-size: clamp(2.5rem, 6vw, 4rem);
+  margin-bottom: 1.5rem;
+}
+
+.heroDesc {
+  color: var(--text-secondary);
+  font-size: 1.2rem;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.scheduleSection {
+  padding: 4rem 0;
+}
+
+.daysFilter {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-bottom: 3rem;
+}
+
+.dayBtn {
+  background: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: var(--text-primary);
+  padding: 0.75rem 1.5rem;
+  border-radius: 30px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+
+.dayBtn:hover, .activeDay {
+  background-color: var(--accent-color);
+  border-color: var(--accent-color);
+}
+
+.tableContainer {
+  overflow-x: auto;
+  background-color: var(--surface-color);
+  border-radius: var(--border-radius);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  min-width: 800px;
+}
+
+.table th, .table td {
+  padding: 1.5rem;
+  text-align: left;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.table th {
+  background-color: rgba(0, 0, 0, 0.2);
+  font-family: var(--font-heading);
+  letter-spacing: 1px;
+  color: var(--text-secondary);
+}
+
+.timeCell {
+  font-weight: 700;
+  color: var(--accent-color);
+}
+
+.classCell {
+  font-size: 1.1rem;
+  font-weight: 600;
+}
+
+.trainerCell, .durationCell {
+  color: var(--text-secondary);
+}
+
+.bookBtn {
+  background: transparent;
+  border: 1px solid var(--accent-color);
+  color: var(--accent-color);
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+
+.bookBtn:hover {
+  background-color: var(--accent-color);
+  color: #fff;
+}
+
+/* Class Descriptions Section */
+.descriptionsSection {
+  padding: 4rem 0 6rem 0;
+}
+
+.descTitle {
+  text-align: center;
+  font-size: clamp(2rem, 4vw, 3rem);
+  margin-bottom: 3rem;
+}
+
+.descGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+}
+
+.descCard {
+  background-color: var(--surface-color);
+  padding: 2.5rem;
+  border-radius: var(--border-radius);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.className {
+  font-size: 1.5rem;
+  color: var(--accent-color);
+  margin-bottom: 1rem;
+  font-family: var(--font-heading);
+}
+
+.intensity {
+  display: inline-block;
+  background-color: rgba(255, 255, 255, 0.1);
+  padding: 0.25rem 0.75rem;
+  border-radius: 4px;
+  font-size: 0.85rem;
+  margin-bottom: 1.5rem;
+  color: var(--text-secondary);
+}
+
+.classDetails {
+  color: var(--text-primary);
+  line-height: 1.6;
+}

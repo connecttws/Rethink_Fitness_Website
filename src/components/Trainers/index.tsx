@@ -1,4 +1,5 @@
 import styles from './Trainers.module.css';
+import Link from 'next/link';
 
 const trainers = [
   {
@@ -26,7 +27,7 @@ const trainers = [
 
 export default function Trainers() {
   return (
-    <section className={styles.trainersSection}>
+    <section id="trainers" className={styles.trainersSection}>
       <div className={`container ${styles.container}`}>
         <div className={styles.header}>
           <h2 className={styles.sectionTitle}>
@@ -53,6 +54,10 @@ export default function Trainers() {
               </div>
             </div>
           ))}
+        </div>
+        
+        <div style={{ textAlign: 'center', marginTop: '4rem' }}>
+          <Link href="/trainers" className="btn">View Full Trainer Profiles</Link>
         </div>
       </div>
     </section>

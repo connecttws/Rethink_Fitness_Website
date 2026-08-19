@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 import Link from 'next/link';
-import BookingModal from './BookingModal';
+import BookingModal from '../BookingModal';
 import styles from './Navbar.module.css';
 
 export default function Navbar() {
@@ -27,6 +27,8 @@ export default function Navbar() {
               <Link href="/trainers">Trainers</Link>
               <Link href="/schedule">Schedule</Link>
               <Link href="/pricing">Pricing</Link>
+              <Link href="/nutrition">Nutrition</Link>
+              <Link href="/blog">Blog</Link>
             </div>
             <button 
               className="btn" 
@@ -51,6 +53,8 @@ export default function Navbar() {
           <Link href="/trainers" onClick={closeMobileMenu}>Trainers</Link>
           <Link href="/schedule" onClick={closeMobileMenu}>Schedule</Link>
           <Link href="/pricing" onClick={closeMobileMenu}>Pricing</Link>
+          <Link href="/nutrition" onClick={closeMobileMenu}>Nutrition</Link>
+          <Link href="/blog" onClick={closeMobileMenu}>Blog</Link>
         </div>
         <button 
           className="btn" 
