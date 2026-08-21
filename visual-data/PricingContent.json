@@ -1,0 +1,39 @@
+{
+  "pricingPlans": [
+    {
+      "id": "basic",
+      "name": "Basic",
+      "monthlyPrice": 49,
+      "annualPrice": 39,
+      "features": ["Access to gym equipment", "Locker room access", "1 Group class per week"],
+      "isPopular": false
+    },
+    {
+      "id": "pro",
+      "name": "Pro",
+      "monthlyPrice": 89,
+      "annualPrice": 75,
+      "features": ["Unlimited gym access", "Unlimited group classes", "Sauna & Spa access", "1 PT session per month"],
+      "isPopular": true
+    },
+    {
+      "id": "elite",
+      "name": "Elite",
+      "monthlyPrice": 149,
+      "annualPrice": 125,
+      "features": ["Everything in Pro", "4 PT sessions per month", "Custom Nutrition plan", "Priority class booking"],
+      "isPopular": false
+    }
+  ],
+  "featureComparison": [
+    { "feature": "Open Gym Access", "basic": true, "pro": true, "elite": true },
+    { "feature": "Locker & Showers", "basic": true, "pro": true, "elite": true },
+    { "feature": "Group Classes", "basic": "1/week", "pro": "Unlimited", "elite": "Unlimited" }
+  ],
+  "faqs": [
+    {
+      "q": "Are there any hidden initiation fees?",
+      "a": "No! We believe in transparent pricing. The price you see is the price you pay. There are zero initiation, maintenance, or hidden fees."
+    }
+  ]
+}

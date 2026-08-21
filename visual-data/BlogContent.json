@@ -1,0 +1,34 @@
+{
+  "featuredPost": {
+    "id": "feat-1",
+    "category": "Training",
+    "title": "5 Myths About Hypertrophy You Need to Stop Believing",
+    "excerpt": "Are you still training in the \"hypertrophy zone\" of 8-12 reps exclusively? Our head coach breaks down the latest sports science research on muscle growth and why you might be leaving gains on the table.",
+    "image": "/Images/Galley/DS9A8021.jpg",
+    "author": "Marcus Vance",
+    "authorImg": "/Images/Galley/DS9A7984.jpg",
+    "date": "August 12, 2026"
+  },
+  "recentPosts": [
+    {
+      "id": 1,
+      "category": "Nutrition",
+      "title": "The Ultimate Guide to Pre-Workout Fueling",
+      "excerpt": "Stop eating heavy meals 30 minutes before training. Discover the optimal timing and macro ratios to ensure maximum energy without the sluggishness.",
+      "image": "/Images/Galley/DS9A8024.jpg",
+      "author": "Sarah Jenkins",
+      "authorImg": "/Images/Galley/DS9A7985.jpg",
+      "date": "August 08, 2026"
+    },
+    {
+      "id": 2,
+      "category": "Recovery",
+      "title": "Why Sleep is Your Strongest Performance Enhancer",
+      "excerpt": "You break muscle down in the gym, but you build it in bed. A deep dive into sleep architecture and how to optimize your circadian rhythm.",
+      "image": "/Images/Galley/DS9A8025.jpg",
+      "author": "David Chen",
+      "authorImg": "/Images/Galley/DS9A7986.jpg",
+      "date": "August 03, 2026"
+    }
+  ]
+}

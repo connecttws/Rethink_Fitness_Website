@@ -1,0 +1,15 @@
+{
+  "fullScheduleData": [
+    { "time": "06:00 AM", "class": "HIIT Burn", "trainer": "Sarah Jenkins", "duration": "45 Min", "spots": 5 },
+    { "time": "07:30 AM", "class": "Powerlifting", "trainer": "Marcus Vance", "duration": "60 Min", "spots": 2 },
+    { "time": "09:00 AM", "class": "Yoga Flow", "trainer": "David Chen", "duration": "60 Min", "spots": 12 },
+    { "time": "12:00 PM", "class": "Lunchtime Express", "trainer": "Sarah Jenkins", "duration": "30 Min", "spots": 8 }
+  ],
+  "classDescriptions": [
+    {
+      "name": "HIIT Burn",
+      "intensity": "High Intensity",
+      "description": "A 45-minute high-intensity interval training session designed to torch calories and build cardiovascular endurance. Expect fast-paced rounds of burpees, sprints, and kettlebell swings."
+    }
+  ]
+}

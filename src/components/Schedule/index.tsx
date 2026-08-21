@@ -4,24 +4,19 @@ import { useState } from 'react';
 import styles from './Schedule.module.css';
 import BookingModal from '../BookingModal';
 import Link from 'next/link';
+import { VisualContent } from '@/lib/visual-data/loadContent';
 
-const scheduleData = [
-  { time: '06:00 AM', class: 'HIIT Burn', trainer: 'Sarah Jenkins', duration: '45 Min' },
-  { time: '07:30 AM', class: 'Powerlifting', trainer: 'Marcus Vance', duration: '60 Min' },
-  { time: '09:00 AM', class: 'Yoga Flow', trainer: 'David Chen', duration: '60 Min' }
-];
-
-export default function Schedule() {
+export default function Schedule({ data }: { data: VisualContent['schedule'] }) {
   const [isModalOpen, setModalOpen] = useState(false);
   return (
     <section id="schedule" className={styles.scheduleSection}>
       <div className={`container ${styles.container}`}>
         <div className={styles.header}>
           <h2 className={styles.sectionTitle}>
-            Class <span className="text-accent">Schedule</span>
+            {data.titlePrefix} <span className="text-accent">{data.titleAccent}</span>
           </h2>
           <p className={styles.sectionDesc}>
-            Plan your workouts. Never miss a session.
+            {data.description}
           </p>
         </div>
 
@@ -37,7 +32,7 @@ export default function Schedule() {
               </tr>
             </thead>
             <tbody>
-              {scheduleData.map((item, idx) => (
+              {data.items.map((item, idx) => (
                 <tr key={idx}>
                   <td className={styles.timeCell}>{item.time}</td>
                   <td className={styles.classCell}>{item.class}</td>
@@ -53,7 +48,7 @@ export default function Schedule() {
         </div>
         
         <div style={{ textAlign: 'center', marginTop: '4rem' }}>
-          <Link href="/schedule" className="btn">View Full Schedule</Link>
+          <Link href="/schedule" className="btn">{data.btnText}</Link>
         </div>
       </div>
       <BookingModal 

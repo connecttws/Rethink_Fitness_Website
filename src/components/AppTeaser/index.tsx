@@ -1,16 +1,16 @@
 import styles from './AppTeaser.module.css';
+import { VisualContent } from '@/lib/visual-data/loadContent';
 
-export default function AppTeaser() {
+export default function AppTeaser({ data }: { data: VisualContent['appTeaser'] }) {
   return (
     <section className={styles.appSection}>
       <div className={`container ${styles.container}`}>
         <div className={styles.content}>
           <h2 className={styles.title}>
-            Your Gym. <br/> <span className="text-accent">In Your Pocket.</span>
+            {data.titlePrefix} <br/> <span className="text-accent">{data.titleAccent}</span>
           </h2>
           <p className={styles.desc}>
-            Download the RethinkFit app to book classes, track your progress, 
-            get custom meal plans, and connect with your trainer 24/7.
+            {data.description}
           </p>
           <div className={styles.badges}>
             <div className={styles.badgePlaceholder}>App Store</div>

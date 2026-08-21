@@ -1,0 +1,20 @@
+{
+  "detailedTrainers": [
+    {
+      "id": 1,
+      "name": "Marcus Vance",
+      "specialty": "Strength & Conditioning",
+      "image": "/Images/Galley/DS9A7984.jpg",
+      "bio": "Marcus is a former Olympic weightlifter with over 10 years of experience turning beginners into absolute beasts. His philosophy is rooted in mastering the basic compound movements before progressing to complex lifts.",
+      "certifications": ["Olympic Weightlifting L2", "NASM CPT", "Precision Nutrition L1"]
+    },
+    {
+      "id": 2,
+      "name": "Sarah Jenkins",
+      "specialty": "HIIT & Endurance",
+      "image": "/Images/Galley/DS9A7985.jpg",
+      "bio": "Sarah brings an infectious high-energy approach to every session. She specializes in pushing your cardiovascular limits and incinerating fat fast.",
+      "certifications": ["CrossFit L2", "ACE Certified Personal Trainer", "Kettlebell Athletics"]
+    }
+  ]
+}

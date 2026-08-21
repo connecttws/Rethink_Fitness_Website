@@ -1,11 +1,12 @@
 import styles from './TrainersPage.module.css';
+import prisma from "@/lib/prisma";
 
 const detailedTrainers = [
   {
     id: 1,
     name: 'Marcus Vance',
     specialty: 'Strength & Conditioning',
-    image: 'https://images.unsplash.com/photo-1583454110551-21f2fa2afe61?q=80&w=2070&auto=format&fit=crop',
+    image: '/Images/Galley/DS9A7984.jpg',
     bio: 'Marcus is a former Olympic weightlifter with over 10 years of experience turning beginners into absolute beasts. His philosophy is rooted in mastering the basic compound movements before progressing to complex lifts. Whether your goal is to pack on muscle mass or increase your 1-rep max, Marcus will build a bulletproof foundation for your strength.',
     certifications: ['Olympic Weightlifting L2', 'NASM CPT', 'Precision Nutrition L1'],
   },
@@ -13,7 +14,7 @@ const detailedTrainers = [
     id: 2,
     name: 'Sarah Jenkins',
     specialty: 'HIIT & Endurance',
-    image: 'https://images.unsplash.com/photo-1594381898411-846e7d193883?q=80&w=1974&auto=format&fit=crop',
+    image: '/Images/Galley/DS9A7985.jpg',
     bio: 'Sarah brings an infectious high-energy approach to every session. She specializes in pushing your cardiovascular limits and incinerating fat fast. With a background in competitive sprinting and CrossFit, Sarah’s workouts are intense, varied, and scientifically designed to boost your VO2 max and metabolic conditioning.',
     certifications: ['CrossFit L2', 'ACE Certified Personal Trainer', 'Kettlebell Athletics'],
   },
@@ -21,13 +22,18 @@ const detailedTrainers = [
     id: 3,
     name: 'David Chen',
     specialty: 'Mobility & Recovery',
-    image: 'https://images.unsplash.com/photo-1534438327276-14e5300c3a48?q=80&w=2070&auto=format&fit=crop',
+    image: '/Images/Galley/DS9A7986.jpg',
     bio: 'David focuses on longevity, injury prevention, and building a foundation of true functional strength. Having recovered from a severe spinal injury himself, David understands the mechanics of the human body better than anyone. He works with athletes to fix imbalances, improve joint health, and ensure they can train hard for decades.',
     certifications: ['Doctor of Physical Therapy (DPT)', 'FRC Mobility Specialist', 'Yoga Alliance RYT 200'],
   }
 ];
 
-export default function TrainersPage() {
+export default async function TrainersPage() {
+  const pageData = await prisma.page.findFirst({ where: { slug: '/trainers' } });
+  const content = (pageData?.content as any) || {};
+
+  const currentTrainers = content.detailedTrainers || detailedTrainers;
+
   return (
     <main className={styles.pageContainer}>
       <section className={styles.hero}>
@@ -43,7 +49,7 @@ export default function TrainersPage() {
 
       <section className={styles.trainersList}>
         <div className={`container ${styles.trainersContainer}`}>
-          {detailedTrainers.map((trainer) => (
+          {currentTrainers.map((trainer: any) => (
             <div key={trainer.id} className={styles.trainerRow}>
               <div className={styles.imageContainer}>
                 <img src={trainer.image} alt={trainer.name} className={styles.image} />
@@ -57,7 +63,7 @@ export default function TrainersPage() {
                 <div className={styles.certifications}>
                   <h3 className={styles.certTitle}>Credentials</h3>
                   <div className={styles.certList}>
-                    {trainer.certifications.map((cert, idx) => (
+                    {trainer.certifications.map((cert: any, idx: number) => (
                       <span key={idx} className={styles.certBadge}>{cert}</span>
                     ))}
                   </div>

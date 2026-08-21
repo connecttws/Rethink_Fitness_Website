@@ -1,7 +1,12 @@
 import styles from './NutritionPage.module.css';
 import BmiCalculator from '@/components/BmiCalculator';
+import prisma from "@/lib/prisma";
 
-export default function NutritionPage() {
+
+export default async function NutritionPage() {
+  const pageData = await prisma.page.findFirst({ where: { slug: '/nutrition' } });
+  const content = (pageData?.content as any) || {};
+
   return (
     <main className={styles.pageContainer}>
       <section className={styles.hero}>

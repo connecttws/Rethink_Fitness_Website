@@ -1,0 +1,185 @@
+{
+  "hero": {
+    "fullText": "Rethink\nYour\nLimits",
+    "subtitle": "The ultimate fitness experience designed to push your boundaries. State-of-the-art equipment, elite trainers, and an atmosphere built for champions.",
+    "primaryBtnText": "Join Now",
+    "secondaryBtnText": "View Classes"
+  },
+  "features": {
+    "titlePrefix": "Why Choose",
+    "titleAccent": "Us",
+    "description": "We provide everything you need to transform your body and mind. No compromises.",
+    "items": [
+      {
+        "id": "01",
+        "title": "Elite Trainers",
+        "description": "Work with the best in the industry to push your limits and achieve your goals faster."
+      },
+      {
+        "id": "02",
+        "title": "Modern Equipment",
+        "description": "Access state-of-the-art machines and free weights designed for peak performance."
+      },
+      {
+        "id": "03",
+        "title": "Open 24/7",
+        "description": "Train on your schedule. Our facilities are open around the clock for your convenience."
+      }
+    ]
+  },
+  "facilityTour": {
+    "titlePrefix": "Explore Our",
+    "titleAccent": "Facility",
+    "description": "A 20,000 sq ft playground for fitness enthusiasts.",
+    "images": [
+      { "id": 1, "url": "/Images/Galley/DS9A8000.jpg", "title": "Free Weights Zone", "featured": true },
+      { "id": 2, "url": "/Images/Galley/DS9A8002.jpg", "title": "Cardio Deck", "featured": false },
+      { "id": 3, "url": "/Images/Galley/DS9A8003.jpg", "title": "Functional Training", "featured": false },
+      { "id": 4, "url": "/Images/Galley/DS9A8004.jpg", "title": "Recovery Lounge", "featured": false },
+      { "id": 5, "url": "/Images/Galley/DS9A8020.jpg", "title": "Yoga Studio", "featured": false }
+    ],
+    "btnText": "Take Virtual Tour"
+  },
+  "schedule": {
+    "titlePrefix": "Class",
+    "titleAccent": "Schedule",
+    "description": "Plan your workouts. Never miss a session.",
+    "items": [
+      { "time": "06:00 AM", "class": "HIIT Burn", "trainer": "Sarah Jenkins", "duration": "45 Min" },
+      { "time": "07:30 AM", "class": "Powerlifting", "trainer": "Marcus Vance", "duration": "60 Min" },
+      { "time": "09:00 AM", "class": "Yoga Flow", "trainer": "David Chen", "duration": "60 Min" }
+    ],
+    "btnText": "View Full Schedule"
+  },
+  "gatewayTeaser": {
+    "block1": {
+      "title": "Elite Coaching",
+      "desc": "Train with world-class professionals who push your limits.",
+      "btnText": "Meet The Team"
+    },
+    "block2": {
+      "title": "Dynamic Classes",
+      "desc": "From HIIT to Yoga, find the perfect class for your goals.",
+      "btnText": "View Schedule"
+    }
+  },
+  "trainers": {
+    "titlePrefix": "Meet Your",
+    "titleAccent": "Coaches",
+    "description": "Elite professionals dedicated to your transformation.",
+    "items": [
+      {
+        "id": 1,
+        "name": "Marcus Vance",
+        "specialty": "Strength & Conditioning",
+        "image": "/Images/Galley/DS9A7984.jpg",
+        "bio": "Former Olympic weightlifter with 10 years of experience turning beginners into beasts."
+      },
+      {
+        "id": 2,
+        "name": "Sarah Jenkins",
+        "specialty": "HIIT & Endurance",
+        "image": "/Images/Galley/DS9A7985.jpg",
+        "bio": "High-energy coach dedicated to pushing your cardiovascular limits and burning fat fast."
+      },
+      {
+        "id": 3,
+        "name": "David Chen",
+        "specialty": "Mobility & Recovery",
+        "image": "/Images/Galley/DS9A7986.jpg",
+        "bio": "Focuses on longevity, injury prevention, and building a foundation of true functional strength."
+      }
+    ],
+    "btnText": "View Full Trainer Profiles"
+  },
+  "testimonials": {
+    "titlePrefix": "Real",
+    "titleAccent": "Results",
+    "description": "Don't just take our word for it. Hear from the champions who grind here every day.",
+    "items": [
+      {
+        "id": 1,
+        "name": "James Rodriguez",
+        "review": "Rethink Fitness completely changed my life. The trainers are world-class and the equipment is always spotless. I lost 30lbs in my first 4 months.",
+        "role": "Member since 2024",
+        "image": "/Images/Galley/DS9A7987.jpg"
+      },
+      {
+        "id": 2,
+        "name": "Emily Chen",
+        "review": "The energy in this gym is unmatched. From the heavy lifting section to the yoga studio, it feels like a truly premium experience every time I walk in.",
+        "role": "Pro Member",
+        "image": "/Images/Galley/DS9A7988.jpg"
+      },
+      {
+        "id": 3,
+        "name": "Marcus Thorne",
+        "review": "Best gym in the city, hands down. The community here pushes you to be your absolute best. The Elite membership is worth every penny.",
+        "role": "Elite Member",
+        "image": "/Images/Galley/DS9A7990.jpg"
+      }
+    ]
+  },
+  "appTeaser": {
+    "titlePrefix": "Your Gym in",
+    "titleAccent": "Your Pocket",
+    "description": "Download the Rethink Fitness app to book classes, track your progress, and get exclusive workout plans from our elite trainers.",
+    "features": [
+      "Book Classes Instantly",
+      "Track Workouts & PRs",
+      "Access Video Tutorials",
+      "Connect with Trainers"
+    ]
+  },
+  "pricing": {
+    "bannerTitlePrefix": "Ready to",
+    "bannerTitleAccent": "Commit?",
+    "bannerDescHtml": "Premium memberships starting at just <strong>$49/month</strong>. No hidden fees. Zero initiation costs.",
+    "btnText": "View Pricing Plans"
+  },
+  "locationSection": {
+    "titlePrefix": "Find",
+    "titleAccent": "Us",
+    "description": "Centrally located with ample free parking. Your fitness destination is closer than you think.",
+    "address": "123 Fitness Blvd, Suite 100\nMetropolis, NY 10001",
+    "phone": "(555) 123-4567",
+    "email": "info@rethinkfitness.com",
+    "hoursHtml": "<strong>Mon-Fri:</strong> 5:00 AM - 11:00 PM<br/><strong>Sat-Sun:</strong> 7:00 AM - 9:00 PM",
+    "mapIframeSrc": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3022.215573752538!2d-73.99616038459424!3d40.75716187932684!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c258546b430e3d%3A0x6b44c600109a2503!2sTimes%20Square!5e0!3m2!1sen!2sus!4v1689255018698!5m2!1sen!2sus"
+  },
+  "instagramFeed": {
+    "titlePrefix": "Follow Our",
+    "titleAccent": "Journey",
+    "handle": "@rethinkfitness",
+    "posts": [
+      {
+        "id": 1,
+        "image": "/Images/Galley/DS9A7995.jpg",
+        "link": "#",
+        "likes": "1.2k",
+        "comments": "45"
+      },
+      {
+        "id": 2,
+        "image": "/Images/Galley/DS9A7998.jpg",
+        "link": "#",
+        "likes": "856",
+        "comments": "23"
+      },
+      {
+        "id": 3,
+        "image": "/Images/Galley/DS9A8001.jpg",
+        "link": "#",
+        "likes": "2.1k",
+        "comments": "112"
+      },
+      {
+        "id": 4,
+        "image": "/Images/Galley/DS9A8006.jpg",
+        "link": "#",
+        "likes": "945",
+        "comments": "34"
+      }
+    ]
+  }
+}

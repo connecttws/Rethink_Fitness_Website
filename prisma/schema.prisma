@@ -1,0 +1,54 @@
+datasource db {
+  provider  = "postgresql"
+  schemas   = ["public", "website_builder"]
+}
+
+generator client {
+  provider        = "prisma-client-js"
+  previewFeatures = ["multiSchema"]
+}
+
+// ==========================================
+// RETHINK FITNESS - HEADLESS CMS SCHEMA
+// ==========================================
+// We only define the exact tables that this standalone project needs!
+
+model LiveProject {
+  id              String   @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  organization_id String   @db.Uuid 
+  
+  name            String
+  domain          String?  @unique
+  subdomain       String?  @unique
+  is_published    Boolean  @default(false)
+  
+  pages           Page[]
+  
+  created_by      String   @db.Uuid 
+  created_at      DateTime @default(now()) @db.Timestamptz
+  updated_at      DateTime @updatedAt @db.Timestamptz
+
+  @@schema("website_builder")
+}
+
+model Page {
+  id              String   @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  project_id      String   @db.Uuid
+  project         LiveProject  @relation(fields: [project_id], references: [id], onDelete: Cascade)
+  
+  title           String
+  slug            String   
+  is_home_page    Boolean  @default(false)
+  
+  // JSON payload containing your built-in visual editor data
+  content         Json     @default("{}") 
+  
+  seo_title       String?
+  seo_description String?
+  
+  created_at      DateTime @default(now()) @db.Timestamptz
+  updated_at      DateTime @updatedAt @db.Timestamptz
+
+  @@unique([project_id, slug])
+  @@schema("website_builder")
+}

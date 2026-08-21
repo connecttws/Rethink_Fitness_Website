@@ -1,31 +1,21 @@
 import styles from './InstagramFeed.module.css';
+import { VisualContent } from '@/lib/visual-data/loadContent';
 
-const posts = [
-  { id: 1, image: 'https://images.unsplash.com/photo-1517836357463-d25dfeac3438?q=80&w=2070&auto=format&fit=crop' },
-  { id: 2, image: 'https://images.unsplash.com/photo-1571019614242-c5c5dee9f50b?q=80&w=2070&auto=format&fit=crop' },
-  { id: 3, image: 'https://images.unsplash.com/photo-1534438327276-14e5300c3a48?q=80&w=2070&auto=format&fit=crop' },
-  { id: 4, image: 'https://images.unsplash.com/photo-1541534741688-6078c6bfb5c5?q=80&w=2069&auto=format&fit=crop' },
-  { id: 5, image: 'https://images.unsplash.com/photo-1581009146145-b5ef050c2e1e?q=80&w=2070&auto=format&fit=crop' },
-  { id: 6, image: 'https://images.unsplash.com/photo-1554284126-aa88f2244b40?q=80&w=2070&auto=format&fit=crop' },
-  { id: 7, image: 'https://images.unsplash.com/photo-1599058917212-d750089bc07e?q=80&w=2069&auto=format&fit=crop' },
-  { id: 8, image: 'https://images.unsplash.com/photo-1518611012118-696072aa579a?q=80&w=2070&auto=format&fit=crop' },
-];
-
-export default function InstagramFeed() {
+export default function InstagramFeed({ data }: { data: VisualContent['instagramFeed'] }) {
   return (
     <section className={styles.instaSection}>
       <div className="container">
         <div className={styles.header}>
           <h2 className={styles.sectionTitle}>
-            Join the <span className="text-accent">Community</span>
+            {data.titlePrefix} <span className="text-accent">{data.titleAccent}</span>
           </h2>
           <p className={styles.sectionDesc}>
-            Tag us in your workouts @RethinkFitness
+            Tag us in your workouts {data.handle}
           </p>
         </div>
 
         <div className={styles.feedGrid}>
-          {posts.map((post) => (
+          {data.posts.map((post) => (
             <div key={post.id} className={styles.post}>
               <img src={post.image} alt={`Instagram post ${post.id}`} />
               <div className={styles.overlay}>

@@ -11,22 +11,42 @@ import LocationSection from "@/components/LocationSection";
 import InstagramFeed from "@/components/InstagramFeed";
 import Link from 'next/link';
 
-export default function Home() {
-  return (
-    <main>
-      <Hero />
-      <Features />
-      <FacilityTour />
-      <Schedule />
-      <GatewayTeaser />
-      <Trainers />
-      <Testimonials />
-      <AppTeaser />
-      
-      <Pricing />
-      <LocationSection />
+import { loadVisualContent } from "@/lib/visual-data/loadContent";
+import prisma from "@/lib/prisma";
+import { isAdminSession } from "@/lib/auth/session";
+import { EditModeProvider } from "@/components/visual-editor/EditModeContext";
+import { EditorToolbar } from "@/components/visual-editor/EditorToolbar";
 
-      <InstagramFeed />
-    </main>
+export default async function Home() {
+  const localData = await loadVisualContent();
+  
+  const pages = await prisma.page.findMany({
+    where: { is_home_page: true }
+  });
+  const dbData = pages.length > 0 ? (pages[0].content as any) : null;
+
+  // Use the CMS DB data if available, otherwise gracefully fallback to the local JSON
+  const data = (dbData && Object.keys(dbData).length > 0) ? dbData : localData;
+  const isEditMode = await isAdminSession();
+
+  return (
+    <EditModeProvider isEditMode={isEditMode} visualContent={data}>
+      <EditorToolbar />
+      <main>
+        <Hero data={data.hero} />
+        <Features data={data.features} />
+        <FacilityTour data={data.facilityTour} />
+        <Schedule data={data.schedule} />
+        <GatewayTeaser data={data.gatewayTeaser} />
+        <Trainers data={data.trainers} />
+        <Testimonials data={data.testimonials} />
+        <AppTeaser data={data.appTeaser} />
+        
+        <Pricing data={data.pricing} />
+        <LocationSection data={data.locationSection} />
+
+        <InstagramFeed data={data.instagramFeed} />
+      </main>
+    </EditModeProvider>
   );
 }

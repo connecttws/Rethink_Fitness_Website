@@ -3,6 +3,7 @@
 import { useState } from 'react';
 import Link from 'next/link';
 import BookingModal from '../BookingModal';
+import { LoginForm } from '../dev-cms/LoginForm';
 import styles from './Navbar.module.css';
 
 export default function Navbar() {
@@ -11,13 +12,16 @@ export default function Navbar() {
 
   const toggleMobileMenu = () => setMobileMenuOpen(!isMobileMenuOpen);
   const closeMobileMenu = () => setMobileMenuOpen(false);
+  const [isLoginOpen, setLoginOpen] = useState(false);
 
   return (
     <>
       <nav className={styles.nav}>
         <div className={`container ${styles.container}`}>
           <Link href="/" className={styles.logo} onClick={closeMobileMenu}>
-            <img src="/Images/Logo/RF%20LOGO-01.png" alt="RethinkFit Logo" className={styles.logoImg} />
+            <div onDoubleClick={() => setLoginOpen(true)}>
+              <img src="/Images/Logo/RF%20LOGO-01.png" alt="RethinkFit Logo" className={styles.logoImg} />
+            </div>
           </Link>
           
           {/* Desktop Menu */}
@@ -72,6 +76,20 @@ export default function Navbar() {
         onClose={() => setModalOpen(false)} 
         title="Claim Your Free VIP Pass"
       />
+
+      {isLoginOpen && (
+        <div className="fixed inset-0 z-[100] flex items-center justify-center bg-black/70 px-5 backdrop-blur-sm">
+          <div className="relative w-full max-w-md">
+            <button
+              className="absolute -right-3 -top-3 z-10 inline-flex h-10 w-10 items-center justify-center rounded-full bg-white text-black shadow-xl transition-all hover:scale-105"
+              onClick={() => setLoginOpen(false)}
+            >
+              ✕
+            </button>
+            <LoginForm />
+          </div>
+        </div>
+      )}
     </>
   );
 }

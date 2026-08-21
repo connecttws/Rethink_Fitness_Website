@@ -1,21 +1,20 @@
 import styles from './Pricing.module.css';
 import Link from 'next/link';
+import { VisualContent } from '@/lib/visual-data/loadContent';
 
-export default function Pricing() {
+export default function Pricing({ data }: { data: VisualContent['pricing'] }) {
   return (
     <section id="pricing" className={styles.pricingSection}>
       <div className={`container ${styles.container}`}>
         <div className={styles.banner}>
           <div className={styles.bannerContent}>
             <h2 className={styles.bannerTitle}>
-              Ready to <span className="text-accent">Commit?</span>
+              {data.bannerTitlePrefix} <span className="text-accent">{data.bannerTitleAccent}</span>
             </h2>
-            <p className={styles.bannerDesc}>
-              Premium memberships starting at just <strong>$49/month</strong>. No hidden fees. Zero initiation costs.
-            </p>
+            <p className={styles.bannerDesc} dangerouslySetInnerHTML={{ __html: data.bannerDescHtml }}></p>
           </div>
           <div className={styles.bannerAction}>
-            <Link href="/pricing" className="btn">View Pricing Plans</Link>
+            <Link href="/pricing" className="btn">{data.btnText}</Link>
           </div>
         </div>
       </div>
