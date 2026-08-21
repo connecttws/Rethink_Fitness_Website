@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import "./globals.css";
+import "@/components/visual-editor/editor-chrome.css";
 import Footer from "@/components/Footer";
 import Navbar from "@/components/Navbar";
 
