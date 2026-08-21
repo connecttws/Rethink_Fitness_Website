@@ -1,3 +1,4 @@
+export const dynamic = 'force-dynamic';
 import styles from './TrainersPage.module.css';
 import prisma from "@/lib/prisma";
 
@@ -83,3 +84,4 @@ export default async function TrainersPage() {
     </main>
   );
 }
+

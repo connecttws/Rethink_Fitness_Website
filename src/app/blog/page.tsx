@@ -1,3 +1,4 @@
+export const dynamic = 'force-dynamic';
 import styles from './BlogPage.module.css';
 import prisma from "@/lib/prisma";
 
@@ -169,3 +170,4 @@ export default async function BlogPage() {
     </main>
   );
 }
+

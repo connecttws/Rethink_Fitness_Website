@@ -1,3 +1,4 @@
+export const dynamic = 'force-dynamic';
 import prisma from "@/lib/prisma";
 import PricingClient from "./PricingClient";
 
@@ -73,4 +74,5 @@ export default async function PricingPage() {
     />
   );
 }
+
 

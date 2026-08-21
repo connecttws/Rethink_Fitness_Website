@@ -1,3 +1,4 @@
+export const dynamic = 'force-dynamic';
 import prisma from "@/lib/prisma";
 import ScheduleClient from "./ScheduleClient";
 
@@ -53,4 +54,5 @@ export default async function SchedulePage() {
     />
   );
 }
+
 

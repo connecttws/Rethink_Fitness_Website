@@ -1,3 +1,4 @@
+export const dynamic = 'force-dynamic';
 import styles from './NutritionPage.module.css';
 import BmiCalculator from '@/components/BmiCalculator';
 import prisma from "@/lib/prisma";
@@ -153,3 +154,4 @@ function CheckIcon() {
     </svg>
   );
 }
+
