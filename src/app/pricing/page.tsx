@@ -58,20 +58,31 @@ const fallbackFaqs = [
   }
 ];
 
+import { isAdminSession } from "@/lib/auth/session";
+import { EditModeProvider } from "@/components/visual-editor/EditModeContext";
+import { EditorToolbar } from "@/components/visual-editor/EditorToolbar";
+import { getCachedPageContent } from "@/lib/visual-data/loadContent";
+
 export default async function PricingPage() {
-  const pageData = await prisma.page.findFirst({ where: { slug: '/pricing' } });
-  const content = (pageData?.content as any) || {};
+  const pageData = await getCachedPageContent('/pricing');
+  const isEditMode = await isAdminSession();
+  
+  // Provide safe fallbacks so the site doesn't break if the data hasn't been added to CMS yet
+  const content = (pageData as any) || {};
 
   const pricingPlans = content.pricingPlans || fallbackPricingPlans;
   const featureComparison = content.featureComparison || fallbackFeatureComparison;
   const faqs = content.faqs || fallbackFaqs;
 
   return (
-    <PricingClient 
-      pricingPlans={pricingPlans} 
-      featureComparison={featureComparison} 
-      faqs={faqs} 
-    />
+    <EditModeProvider isEditMode={isEditMode} visualContent={content} pageSlug="/pricing">
+      <EditorToolbar />
+      <PricingClient 
+        pricingPlans={pricingPlans} 
+        featureComparison={featureComparison} 
+        faqs={faqs} 
+      />
+    </EditModeProvider>
   );
 }
 

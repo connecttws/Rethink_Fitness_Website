@@ -41,6 +41,7 @@ type EditModeContextValue = {
   patch: Record<string, unknown>;
   applyPatch: (key: string, value: unknown) => void;
   visualContent: VisualContent;
+  pageSlug: string;
 };
 
 const EditModeContext = createContext<EditModeContextValue | null>(null);
@@ -49,10 +50,12 @@ export function EditModeProvider({
   children,
   isEditMode,
   visualContent,
+  pageSlug = "/",
 }: {
   children: ReactNode;
   isEditMode: boolean;
   visualContent: VisualContent;
+  pageSlug?: string;
 }) {
   const [patch, setPatch] = useState<Record<string, unknown>>({});
 
@@ -80,6 +83,7 @@ export function EditModeProvider({
         patch,
         applyPatch,
         visualContent: mergedContent,
+        pageSlug,
       }}
     >
       {children}
@@ -97,6 +101,7 @@ export function useEditMode() {
       patch: {},
       applyPatch: () => {},
       visualContent: {} as VisualContent,
+      pageSlug: "/",
     } satisfies EditModeContextValue;
   }
   return ctx;

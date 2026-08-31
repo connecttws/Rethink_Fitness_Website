@@ -1,5 +1,6 @@
 import styles from './AppTeaser.module.css';
 import { VisualContent } from '@/lib/visual-data/loadContent';
+import { EditableText } from '@/components/visual-editor';
 
 export default function AppTeaser({ data }: { data: VisualContent['appTeaser'] }) {
   return (
@@ -7,11 +8,15 @@ export default function AppTeaser({ data }: { data: VisualContent['appTeaser'] }
       <div className={`container ${styles.container}`}>
         <div className={styles.content}>
           <h2 className={styles.title}>
-            {data.titlePrefix} <br/> <span className="text-accent">{data.titleAccent}</span>
+            <EditableText path="appTeaser.titlePrefix" fallback={data.titlePrefix} /> <br/> <EditableText path="appTeaser.titleAccent" fallback={data.titleAccent} as="span" className="text-accent" />
           </h2>
-          <p className={styles.desc}>
-            {data.description}
-          </p>
+          <EditableText 
+            path="appTeaser.description" 
+            fallback={data.description} 
+            as="p" 
+            className={styles.desc} 
+            multiline 
+          />
           <div className={styles.badges}>
             <div className={styles.badgePlaceholder}>App Store</div>
             <div className={styles.badgePlaceholder}>Google Play</div>

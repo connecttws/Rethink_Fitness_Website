@@ -35,98 +35,135 @@ function EditModal({
 
   return createPortal(
     <div
-      className="fixed inset-0 z-[300] flex items-end justify-center bg-slate-950/50 backdrop-blur-sm sm:items-center sm:px-4"
       onClick={(e) => { if (e.target === e.currentTarget) onCancel(); }}
+      style={{
+        position: "fixed", top: 0, left: 0, right: 0, bottom: 0, zIndex: 300,
+        display: "flex", alignItems: "center", justifyContent: "center",
+        background: "rgba(0, 0, 0, 0.6)", backdropFilter: "blur(4px)", padding: "20px"
+      }}
     >
-      {/* Sheet on mobile, centered card on desktop */}
       <div
-        className="w-full max-h-[90vh] overflow-y-auto rounded-t-2xl bg-white shadow-2xl sm:max-w-lg sm:rounded-2xl"
         onClick={(e) => e.stopPropagation()}
+        style={{
+          width: "100%", maxWidth: "500px", maxHeight: "90vh", overflowY: "auto",
+          background: "#ffffff", borderRadius: "16px", boxShadow: "0 25px 50px -12px rgba(0, 0, 0, 0.5)",
+          display: "flex", flexDirection: "column", color: "#000"
+        }}
       >
-        {/* Drag handle (mobile) */}
-        <div className="flex justify-center pt-3 sm:hidden">
-          <div className="h-1 w-10 rounded-full bg-slate-300" />
-        </div>
-
         {/* Header */}
-        <div className="flex items-center justify-between border-b border-slate-100 px-5 py-4">
+        <div style={{
+          display: "flex", alignItems: "center", justifyContent: "space-between",
+          borderBottom: "1px solid #e5e7eb", padding: "16px 20px"
+        }}>
           <div>
-            <p className="text-xs font-bold uppercase tracking-widest text-blue-600">Edit Text</p>
-            {label && <p className="mt-0.5 text-sm font-black text-slate-800">{label}</p>}
+            <p style={{ fontSize: "11px", fontWeight: "bold", textTransform: "uppercase", letterSpacing: "1px", color: "#2563eb", margin: 0 }}>
+              Edit Text
+            </p>
+            {label && <p style={{ fontSize: "14px", fontWeight: "900", color: "#1f2937", margin: "4px 0 0 0" }}>{label}</p>}
           </div>
           <button
-            className="flex h-9 w-9 items-center justify-center rounded-full bg-slate-100 text-slate-500 active:bg-slate-200"
             onClick={onCancel}
             type="button"
+            style={{
+              display: "flex", alignItems: "center", justifyContent: "center",
+              width: "32px", height: "32px", borderRadius: "50%", background: "#f3f4f6",
+              border: "none", cursor: "pointer", color: "#6b7280"
+            }}
           >
-            <X className="h-4 w-4" />
+            <X size={16} />
           </button>
         </div>
 
-        {/* Input */}
-        <div className="p-5 flex flex-col gap-4">
-          <div>
-            <label className="block text-xs font-bold text-slate-500 uppercase tracking-wider mb-2">Text Content</label>
+        {/* Input area */}
+        <div style={{ padding: "20px", display: "flex", flexDirection: "column", gap: "16px" }}>
+          <div style={{ display: "flex", flexDirection: "column" }}>
+            <label style={{ fontSize: "12px", fontWeight: "bold", color: "#6b7280", textTransform: "uppercase", letterSpacing: "1px", marginBottom: "8px" }}>
+              Text Content
+            </label>
             {multiline ? (
               <textarea
                 autoFocus
-                className="w-full resize-y rounded-xl border-2 border-blue-400 bg-slate-50 px-4 py-3 text-base text-slate-950 outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-200"
                 onChange={(e) => setDraft(e.target.value)}
                 onKeyDown={onKeyDown}
                 rows={Math.max(4, draft.split("\n").length + 1)}
                 value={draft}
+                style={{
+                  width: "100%", resize: "vertical", borderRadius: "8px", border: "2px solid #93c5fd",
+                  background: "#f8fafc", padding: "12px 16px", fontSize: "16px", color: "#0f172a",
+                  outline: "none", fontFamily: "inherit"
+                }}
               />
             ) : (
               <input
                 autoFocus
-                className="w-full rounded-xl border-2 border-blue-400 bg-slate-50 px-4 py-3 text-base text-slate-950 outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-200"
                 onChange={(e) => setDraft(e.target.value)}
                 onKeyDown={onKeyDown}
                 type="text"
                 value={draft}
+                style={{
+                  width: "100%", borderRadius: "8px", border: "2px solid #93c5fd",
+                  background: "#f8fafc", padding: "12px 16px", fontSize: "16px", color: "#0f172a",
+                  outline: "none", fontFamily: "inherit", boxSizing: "border-box"
+                }}
               />
             )}
           </div>
 
           {hrefDraft !== undefined && setHrefDraft && (
-            <div>
-              <label className="block text-xs font-bold text-slate-500 uppercase tracking-wider mb-2">Link URL</label>
+            <div style={{ display: "flex", flexDirection: "column" }}>
+              <label style={{ fontSize: "12px", fontWeight: "bold", color: "#6b7280", textTransform: "uppercase", letterSpacing: "1px", marginBottom: "8px" }}>
+                Link URL
+              </label>
               <input
-                className="w-full rounded-xl border-2 border-blue-400 bg-slate-50 px-4 py-3 text-base text-slate-950 outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-200"
                 onChange={(e) => setHrefDraft(e.target.value)}
                 onKeyDown={onKeyDown}
                 type="text"
                 value={hrefDraft}
                 placeholder="https://..."
+                style={{
+                  width: "100%", borderRadius: "8px", border: "2px solid #93c5fd",
+                  background: "#f8fafc", padding: "12px 16px", fontSize: "16px", color: "#0f172a",
+                  outline: "none", fontFamily: "inherit", boxSizing: "border-box"
+                }}
               />
             </div>
           )}
 
           {status === "error" && (
-            <p className="text-sm font-bold text-red-600">Save failed. Try again.</p>
+            <p style={{ fontSize: "14px", fontWeight: "bold", color: "#dc2626", margin: 0 }}>Save failed. Try again.</p>
           )}
-          <p className="text-xs text-slate-400">
+          <p style={{ fontSize: "12px", color: "#9ca3af", margin: 0 }}>
             {multiline ? "Tap Save when done" : "Enter to save · Esc to cancel"}
           </p>
         </div>
 
         {/* Actions */}
-        <div className="flex gap-3 border-t border-slate-100 px-5 py-4 pb-safe">
+        <div style={{
+          display: "flex", gap: "12px", borderTop: "1px solid #e5e7eb", padding: "16px 20px"
+        }}>
           <button
-            className="flex-1 rounded-xl border border-slate-200 bg-white py-3 text-sm font-black text-slate-700 active:bg-slate-50"
             onClick={onCancel}
             type="button"
+            style={{
+              flex: 1, borderRadius: "8px", border: "1px solid #e5e7eb", background: "#ffffff",
+              padding: "12px", fontSize: "14px", fontWeight: "bold", color: "#374151", cursor: "pointer"
+            }}
           >
             Cancel
           </button>
           <button
-            className="flex flex-1 items-center justify-center gap-2 rounded-xl bg-blue-600 py-3 text-sm font-black text-white active:bg-blue-700 disabled:opacity-60"
             disabled={status === "saving" || status === "saved"}
             onClick={onSave}
             type="button"
+            style={{
+              flex: 1, display: "flex", alignItems: "center", justifyContent: "center", gap: "8px",
+              borderRadius: "8px", border: "none", background: "#2563eb", padding: "12px",
+              fontSize: "14px", fontWeight: "bold", color: "#ffffff", cursor: "pointer",
+              opacity: (status === "saving" || status === "saved") ? 0.6 : 1
+            }}
           >
-            {status === "saving" && <Loader2 className="h-4 w-4 animate-spin" />}
-            {status === "saved" && <Check className="h-4 w-4" />}
+            {status === "saving" && <Loader2 size={16} style={{ animation: "spin 1s linear infinite" }} />}
+            {status === "saved" && <Check size={16} />}
             {status === "saving" ? "Saving…" : status === "saved" ? "Saved!" : "Save"}
           </button>
         </div>
@@ -141,10 +178,7 @@ export function EditableText({
   className = "", multiline = false, label,
   hrefPath, hrefFallback, pencilPosition = "right"
 }: Props) {
-  const sectionId = path.split(".")[0];
-  const { isEditMode, applyPatch, visualContent } = useEditMode();
-  const isActive = useIsSectionActive(sectionId);
-
+  const { isEditMode, applyPatch, visualContent, pageSlug } = useEditMode();
   const [open, setOpen] = useState(false);
   const [status, setStatus] = useState<Status>("idle");
 
@@ -166,7 +200,7 @@ export function EditableText({
   const mounted = true;
   const shownValue = open ? draft : baseValue;
 
-  if (!isEditMode || !isActive) {
+  if (!isEditMode) {
     return <Tag className={className}>{baseValue}</Tag>;
   }
 
@@ -182,7 +216,7 @@ export function EditableText({
         const res = await fetch("/api/admin/visual-content", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ path, value: draft }),
+          body: JSON.stringify({ path, value: draft, slug: pageSlug }),
         });
         if (!res.ok) throw new Error("Save text failed");
         applyPatch(path, draft);
@@ -192,7 +226,7 @@ export function EditableText({
         const res = await fetch("/api/admin/visual-content", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ path: hrefPath, value: hrefDraft }),
+          body: JSON.stringify({ path: hrefPath, value: hrefDraft, slug: pageSlug }),
         });
         if (!res.ok) throw new Error("Save href failed");
         applyPatch(hrefPath, hrefDraft);

@@ -2,6 +2,7 @@ import { readFileSync } from "fs";
 import { join } from "path";
 import { unstable_cache } from "next/cache";
 import { supabase } from "./supabase";
+import prisma from "@/lib/prisma";
 
 export type VisualContent = {
   hero: {
@@ -115,6 +116,21 @@ export type VisualContent = {
       comments: string;
     }>;
   };
+  navbar: {
+    logoImage: string;
+    links: Array<{ label: string; href: string }>;
+    ctaBtnText: string;
+  };
+  footer: {
+    logoImage: string;
+    brandDesc: string;
+    quickLinks: Array<{ label: string; href: string }>;
+    address: string;
+    phone: string;
+    email: string;
+    hours: string[];
+    copyrightText: string;
+  };
 };
 
 const CONTENT_FILE = join(process.cwd(), "visual-data", "HomeContent.json");
@@ -160,3 +176,20 @@ export async function loadVisualContent(): Promise<VisualContent> {
 
   return loadLocalContent();
 }
+
+/** 
+ * Fetches page content from Prisma and automatically caches it. 
+ * The cache is invalidated by calling revalidateTag('visual-content').
+ */
+export const getCachedPageContent = unstable_cache(
+  async (slug: string) => {
+    if (slug === "/") {
+      const pages = await prisma.page.findMany({ where: { is_home_page: true } });
+      return pages.length > 0 ? (pages[0].content as any) : null;
+    }
+    const pageData = await prisma.page.findFirst({ where: { slug } });
+    return pageData?.content ? (pageData.content as any) : null;
+  },
+  ['page-content-cache'],
+  { tags: ['visual-content'] }
+);

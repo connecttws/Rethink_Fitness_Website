@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-import { revalidatePath } from "next/cache";
+import { revalidatePath, revalidateTag } from "next/cache";
 import { isAdminSession } from "@/lib/auth/session";
 import prisma from "@/lib/prisma";
 import { loadVisualContent } from "@/lib/visual-data/loadContent";
@@ -23,17 +23,25 @@ export async function POST(request: Request) {
   }
 
   try {
-    const { path, value } = await request.json();
+    const { path, value, slug } = await request.json();
     if (!path || typeof path !== "string") {
       return NextResponse.json({ message: "path is required" }, { status: 400 });
     }
 
-    const pages = await prisma.page.findMany({ where: { is_home_page: true } });
-    if (pages.length === 0) {
-      throw new Error("Home page row not found in database.");
+    // Determine target page
+    let targetSlug = slug || "/";
+    if (path.startsWith("navbar") || path.startsWith("footer")) {
+      targetSlug = "/"; // Global components are stored on the home page record
+    }
+
+    const page = await prisma.page.findFirst({ 
+      where: targetSlug === "/" ? { is_home_page: true } : { slug: targetSlug } 
+    });
+    
+    if (!page) {
+      throw new Error(`Page for slug ${targetSlug} not found in database.`);
     }
     
-    const page = pages[0];
     const content = (page.content as Record<string, unknown>) || {};
     
     // Apply patch
@@ -45,7 +53,12 @@ export async function POST(request: Request) {
       data: { content: content as any }
     });
 
-    revalidatePath("/", "layout");
+    // @ts-expect-error - Next.js canary typings for revalidateTag require 2 args, but the runtime accepts 1.
+    revalidateTag("visual-content");
+    revalidatePath(targetSlug === "/" ? "/" : targetSlug, "page");
+    if (targetSlug === "/") {
+      revalidatePath("/", "layout"); // Revalidate layout if global components changed
+    }
 
     return NextResponse.json({ message: "Saved.", path, value });
   } catch (error) {

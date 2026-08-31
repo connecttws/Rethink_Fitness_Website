@@ -9,17 +9,21 @@ export const metadata: Metadata = {
   description: "Premium Personal Training Specialty Facility & High-End Gym Floor located in Mayur Vihar Phase 1, New Delhi.",
 };
 
-export default function RootLayout({
+import { loadVisualContent } from "@/lib/visual-data/loadContent";
+
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const data = await loadVisualContent();
+
   return (
     <html lang="en">
       <body>
-        <Navbar />
+        <Navbar data={data.navbar} />
         {children}
-        <Footer />
+        <Footer data={data.footer} />
       </body>
     </html>
   );

@@ -3,6 +3,7 @@ export { EditableSection } from "./EditableSection";
 export { EditableSectionList, type SectionSlot } from "./EditableSectionList";
 export { EditableText } from "./EditableText";
 export { EditableImage } from "./EditableImage";
+export { EditableIframe } from "./EditableIframe";
 export { EditableVideo } from "./EditableVideo";
 export { EditorToolbar } from "./EditorToolbar";
 export { DraggableItem } from "./DraggableItem";

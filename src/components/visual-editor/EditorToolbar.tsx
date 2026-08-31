@@ -1,6 +1,6 @@
 "use client";
 
-import { Eye, LogOut, Settings, Download, ChevronRight, ChevronLeft } from "lucide-react";
+import { Eye, LogOut, Settings, Download, ChevronDown, ChevronUp } from "lucide-react";
 import { useState } from "react";
 import { useEditMode, useActiveSection } from "./EditModeContext";
 
@@ -8,6 +8,7 @@ export function EditorToolbar() {
   const { isEditMode } = useEditMode();
   const activeSection = useActiveSection();
   const [isMinimized, setIsMinimized] = useState(false);
+  
   if (!isEditMode) return null;
 
   async function logout() {
@@ -37,107 +38,129 @@ export function EditorToolbar() {
 
   if (isMinimized) {
     return (
-      <div className="fixed bottom-[90px] left-1/2 -translate-x-1/2 z-[150] sm:bottom-6 sm:left-4 sm:translate-x-0">
+      <div 
+        style={{
+          position: "fixed", bottom: "20px", left: "50%", transform: "translateX(-50%)", zIndex: 150
+        }}
+      >
         <button
           onClick={() => setIsMinimized(false)}
-          className="flex items-center gap-2 rounded-full bg-slate-950/95 px-4 py-2 text-xs font-bold text-slate-300 shadow-2xl backdrop-blur-md border border-white/20 hover:bg-slate-800 transition-all"
+          style={{
+            display: "flex", alignItems: "center", gap: "8px", borderRadius: "30px",
+            background: "rgba(10, 10, 15, 0.95)", border: "1px solid rgba(245, 197, 24, 0.4)",
+            padding: "10px 20px", color: "#fff", fontWeight: "bold",
+            boxShadow: "0 10px 30px rgba(0,0,0,0.5)", backdropFilter: "blur(10px)"
+          }}
         >
-          <Settings className="h-4 w-4 text-blue-400" />
-          <span>Show Editor</span>
+          <ChevronUp size={18} color="var(--accent-color)" />
+          Open Editor
         </button>
       </div>
     );
   }
 
   return (
-    /*
-      On mobile: full-width bar pinned to bottom edge, above the safe area.
-      On desktop: pill centered above bottom.
-    */
-    <div className="fixed bottom-0 left-0 right-0 z-[150] sm:bottom-6 sm:left-1/2 sm:right-auto sm:w-auto sm:-translate-x-1/2">
-      <div className="flex items-center justify-between gap-2 border-t border-white/10 bg-slate-950/95 px-3 py-2 shadow-2xl backdrop-blur-md sm:justify-start sm:gap-3 sm:rounded-full sm:border sm:border-white/20 sm:px-5 sm:py-3">
-
-        {/* Status dot + label */}
-        <div className="flex min-w-0 items-center gap-2">
-          <span className="relative flex h-2.5 w-2.5 flex-shrink-0">
-            <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-blue-400 opacity-75" />
-            <span className="relative inline-flex h-2.5 w-2.5 rounded-full bg-blue-500" />
-          </span>
-          <span className="truncate text-xs font-black text-white">
-            {activeSection ? (
-              <span>
-                Editing{" "}
-                <span className="capitalize text-blue-400">{activeSection}</span>
-              </span>
-            ) : (
-              <span className="text-slate-300">
-                {/* Short text on mobile, full on desktop */}
-                <span className="sm:hidden">Edit Mode</span>
-                <span className="hidden sm:inline">Edit Mode — tap ✏️ on any section</span>
-              </span>
-            )}
-          </span>
+    <div 
+      style={{
+        position: "fixed", bottom: "20px", left: "50%", transform: "translateX(-50%)",
+        zIndex: 150, width: "90%", maxWidth: "800px"
+      }}
+    >
+      <div 
+        style={{
+          display: "flex", flexWrap: "wrap", alignItems: "center", justifyContent: "space-between", gap: "15px",
+          background: "linear-gradient(145deg, rgba(15, 15, 25, 0.98), rgba(5, 5, 10, 0.95))",
+          border: "1px solid rgba(245, 197, 24, 0.3)", borderRadius: "16px",
+          padding: "15px 25px", boxShadow: "0 20px 50px rgba(0,0,0,0.8), 0 0 20px rgba(245, 197, 24, 0.1)",
+          backdropFilter: "blur(20px)"
+        }}
+      >
+        {/* Status Area */}
+        <div style={{ display: "flex", alignItems: "center", gap: "12px" }}>
+          <div style={{
+            width: "12px", height: "12px", borderRadius: "50%", background: "var(--accent-color)",
+            boxShadow: "0 0 10px var(--accent-color)"
+          }}></div>
+          <div style={{ display: "flex", flexDirection: "column" }}>
+            <span style={{ fontSize: "0.75rem", textTransform: "uppercase", letterSpacing: "2px", color: "rgba(255,255,255,0.5)", fontWeight: "bold" }}>
+              Visual Editor
+            </span>
+            <span style={{ fontSize: "1.1rem", fontWeight: "900", color: "#fff", lineHeight: "1.2" }}>
+              {activeSection ? (
+                <>Editing <span style={{ color: "var(--accent-color)" }}>{activeSection}</span></>
+              ) : (
+                "Click any text to edit"
+              )}
+            </span>
+          </div>
         </div>
 
-        {/* Action buttons — always visible, compact on mobile */}
-        <div className="flex flex-shrink-0 items-center gap-1.5 sm:gap-2">
-          {/* Minimize */}
+        {/* Action Buttons */}
+        <div style={{ display: "flex", alignItems: "center", gap: "10px", flexWrap: "wrap" }}>
+          
           <button
-            aria-label="Minimize toolbar"
-            className="flex h-8 w-8 items-center justify-center rounded-full bg-white/10 text-slate-300 transition-colors hover:bg-white/20 sm:h-auto sm:w-auto sm:gap-1.5 sm:px-3 sm:py-1.5"
-            onClick={() => setIsMinimized(true)}
-            type="button"
-          >
-            <ChevronRight className="h-3.5 w-3.5 sm:hidden" />
-            <ChevronLeft className="hidden h-3.5 w-3.5 sm:block" />
-            <span className="hidden text-xs font-bold sm:inline">Hide</span>
-          </button>
-
-          {/* Download JSON */}
-          <button
-            aria-label="Download JSON"
-            className="flex h-8 w-8 items-center justify-center rounded-full bg-white/10 text-slate-300 transition-colors hover:bg-white/20 sm:h-auto sm:w-auto sm:gap-1.5 sm:px-3 sm:py-1.5"
             onClick={downloadJSON}
-            type="button"
+            title="Download JSON Backup"
+            style={{
+              display: "flex", alignItems: "center", gap: "8px", padding: "10px 16px",
+              background: "rgba(255,255,255,0.05)", border: "1px solid rgba(255,255,255,0.1)",
+              borderRadius: "8px", color: "#fff", fontWeight: "600", cursor: "pointer"
+            }}
           >
-            <Download className="h-3.5 w-3.5" />
-            <span className="hidden text-xs font-bold sm:inline">Backup</span>
+            <Download size={16} /> Backup
           </button>
 
-          {/* JSON Panel */}
           <a
-            aria-label="JSON Panel"
-            className="flex h-8 w-8 items-center justify-center rounded-full bg-white/10 text-slate-300 transition-colors hover:bg-white/20 sm:h-auto sm:w-auto sm:gap-1.5 sm:px-3 sm:py-1.5"
             href="/secret-admin-portal"
+            title="Advanced JSON Editor"
+            style={{
+              display: "flex", alignItems: "center", gap: "8px", padding: "10px 16px",
+              background: "rgba(255,255,255,0.05)", border: "1px solid rgba(255,255,255,0.1)",
+              borderRadius: "8px", color: "#fff", fontWeight: "600", textDecoration: "none"
+            }}
           >
-            <Settings className="h-3.5 w-3.5" />
-            <span className="hidden text-xs font-bold sm:inline">JSON</span>
+            <Settings size={16} /> JSON
           </a>
 
-          {/* Preview */}
           <a
-            aria-label="Preview site"
-            className="flex h-8 w-8 items-center justify-center rounded-full bg-white/10 text-white transition-colors hover:bg-white/20 sm:h-auto sm:w-auto sm:gap-1.5 sm:px-3 sm:py-1.5"
             href="/"
-            rel="noopener noreferrer"
             target="_blank"
+            title="Preview Live Site"
+            style={{
+              display: "flex", alignItems: "center", gap: "8px", padding: "10px 16px",
+              background: "var(--accent-color)", border: "none",
+              borderRadius: "8px", color: "#000", fontWeight: "bold", textDecoration: "none"
+            }}
           >
-            <Eye className="h-3.5 w-3.5" />
-            <span className="hidden text-xs font-bold sm:inline">Preview</span>
+            <Eye size={16} /> Preview
           </a>
 
-          {/* Logout */}
           <button
-            aria-label="Exit edit mode"
-            className="flex h-8 w-8 items-center justify-center rounded-full bg-red-500/20 text-red-300 transition-colors hover:bg-red-500/30 active:scale-95 sm:h-auto sm:w-auto sm:gap-1.5 sm:px-3 sm:py-1.5"
             onClick={logout}
-            type="button"
+            title="Exit Edit Mode"
+            style={{
+              display: "flex", alignItems: "center", gap: "8px", padding: "10px 16px",
+              background: "rgba(239, 68, 68, 0.1)", border: "1px solid rgba(239, 68, 68, 0.3)",
+              borderRadius: "8px", color: "#ef4444", fontWeight: "600", cursor: "pointer"
+            }}
           >
-            <LogOut className="h-3.5 w-3.5" />
-            <span className="hidden text-xs font-bold sm:inline">Exit</span>
+            <LogOut size={16} /> Exit
           </button>
-        </div>
 
+          <div style={{ width: "1px", height: "30px", background: "rgba(255,255,255,0.1)", margin: "0 5px" }}></div>
+
+          <button
+            onClick={() => setIsMinimized(true)}
+            title="Minimize Toolbar"
+            style={{
+              display: "flex", alignItems: "center", justifyContent: "center", width: "40px", height: "40px",
+              background: "transparent", border: "none", color: "rgba(255,255,255,0.5)", cursor: "pointer"
+            }}
+          >
+            <ChevronDown size={24} />
+          </button>
+
+        </div>
       </div>
     </div>
   );

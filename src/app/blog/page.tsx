@@ -76,98 +76,107 @@ const recentPosts = [
   }
 ];
 
+import { isAdminSession } from "@/lib/auth/session";
+import { EditModeProvider } from "@/components/visual-editor/EditModeContext";
+import { EditorToolbar } from "@/components/visual-editor/EditorToolbar";
+import { getCachedPageContent } from "@/lib/visual-data/loadContent";
+
 export default async function BlogPage() {
-  const pageData = await prisma.page.findFirst({ where: { slug: '/blog' } });
+  const pageData = await getCachedPageContent('/blog');
+  const isEditMode = await isAdminSession();
   
   // Provide safe fallbacks so the site doesn't break if the data hasn't been added to CMS yet
-  const content = (pageData?.content as any) || {};
+  const content = (pageData as any) || {};
   const currentFeaturedPost = content.featuredPost || featuredPost;
   const currentRecentPosts = content.recentPosts || recentPosts;
 
   return (
-    <main className={styles.pageContainer}>
-      <section className={styles.hero}>
-        <div className="container">
-          <h1 className={styles.heroTitle}>
-            The Rethink <span className="text-accent">Journal</span>
-          </h1>
-          <p className={styles.heroDesc}>
-            Expert insights, training tips, nutritional deep-dives, and everything you need to know about crushing your goals.
-          </p>
-        </div>
-      </section>
+    <EditModeProvider isEditMode={isEditMode} visualContent={content} pageSlug="/blog">
+      <EditorToolbar />
+      <main className={styles.pageContainer}>
+        <section className={styles.hero}>
+          <div className="container">
+            <h1 className={styles.heroTitle}>
+              Evidence-Based Fitness <span className="text-accent">Insights</span>
+            </h1>
+            <p className={styles.heroDesc}>
+              Expert insights, training tips, nutritional deep-dives, and everything you need to know about crushing your goals.
+            </p>
+          </div>
+        </section>
 
-      <section className={styles.featuredSection}>
-        <div className="container">
-          <a href="#" className={styles.featuredCard}>
-            <div className={styles.featuredImageContainer}>
-               <img src={currentFeaturedPost.image} alt={currentFeaturedPost.title} className={styles.featuredImage} />
-            </div>
-            <div className={styles.featuredContent}>
-              <span className={styles.categoryTag}>{currentFeaturedPost.category}</span>
-              <h2 className={styles.featuredTitle}>{currentFeaturedPost.title}</h2>
-              <p className={styles.featuredExcerpt}>{currentFeaturedPost.excerpt}</p>
-              
-              <div className={styles.articleMeta}>
-                <img src={currentFeaturedPost.authorImg} alt={currentFeaturedPost.author} className={styles.authorImg} />
-                <div>
-                  <div className={styles.authorName}>{currentFeaturedPost.author}</div>
-                  <div className={styles.publishDate}>{currentFeaturedPost.date}</div>
-                </div>
+        <section className={styles.featuredSection}>
+          <div className="container">
+            <a href="#" className={styles.featuredCard}>
+              <div className={styles.featuredImageContainer}>
+                 <img src={currentFeaturedPost.image} alt={currentFeaturedPost.title} className={styles.featuredImage} />
               </div>
-            </div>
-          </a>
-        </div>
-      </section>
-
-      <section className={styles.recentSection}>
-        <div className="container">
-          <h3 className={styles.sectionTitle}>Latest <span className="text-accent">Articles</span></h3>
-          <div className={styles.grid}>
-            {currentRecentPosts.map((post: any) => (
-              <a href="#" key={post.id} className={styles.card}>
-                <div className={styles.imageContainer}>
-                  <img src={post.image} alt={post.title} className={styles.image} />
-                </div>
-                <div className={styles.content}>
-                  <span className={styles.categoryTag}>{post.category}</span>
-                  <h4 className={styles.title}>{post.title}</h4>
-                  <p className={styles.excerpt}>{post.excerpt}</p>
-                  
-                  <div className={styles.articleMeta}>
-                    <img src={post.authorImg} alt={post.author} className={styles.authorImg} />
-                    <div>
-                      <div className={styles.authorName}>{post.author}</div>
-                      <div className={styles.publishDate}>{post.date}</div>
-                    </div>
+              <div className={styles.featuredContent}>
+                <span className={styles.categoryTag}>{currentFeaturedPost.category}</span>
+                <h2 className={styles.featuredTitle}>{currentFeaturedPost.title}</h2>
+                <p className={styles.featuredExcerpt}>{currentFeaturedPost.excerpt}</p>
+                
+                <div className={styles.articleMeta}>
+                  <img src={currentFeaturedPost.authorImg} alt={currentFeaturedPost.author} className={styles.authorImg} />
+                  <div>
+                    <div className={styles.authorName}>{currentFeaturedPost.author}</div>
+                    <div className={styles.publishDate}>{currentFeaturedPost.date}</div>
                   </div>
                 </div>
-              </a>
-            ))}
+              </div>
+            </a>
           </div>
-        </div>
-      </section>
+        </section>
 
-      <section className={styles.newsletterSection}>
-        <div className="container">
-          <div className={styles.newsletterContent}>
-            <h2 className={styles.newsletterTitle}>Never Miss An <span className="text-accent">Update</span></h2>
-            <p className={styles.newsletterDesc}>
-              Join 5,000+ athletes who receive our weekly newsletter containing actionable training advice and nutritional insights.
-            </p>
-            <form className={styles.newsletterForm}>
-              <input 
-                type="email" 
-                placeholder="Enter your email address" 
-                className={styles.newsletterInput}
-                required
-              />
-              <button type="button" className="btn">Subscribe Now</button>
-            </form>
+        <section className={styles.recentSection}>
+          <div className="container">
+            <h3 className={styles.sectionTitle}>Latest <span className="text-accent">Articles</span></h3>
+            <div className={styles.grid}>
+              {currentRecentPosts.map((post: any) => (
+                <a href="#" key={post.id} className={styles.card}>
+                  <div className={styles.imageContainer}>
+                    <img src={post.image} alt={post.title} className={styles.image} />
+                  </div>
+                  <div className={styles.content}>
+                    <span className={styles.categoryTag}>{post.category}</span>
+                    <h4 className={styles.title}>{post.title}</h4>
+                    <p className={styles.excerpt}>{post.excerpt}</p>
+                    
+                    <div className={styles.articleMeta}>
+                      <img src={post.authorImg} alt={post.author} className={styles.authorImg} />
+                      <div>
+                        <div className={styles.authorName}>{post.author}</div>
+                        <div className={styles.publishDate}>{post.date}</div>
+                      </div>
+                    </div>
+                  </div>
+                </a>
+              ))}
+            </div>
           </div>
-        </div>
-      </section>
-    </main>
+        </section>
+
+        <section className={styles.newsletterSection}>
+          <div className="container">
+            <div className={styles.newsletterContent}>
+              <h2 className={styles.newsletterTitle}>Never Miss An <span className="text-accent">Update</span></h2>
+              <p className={styles.newsletterDesc}>
+                Join 5,000+ athletes who receive our weekly newsletter containing actionable training advice and nutritional insights.
+              </p>
+              <form className={styles.newsletterForm}>
+                <input 
+                  type="email" 
+                  placeholder="Enter your email address" 
+                  className={styles.newsletterInput}
+                  required
+                />
+                <button type="button" className="btn">Subscribe Now</button>
+              </form>
+            </div>
+          </div>
+        </section>
+      </main>
+    </EditModeProvider>
   );
 }
 

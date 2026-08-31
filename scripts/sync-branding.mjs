@@ -27,8 +27,35 @@ async function main() {
       where: { project_id: project.id, is_home_page: true },
       data: { content: content }
     });
+
+    // Seed sub-pages if they don't exist
+    const subpages = [
+      { slug: '/blog', title: 'Blog' },
+      { slug: '/pricing', title: 'Pricing' },
+      { slug: '/nutrition', title: 'Nutrition' },
+      { slug: '/schedule', title: 'Class Schedule' },
+      { slug: '/trainers', title: 'Trainers' }
+    ];
+
+    for (const page of subpages) {
+      const existing = await prisma.page.findFirst({
+        where: { project_id: project.id, slug: page.slug }
+      });
+      if (!existing) {
+        await prisma.page.create({
+          data: {
+            project_id: project.id,
+            slug: page.slug,
+            title: page.title,
+            is_home_page: false,
+            content: {}
+          }
+        });
+        console.log(`Created sub-page: ${page.slug}`);
+      }
+    }
     
-    console.log("Database synced successfully with new HomeContent.json!");
+    console.log("Database synced successfully with new HomeContent.json and sub-pages!");
   } catch (error) {
     console.error("Error:", error.message);
   } finally {

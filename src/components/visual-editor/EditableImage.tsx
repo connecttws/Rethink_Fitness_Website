@@ -1,28 +1,31 @@
 "use client";
 
-import { useRef, useState, useEffect, type ReactNode } from "react";
+import { useMemo, useState, useRef, useEffect, type ReactNode } from "react";
 import { createPortal } from "react-dom";
 import { Camera, Loader2, Check, X } from "lucide-react";
-import { useEditMode, useIsSectionActive } from "./EditModeContext";
+import { useEditMode } from "./EditModeContext";
+import { getByPath } from "@/lib/visual-data/setByPath";
+import imageCompression from 'browser-image-compression';
 
 type Props = {
-  sectionId: string;
-  field?: string;
-  jsonPath?: string;
-  src: string | null | undefined;
+  path: string;
+  fallback: string;
   alt: string;
   className?: string;
-  fallback?: ReactNode;
-  onClick?: () => void;
+  imgClassName?: string;
 };
 
 type UploadStatus = "idle" | "uploading" | "done" | "error";
 
-export function EditableImage({ sectionId, field, jsonPath, src, alt, className = "", fallback, onClick }: Props) {
-  const { isEditMode, applyPatch } = useEditMode();
-  const isActive = useIsSectionActive(sectionId);
+export function EditableImage({ path, fallback, alt, className = "", imgClassName = "" }: Props) {
+  const { isEditMode, applyPatch, visualContent, pageSlug } = useEditMode();
 
-  const [currentSrc, setCurrentSrc] = useState(src);
+  const baseValue = useMemo(() => {
+    const resolved = getByPath<unknown>(visualContent as Record<string, unknown>, path);
+    if (resolved === undefined || resolved === null) return fallback;
+    return String(resolved);
+  }, [visualContent, path, fallback]);
+
   const [status, setStatus] = useState<UploadStatus>("idle");
   const [errorMsg, setErrorMsg] = useState("");
   const [showModal, setShowModal] = useState(false);
@@ -33,21 +36,28 @@ export function EditableImage({ sectionId, field, jsonPath, src, alt, className 
 
   useEffect(() => { setMounted(true); }, []);
 
-  useEffect(() => {
-    setCurrentSrc(src);
-  }, [src]);
-
-  if (!isEditMode || !isActive) {
-    return currentSrc ? (
-      <img alt={alt} className={className} src={currentSrc} onClick={onClick} />
-    ) : (
-      <>{fallback}</>
+  if (!isEditMode) {
+    return (
+      <div className={className}>
+        <img alt={alt} className={imgClassName} src={baseValue} />
+      </div>
     );
   }
 
   function onFileChange(e: React.ChangeEvent<HTMLInputElement>) {
     const file = e.target.files?.[0];
     if (!file) return;
+
+    // Validate file type
+    const validTypes = ['image/jpeg', 'image/png', 'image/webp', 'image/gif', 'image/avif'];
+    if (!validTypes.includes(file.type)) {
+      setErrorMsg("Unsupported file format! Please convert RAW/CR3 files to JPEG, PNG, or WEBP before uploading.");
+      setSelectedFile(null);
+      setPreview(null);
+      setStatus("idle");
+      return;
+    }
+
     setSelectedFile(file);
     setPreview(URL.createObjectURL(file));
     setStatus("idle");
@@ -58,19 +68,33 @@ export function EditableImage({ sectionId, field, jsonPath, src, alt, className 
     if (!selectedFile) return;
     setStatus("uploading");
     setErrorMsg("");
+    
     try {
+      // 1. Compress the image client-side
+      const options = {
+        maxSizeMB: 3.5, // Keep it under Vercel's 4.5MB limit
+        maxWidthOrHeight: 2500, // Large enough for retina displays, prevents 8k uploads from breaking
+        useWebWorker: true,
+      };
+      
+      const compressedBlob = await imageCompression(selectedFile, options);
+      // Convert Blob back to File
+      const compressedFile = new File([compressedBlob], selectedFile.name, {
+        type: compressedBlob.type,
+        lastModified: Date.now(),
+      });
+
+      // 2. Upload to Server
       const formData = new FormData();
-      formData.set("file", selectedFile);
-      formData.set("sectionType", sectionId);
-      if (field) formData.set("field", field);
-      if (jsonPath) formData.set("jsonPath", jsonPath);
+      formData.set("file", compressedFile);
+      formData.set("path", path);
+      formData.set("slug", pageSlug);
 
       const res = await fetch("/api/admin/upload-image", { method: "POST", body: formData });
       const payload = await res.json();
       if (!res.ok) throw new Error(payload.message || "Upload failed");
 
-      setCurrentSrc(payload.url);
-      applyPatch(jsonPath ?? `${sectionId}.${field}`, payload.url);
+      applyPatch(path, payload.url);
       setStatus("done");
       setTimeout(() => { setShowModal(false); setStatus("idle"); setPreview(null); setSelectedFile(null); }, 1000);
     } catch (err) {
@@ -84,96 +108,128 @@ export function EditableImage({ sectionId, field, jsonPath, src, alt, className 
   return (
     <>
       {/* Image with edit overlay */}
-      <div style={{ display: "contents" }}>
-        {currentSrc ? (
-          <img alt={alt} className={className} src={currentSrc} onClick={onClick} />
-        ) : (
-          <>{fallback}</>
-        )}
-
-        <button
-          aria-label={`Replace ${alt} image`}
-          className="absolute right-2 top-2 z-10 flex items-center gap-1 rounded-full bg-blue-600 px-2.5 py-1.5 text-xs font-black text-white shadow-lg"
-          onClick={() => setShowModal(true)}
-          type="button"
+      <div 
+        className={`relative inline-block ${className}`} 
+        style={{ cursor: "pointer", display: "inline-block" }}
+        onMouseEnter={(e) => {
+          e.currentTarget.style.boxShadow = "0 0 0 4px rgba(59, 130, 246, 0.5)";
+        }}
+        onMouseLeave={(e) => {
+          e.currentTarget.style.boxShadow = "none";
+        }}
+        onClick={(e) => {
+          e.preventDefault();
+          setShowModal(true);
+        }}
+      >
+        <img alt={alt} className={imgClassName} src={baseValue} />
+        
+        <span 
+          style={{
+            position: "absolute", top: "8px", right: "8px", zIndex: 10,
+            display: "flex", alignItems: "center", gap: "4px",
+            background: "#2563eb", color: "#fff", padding: "6px 10px",
+            borderRadius: "20px", fontSize: "12px", fontWeight: "bold",
+            boxShadow: "0 4px 6px rgba(0,0,0,0.1)", pointerEvents: "none"
+          }}
         >
-          <Camera className="h-3.5 w-3.5" />
-          Replace
-        </button>
+          <Camera size={14} />
+          Change
+        </span>
       </div>
 
-      {/* Upload modal — bottom sheet on mobile, centered on desktop */}
+      {/* Upload modal with inline styles */}
       {showModal && mounted && createPortal(
         <div
-          className="fixed inset-0 z-[300] flex items-end justify-center bg-slate-950/70 backdrop-blur-sm sm:items-center sm:px-4"
           onClick={(e) => { if (e.target === e.currentTarget) cancel(); }}
+          style={{
+            position: "fixed", top: 0, left: 0, right: 0, bottom: 0, zIndex: 300,
+            display: "flex", alignItems: "center", justifyContent: "center",
+            background: "rgba(0, 0, 0, 0.6)", backdropFilter: "blur(4px)", padding: "20px"
+          }}
         >
           <div
-            className="w-full max-h-[90vh] overflow-y-auto rounded-t-2xl bg-white shadow-2xl sm:max-w-md sm:rounded-[1.5rem]"
             onClick={(e) => e.stopPropagation()}
+            style={{
+              width: "100%", maxWidth: "450px", maxHeight: "90vh", overflowY: "auto",
+              background: "#ffffff", borderRadius: "16px", boxShadow: "0 25px 50px -12px rgba(0, 0, 0, 0.5)",
+              display: "flex", flexDirection: "column", color: "#000"
+            }}
           >
-            {/* Drag handle */}
-            <div className="flex justify-center pt-3 sm:hidden">
-              <div className="h-1 w-10 rounded-full bg-slate-300" />
+            <div style={{
+              display: "flex", alignItems: "center", justifyContent: "space-between",
+              borderBottom: "1px solid #e5e7eb", padding: "16px 20px"
+            }}>
+              <div>
+                <h3 style={{ fontSize: "18px", fontWeight: "900", margin: 0, color: "#0f172a" }}>Replace Image</h3>
+                <p style={{ margin: "4px 0 0 0", fontSize: "14px", color: "#64748b" }}>
+                  Uploading for: <strong>{alt}</strong>
+                </p>
+              </div>
+              <button
+                onClick={cancel}
+                type="button"
+                style={{
+                  display: "flex", alignItems: "center", justifyContent: "center",
+                  width: "32px", height: "32px", borderRadius: "50%", background: "#f1f5f9",
+                  border: "none", cursor: "pointer", color: "#475569"
+                }}
+              >
+                <X size={16} />
+              </button>
             </div>
 
-            <div className="p-5 sm:p-6">
-              {/* Header */}
-              <div className="flex items-center justify-between">
-                <div>
-                  <h3 className="text-lg font-black text-slate-950">Replace Image</h3>
-                  <p className="mt-0.5 text-sm text-slate-500">
-                    Uploading for: <strong>{alt}</strong>
-                  </p>
-                </div>
-                <button
-                  aria-label="Close"
-                  className="flex h-9 w-9 items-center justify-center rounded-full bg-slate-100 text-slate-600 active:bg-slate-200"
-                  onClick={cancel}
-                  type="button"
-                >
-                  <X className="h-4 w-4" />
-                </button>
-              </div>
-
-              {/* Drop zone / tap zone */}
+            <div style={{ padding: "24px" }}>
               <div
-                className="mt-4 flex cursor-pointer flex-col items-center justify-center rounded-2xl border-2 border-dashed border-slate-300 bg-slate-50 p-6 transition-colors active:bg-blue-50"
                 onClick={() => fileInputRef.current?.click()}
+                style={{
+                  display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center",
+                  border: "2px dashed #cbd5e1", borderRadius: "16px", background: "#f8fafc",
+                  padding: "24px", cursor: "pointer", transition: "background 0.2s"
+                }}
               >
                 {preview ? (
-                  <img alt="Preview" className="max-h-48 w-full rounded-xl object-contain" src={preview} />
+                  <img alt="Preview" src={preview} style={{ maxHeight: "200px", width: "100%", objectFit: "contain", borderRadius: "8px" }} />
                 ) : (
-                  <>
-                    <Camera className="mb-2 h-10 w-10 text-slate-400" />
-                    <p className="text-sm font-bold text-slate-600">Tap to choose image</p>
-                    <p className="mt-1 text-xs text-slate-400">PNG, JPG, WEBP · max 5MB</p>
-                  </>
+                  <div style={{ textAlign: "center" }}>
+                    <Camera size={40} color="#94a3b8" style={{ margin: "0 auto 8px" }} />
+                    <p style={{ fontSize: "14px", fontWeight: "bold", color: "#475569", margin: 0 }}>Tap to choose image</p>
+                    <p style={{ fontSize: "12px", color: "#94a3b8", margin: "4px 0 0 0" }}>PNG, JPG, WEBP · max 5MB</p>
+                  </div>
                 )}
-                <input accept="image/*" className="hidden" onChange={onFileChange} ref={fileInputRef} type="file" />
+                <input accept="image/*" style={{ display: "none" }} onChange={onFileChange} ref={fileInputRef} type="file" />
               </div>
 
               {errorMsg && (
-                <p className="mt-3 rounded-xl bg-red-50 p-3 text-sm font-bold text-red-700">{errorMsg}</p>
+                <p style={{ marginTop: "12px", padding: "12px", borderRadius: "8px", background: "#fef2f2", color: "#b91c1c", fontSize: "14px", fontWeight: "bold", margin: "12px 0 0 0" }}>
+                  {errorMsg}
+                </p>
               )}
 
-              {/* Actions */}
-              <div className="mt-4 flex gap-3 pb-safe">
+              <div style={{ display: "flex", gap: "12px", marginTop: "24px" }}>
                 <button
-                  className="flex-1 rounded-2xl border border-slate-200 bg-white py-3 font-black text-slate-700 active:bg-slate-50"
                   onClick={cancel}
                   type="button"
+                  style={{
+                    flex: 1, padding: "12px", borderRadius: "8px", border: "1px solid #e2e8f0",
+                    background: "#fff", color: "#334155", fontSize: "14px", fontWeight: "bold", cursor: "pointer"
+                  }}
                 >
                   Cancel
                 </button>
                 <button
-                  className="flex flex-1 items-center justify-center gap-2 rounded-2xl bg-blue-600 py-3 font-black text-white active:bg-blue-700 disabled:opacity-60"
                   disabled={!selectedFile || status === "uploading" || status === "done"}
                   onClick={upload}
                   type="button"
+                  style={{
+                    flex: 1, display: "flex", alignItems: "center", justifyContent: "center", gap: "8px",
+                    padding: "12px", borderRadius: "8px", border: "none",
+                    background: "#2563eb", color: "#fff", fontSize: "14px", fontWeight: "bold", cursor: "pointer",
+                    opacity: (!selectedFile || status === "uploading" || status === "done") ? 0.6 : 1
+                  }}
                 >
-                  {status === "uploading" && <Loader2 className="h-4 w-4 animate-spin" />}
-                  {status === "done" && <Check className="h-4 w-4" />}
+                  {status === "uploading" && <Loader2 size={16} style={{ animation: "spin 1s linear infinite" }} />}
+                  {status === "done" && <Check size={16} />}
                   {status === "uploading" ? "Uploading…" : status === "done" ? "Saved!" : "Upload & Save"}
                 </button>
               </div>

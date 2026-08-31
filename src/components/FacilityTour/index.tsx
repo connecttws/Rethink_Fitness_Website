@@ -1,6 +1,6 @@
 import styles from './FacilityTour.module.css';
 import { VisualContent } from '@/lib/visual-data/loadContent';
-import Image from 'next/image';
+import { EditableText, EditableImage } from '@/components/visual-editor';
 
 export default function FacilityTour({ data }: { data: VisualContent['facilityTour'] }) {
   return (
@@ -8,22 +8,38 @@ export default function FacilityTour({ data }: { data: VisualContent['facilityTo
       <div className="container">
         <div className={styles.header}>
           <h2 className={styles.sectionTitle}>
-            {data.titlePrefix} <span className="text-accent">{data.titleAccent}</span>
+            <EditableText path="facilityTour.titlePrefix" fallback={data.titlePrefix} />{" "}
+            <EditableText path="facilityTour.titleAccent" fallback={data.titleAccent} as="span" className="text-accent" />
           </h2>
-          <p className={styles.sectionDesc}>
-            {data.description}
-          </p>
+          <EditableText 
+            path="facilityTour.description" 
+            fallback={data.description} 
+            as="p" 
+            className={styles.sectionDesc} 
+            multiline 
+          />
         </div>
 
         <div className={styles.gallery}>
-          {data.images.map((img) => (
+          {data.images.map((img, index) => (
             <div 
               key={img.id} 
               className={`${styles.galleryItem} ${img.featured ? styles.featuredItem : ''}`}
             >
-              <Image src={img.url} alt={img.title} fill style={{ objectFit: 'cover' }} sizes="(max-width: 768px) 100vw, 50vw" />
+              <EditableImage 
+                path={`facilityTour.images.${index}.url`}
+                fallback={img.url}
+                alt={img.title}
+                className="w-full h-full absolute inset-0"
+                imgClassName="w-full h-full object-cover"
+              />
               <div className={styles.overlay}>
-                <h3 className={styles.overlayTitle}>{img.title}</h3>
+                <EditableText 
+                  path={`facilityTour.images.${index}.title`} 
+                  fallback={img.title} 
+                  as="h3" 
+                  className={styles.overlayTitle} 
+                />
               </div>
             </div>
           ))}

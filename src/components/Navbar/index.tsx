@@ -5,8 +5,10 @@ import Link from 'next/link';
 import BookingModal from '../BookingModal';
 import { LoginForm } from '../dev-cms/LoginForm';
 import styles from './Navbar.module.css';
+import { VisualContent } from '@/lib/visual-data/loadContent';
+import { EditableText } from '../visual-editor';
 
-export default function Navbar() {
+export default function Navbar({ data }: { data: VisualContent['navbar'] }) {
   const [isModalOpen, setModalOpen] = useState(false);
   const [isMobileMenuOpen, setMobileMenuOpen] = useState(false);
 
@@ -14,33 +16,33 @@ export default function Navbar() {
   const closeMobileMenu = () => setMobileMenuOpen(false);
   const [isLoginOpen, setLoginOpen] = useState(false);
 
+  if (!data) return null; // Safe fallback
+
   return (
     <>
       <nav className={styles.nav}>
         <div className={`container ${styles.container}`}>
           <Link href="/" className={styles.logo} onClick={closeMobileMenu}>
             <div onDoubleClick={() => setLoginOpen(true)}>
-              <img src="/Images/Logo/RF%20LOGO-01.png" alt="RethinkFit Logo" className={styles.logoImg} />
+              <img src={data.logoImage} alt="RethinkFit Logo" className={styles.logoImg} />
             </div>
           </Link>
           
           {/* Desktop Menu */}
           <div className={styles.desktopMenu}>
             <div className={styles.navLinks}>
-              <Link href="/">Home</Link>
-              <Link href="/trainers">1-on-1 Coaching</Link>
-              <Link href="/pricing">Floor Access</Link>
-              <Link href="/schedule">Class Schedule</Link>
-              <Link href="/pricing">Pricing</Link>
-              <Link href="/nutrition">Nutrition</Link>
-              <Link href="/blog">Blog</Link>
+              {data.links.map((link, i) => (
+                <Link key={i} href={link.href}>
+                  <EditableText path={`navbar.links.${i}.label`} fallback={link.label} />
+                </Link>
+              ))}
             </div>
             <button 
               className="btn" 
               style={{ padding: '10px 20px', fontSize: '0.9rem' }}
               onClick={() => setModalOpen(true)}
             >
-              Book Free 1-on-1 Assessment
+              <EditableText path="navbar.ctaBtnText" fallback={data.ctaBtnText} />
             </button>
           </div>
 
@@ -54,13 +56,11 @@ export default function Navbar() {
       {/* Full Screen Mobile Menu */}
       <div className={`${styles.mobileMenu} ${isMobileMenuOpen ? styles.mobileMenuOpen : ''}`}>
         <div className={styles.mobileLinks}>
-          <Link href="/" onClick={closeMobileMenu}>Home</Link>
-          <Link href="/trainers" onClick={closeMobileMenu}>1-on-1 Coaching</Link>
-          <Link href="/pricing" onClick={closeMobileMenu}>Floor Access</Link>
-          <Link href="/schedule" onClick={closeMobileMenu}>Class Schedule</Link>
-          <Link href="/pricing" onClick={closeMobileMenu}>Pricing</Link>
-          <Link href="/nutrition" onClick={closeMobileMenu}>Nutrition</Link>
-          <Link href="/blog" onClick={closeMobileMenu}>Blog</Link>
+          {data.links.map((link, i) => (
+            <Link key={i} href={link.href} onClick={closeMobileMenu}>
+              <EditableText path={`navbar.links.${i}.label`} fallback={link.label} />
+            </Link>
+          ))}
         </div>
         <button 
           className="btn" 
@@ -69,7 +69,7 @@ export default function Navbar() {
             setModalOpen(true);
           }}
         >
-          Book Free 1-on-1 Assessment
+          <EditableText path="navbar.ctaBtnText" fallback={data.ctaBtnText} />
         </button>
       </div>
 

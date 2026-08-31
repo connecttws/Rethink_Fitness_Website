@@ -1,30 +1,10 @@
 import { NextResponse } from "next/server";
-import { writeFileSync } from "fs";
-import { join } from "path";
-import { revalidatePath } from "next/cache";
-import { isAdminSession } from "@/lib/auth/session";
-import prisma from "@/lib/prisma";
 import { v2 as cloudinary } from "cloudinary";
-import sharp from "sharp";
+import { isAdminSession } from "@/lib/auth/session";
 
-const UPLOAD_DIR = join(process.cwd(), "public", "visual-editor", "images");
-
-cloudinary.config({
-  cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
-  api_key: process.env.CLOUDINARY_API_KEY,
-  api_secret: process.env.CLOUDINARY_API_SECRET,
-});
-
-function setByPath(obj: Record<string, unknown>, path: string, value: unknown) {
-  const keys = path.split(".");
-  let current: Record<string, unknown> = obj;
-  for (let i = 0; i < keys.length - 1; i++) {
-    const key = keys[i];
-    if (current[key] === undefined || current[key] === null) current[key] = {};
-    current = current[key] as Record<string, unknown>;
-  }
-  current[keys[keys.length - 1]] = value;
-}
+// The user specified to use Cloudinary and put the env name here
+// We expect process.env.CLOUDINARY_URL to be set.
+// e.g., CLOUDINARY_URL=cloudinary://my_key:my_secret@my_cloud_name
 
 export async function POST(request: Request) {
   if (!(await isAdminSession())) {
@@ -33,72 +13,45 @@ export async function POST(request: Request) {
 
   try {
     const formData = await request.formData();
-    const file = formData.get("file");
-    const jsonPath = formData.get("jsonPath") ? String(formData.get("jsonPath")) : null;
-
-    if (!(file instanceof File)) {
-      return NextResponse.json({ message: "Image file is required." }, { status: 400 });
-    }
-
-    const bytes = await file.arrayBuffer();
-    const buffer = Buffer.from(bytes);
+    const file = formData.get("file") as File | null;
     
-    // Compress image: medium compression (webp, quality 80) and max width 1920px
-    const compressedBuffer = await sharp(buffer)
-      .resize({ width: 1920, withoutEnlargement: true })
-      .webp({ quality: 80 })
-      .toBuffer();
-
-    const originalNameWithoutExt = file.name.replace(/\.[^/.]+$/, "").replace(/\s+/g, '-');
-    const filename = `${Date.now()}-${originalNameWithoutExt}.webp`;
-    let secure_url = "";
-
-    // Upload to Cloudinary if configured, else fallback to local file system
-    if (process.env.CLOUDINARY_CLOUD_NAME && process.env.CLOUDINARY_API_KEY) {
-      secure_url = await new Promise<string>((resolve, reject) => {
-        const uploadStream = cloudinary.uploader.upload_stream(
-          { folder: 'visual-editor', public_id: filename },
-          (error: any, result: any) => {
-            if (error || !result) return reject(error || new Error("Cloudinary upload failed"));
-            resolve(result.secure_url);
-          }
-        );
-        uploadStream.end(compressedBuffer);
-      });
-    } else {
-      const filePath = join(UPLOAD_DIR, filename);
-      writeFileSync(filePath, compressedBuffer);
-      secure_url = `/visual-editor/images/${filename}`;
+    if (!file) {
+      return NextResponse.json({ message: "No file provided" }, { status: 400 });
     }
 
-    if (jsonPath) {
-      const pages = await prisma.page.findMany({ where: { is_home_page: true } });
-      if (pages.length === 0) throw new Error("Home page row not found.");
-      
-      const page = pages[0];
-      const content = (page.content as Record<string, unknown>) || {};
-      
-      setByPath(content, jsonPath, secure_url);
-
-      await prisma.page.update({
-        where: { id: page.id },
-        data: { content: content as any }
-      });
-
-      // Invalidate the cache since JSON changed
-      revalidatePath("/", "layout");
+    if (!process.env.CLOUDINARY_URL) {
+      return NextResponse.json({ 
+        message: "CLOUDINARY_URL environment variable is not set. Please configure Cloudinary." 
+      }, { status: 500 });
     }
 
-    return NextResponse.json({
-      message: "Image uploaded.",
-      url: secure_url,
-      publicId: filename,
+    // Convert file to base64 buffer for Cloudinary SDK
+    const arrayBuffer = await file.arrayBuffer();
+    const buffer = Buffer.from(arrayBuffer);
+    
+    // Upload to Cloudinary using a promise wrapper
+    const result = await new Promise((resolve, reject) => {
+      const uploadStream = cloudinary.uploader.upload_stream(
+        { folder: "rethink_fitness" },
+        (error, result) => {
+          if (error) reject(error);
+          else resolve(result);
+        }
+      );
+      uploadStream.end(buffer);
+    });
+
+    const secureUrl = (result as any).secure_url;
+
+    return NextResponse.json({ 
+      message: "Image uploaded successfully", 
+      url: secureUrl 
     });
   } catch (error) {
-    console.error("Upload Image Error:", error);
+    console.error("Cloudinary upload error:", error);
     return NextResponse.json(
-      { message: error instanceof Error ? error.message : "Unable to upload image." },
-      { status: 400 },
+      { message: error instanceof Error ? error.message : "Image upload failed" },
+      { status: 500 }
     );
   }
 }

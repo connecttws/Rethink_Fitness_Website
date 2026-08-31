@@ -11,7 +11,7 @@ export default function PricingClient({ pricingPlans, featureComparison, faqs }:
       <section className={styles.hero}>
         <div className="container">
           <h1 className={styles.heroTitle}>
-            Invest In Your <span className="text-accent">Potential</span>
+            Transparent Coaching & Floor Access <span className="text-accent">Plans</span>
           </h1>
           <p className={styles.heroDesc}>
             Transparent pricing. No hidden fees. Choose the membership tier that fits your goals and start your transformation today.

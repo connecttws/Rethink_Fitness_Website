@@ -12,7 +12,7 @@ import LocationSection from "@/components/LocationSection";
 import InstagramFeed from "@/components/InstagramFeed";
 import Link from 'next/link';
 
-import { loadVisualContent } from "@/lib/visual-data/loadContent";
+import { loadVisualContent, getCachedPageContent } from "@/lib/visual-data/loadContent";
 import prisma from "@/lib/prisma";
 import { isAdminSession } from "@/lib/auth/session";
 import { EditModeProvider } from "@/components/visual-editor/EditModeContext";
@@ -20,11 +20,7 @@ import { EditorToolbar } from "@/components/visual-editor/EditorToolbar";
 
 export default async function Home() {
   const localData = await loadVisualContent();
-  
-  const pages = await prisma.page.findMany({
-    where: { is_home_page: true }
-  });
-  const dbData = pages.length > 0 ? (pages[0].content as any) : null;
+  const dbData = await getCachedPageContent("/");
 
   // Use the CMS DB data if available, otherwise gracefully fallback to the local JSON
   const data = (dbData && Object.keys(dbData).length > 0) ? dbData : localData;

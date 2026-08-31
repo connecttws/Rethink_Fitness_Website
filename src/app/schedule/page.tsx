@@ -40,18 +40,29 @@ const fallbackClassDescriptions = [
   }
 ];
 
+import { isAdminSession } from "@/lib/auth/session";
+import { EditModeProvider } from "@/components/visual-editor/EditModeContext";
+import { EditorToolbar } from "@/components/visual-editor/EditorToolbar";
+import { getCachedPageContent } from "@/lib/visual-data/loadContent";
+
 export default async function SchedulePage() {
-  const pageData = await prisma.page.findFirst({ where: { slug: '/schedule' } });
-  const content = (pageData?.content as any) || {};
+  const pageData = await getCachedPageContent('/schedule');
+  const isEditMode = await isAdminSession();
+  
+  // Provide safe fallbacks so the site doesn't break if the data hasn't been added to CMS yet
+  const content = (pageData as any) || {};
 
   const fullScheduleData = content.fullScheduleData || fallbackScheduleData;
   const classDescriptions = content.classDescriptions || fallbackClassDescriptions;
 
   return (
-    <ScheduleClient 
-      fullScheduleData={fullScheduleData} 
-      classDescriptions={classDescriptions} 
-    />
+    <EditModeProvider isEditMode={isEditMode} visualContent={content} pageSlug="/schedule">
+      <EditorToolbar />
+      <ScheduleClient 
+        fullScheduleData={fullScheduleData} 
+        classDescriptions={classDescriptions} 
+      />
+    </EditModeProvider>
   );
 }
 

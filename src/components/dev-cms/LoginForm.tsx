@@ -42,49 +42,88 @@ export function LoginForm() {
   return (
     <form
       onSubmit={submit}
-      className="mx-auto grid w-full max-w-md gap-5 rounded-[2rem] border p-8 shadow-2xl glass backdrop-blur-xl"
       style={{
-        background: "rgba(10, 10, 20, 0.95)",
-        borderColor: "rgba(245, 197, 24, 0.3)",
+        width: "100%", maxWidth: "420px", margin: "0 auto",
+        backgroundColor: "#121212", borderRadius: "12px",
+        padding: "40px 30px", border: "1px solid #333",
+        boxShadow: "0 25px 50px -12px rgba(0, 0, 0, 0.7)",
+        display: "flex", flexDirection: "column", gap: "24px",
+        fontFamily: "var(--font-body), sans-serif",
+        position: "relative", overflow: "hidden"
       }}
     >
-      <div className="text-center mb-2">
-        <p className="text-xs font-black uppercase tracking-[0.2em]" style={{ color: "var(--accent-color)" }}>
-          Secret admin portal
+      {/* Top accent line */}
+      <div style={{ position: "absolute", top: 0, left: 0, right: 0, height: "4px", backgroundColor: "var(--accent-color)" }}></div>
+
+      <div style={{ textAlign: "center" }}>
+        <h2 style={{ 
+          fontSize: "24px", fontWeight: "700", color: "#ffffff", 
+          margin: "0 0 8px 0", fontFamily: "var(--font-heading), sans-serif",
+          textTransform: "uppercase", letterSpacing: "1px"
+        }}>
+          Visual Editor
+        </h2>
+        <p style={{ fontSize: "14px", color: "#a1a1aa", margin: 0 }}>
+          Enter password to unlock page content.
         </p>
-        <h1 className="mt-2 text-2xl font-black text-white">
-          Sign in to edit
-        </h1>
       </div>
-      <input
-        className="rounded-xl border px-4 py-3.5 font-medium outline-none focus:border-amber-500 transition-colors"
-        style={{ background: "#0a0a14", borderColor: "rgba(255,255,255,0.2)", color: "#fff" }}
-        name="password"
-        placeholder="Password"
-        required
-        type="password"
-      />
+      
+      <div style={{ display: "flex", flexDirection: "column", gap: "8px" }}>
+        <label style={{ fontSize: "12px", fontWeight: "600", color: "#ffffff", textTransform: "uppercase", letterSpacing: "1px" }}>
+          Admin Password
+        </label>
+        <input
+          name="password"
+          placeholder="••••••••"
+          required
+          type="password"
+          style={{ 
+            width: "100%", padding: "14px 16px", borderRadius: "6px",
+            border: "1px solid #333", backgroundColor: "#050505", 
+            color: "#ffffff", fontSize: "16px", outline: "none",
+            boxSizing: "border-box", transition: "border-color 0.2s"
+          }}
+          onFocus={(e) => e.target.style.borderColor = "var(--accent-color)"}
+          onBlur={(e) => e.target.style.borderColor = "#333"}
+        />
+      </div>
+      
       <button 
-        className="btn mt-2 w-full shadow-lg"
+        type="submit"
+        disabled={isLoading}
+        style={{ 
+          width: "100%", padding: "16px", borderRadius: "6px",
+          backgroundColor: "var(--accent-color)", color: "#000",
+          border: "none", fontSize: "16px", fontWeight: "700",
+          textTransform: "uppercase", letterSpacing: "1px",
+          cursor: isLoading ? "not-allowed" : "pointer",
+          fontFamily: "var(--font-heading), sans-serif",
+          transition: "opacity 0.2s", opacity: isLoading ? 0.7 : 1
+        }}
       >
-        {isLoading ? "Checking..." : "Enter admin"}
+        {isLoading ? "Authenticating..." : "Login"}
       </button>
-      {message ? (
-        <p
-          className={`text-sm font-bold text-center mt-2 ${
-            message.startsWith("Login successful")
-              ? "text-green-400"
-              : "text-red-400"
-          }`}
-        >
+
+      {message && (
+        <div style={{ 
+          padding: "12px", borderRadius: "6px", textAlign: "center", fontSize: "14px", fontWeight: "600",
+          backgroundColor: message.startsWith("Login successful") ? "rgba(34, 197, 94, 0.1)" : "rgba(239, 68, 68, 0.1)",
+          color: message.startsWith("Login successful") ? "#4ade80" : "#f87171",
+          border: `1px solid ${message.startsWith("Login successful") ? "rgba(34, 197, 94, 0.2)" : "rgba(239, 68, 68, 0.2)"}`
+        }}>
           {message}
-        </p>
-      ) : null}
-      {process.env.NODE_ENV === "development" ? (
-        <p className="rounded-xl bg-white/5 p-3 text-[11px] font-medium leading-5 text-gray-400 text-center border border-white/5 mt-2">
-          Local default if `.env` is not configured:<br/> Password: <strong className="text-white">change</strong>
-        </p>
-      ) : null}
+        </div>
+      )}
+
+      {process.env.NODE_ENV === "development" && (
+        <div style={{ 
+          marginTop: "16px", padding: "12px", borderRadius: "6px", 
+          backgroundColor: "rgba(255, 255, 255, 0.03)", border: "1px dashed #333",
+          textAlign: "center", fontSize: "12px", color: "#a1a1aa"
+        }}>
+          Dev Mode Fallback <br/> Password: <strong style={{ color: "#ffffff" }}>change</strong>
+        </div>
+      )}
     </form>
   );
 }
