@@ -28,8 +28,9 @@ export default function Navbar() {
           <div className={styles.desktopMenu}>
             <div className={styles.navLinks}>
               <Link href="/">Home</Link>
-              <Link href="/trainers">Trainers</Link>
-              <Link href="/schedule">Schedule</Link>
+              <Link href="/trainers">1-on-1 Coaching</Link>
+              <Link href="/pricing">Floor Access</Link>
+              <Link href="/schedule">Class Schedule</Link>
               <Link href="/pricing">Pricing</Link>
               <Link href="/nutrition">Nutrition</Link>
               <Link href="/blog">Blog</Link>
@@ -39,7 +40,7 @@ export default function Navbar() {
               style={{ padding: '10px 20px', fontSize: '0.9rem' }}
               onClick={() => setModalOpen(true)}
             >
-              Claim Free Pass
+              Book Free 1-on-1 Assessment
             </button>
           </div>
 
@@ -54,8 +55,9 @@ export default function Navbar() {
       <div className={`${styles.mobileMenu} ${isMobileMenuOpen ? styles.mobileMenuOpen : ''}`}>
         <div className={styles.mobileLinks}>
           <Link href="/" onClick={closeMobileMenu}>Home</Link>
-          <Link href="/trainers" onClick={closeMobileMenu}>Trainers</Link>
-          <Link href="/schedule" onClick={closeMobileMenu}>Schedule</Link>
+          <Link href="/trainers" onClick={closeMobileMenu}>1-on-1 Coaching</Link>
+          <Link href="/pricing" onClick={closeMobileMenu}>Floor Access</Link>
+          <Link href="/schedule" onClick={closeMobileMenu}>Class Schedule</Link>
           <Link href="/pricing" onClick={closeMobileMenu}>Pricing</Link>
           <Link href="/nutrition" onClick={closeMobileMenu}>Nutrition</Link>
           <Link href="/blog" onClick={closeMobileMenu}>Blog</Link>
@@ -67,14 +69,14 @@ export default function Navbar() {
             setModalOpen(true);
           }}
         >
-          Claim Free Pass
+          Book Free 1-on-1 Assessment
         </button>
       </div>
 
       <BookingModal 
         isOpen={isModalOpen} 
         onClose={() => setModalOpen(false)} 
-        title="Claim Your Free VIP Pass"
+        title="Book Your Assessment"
       />
 
       {isLoginOpen && (

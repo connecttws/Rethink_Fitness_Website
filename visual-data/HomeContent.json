@@ -1,7 +1,7 @@
 {
   "hero": {
     "fullText": "Rethink\nYour\nLimits",
-    "subtitle": "The ultimate fitness experience designed to push your boundaries. State-of-the-art equipment, elite trainers, and an atmosphere built for champions.",
+    "subtitle": "Premium Personal Training Specialty Facility & High-End Gym Floor.",
     "primaryBtnText": "Join Now",
     "secondaryBtnText": "View Classes"
   },
@@ -141,11 +141,11 @@
     "titlePrefix": "Find",
     "titleAccent": "Us",
     "description": "Centrally located with ample free parking. Your fitness destination is closer than you think.",
-    "address": "123 Fitness Blvd, Suite 100\nMetropolis, NY 10001",
+    "address": "Mayur Vihar Phase 1\nNew Delhi, Delhi 110091",
     "phone": "(555) 123-4567",
     "email": "info@rethinkfitness.com",
     "hoursHtml": "<strong>Mon-Fri:</strong> 5:00 AM - 11:00 PM<br/><strong>Sat-Sun:</strong> 7:00 AM - 9:00 PM",
-    "mapIframeSrc": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3022.215573752538!2d-73.99616038459424!3d40.75716187932684!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c258546b430e3d%3A0x6b44c600109a2503!2sTimes%20Square!5e0!3m2!1sen!2sus!4v1689255018698!5m2!1sen!2sus"
+    "mapIframeSrc": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d14008.972230005727!2d77.2917757!3d28.6224357!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390ce4b1c8f1e621%3A0x6b4f7082a5c9ab!2sMayur%20Vihar%20Phase%201%2C%20New%20Delhi%2C%20Delhi%20110091!5e0!3m2!1sen!2sin!4v1715694200000!5m2!1sen!2sin"
   },
   "instagramFeed": {
     "titlePrefix": "Follow Our",

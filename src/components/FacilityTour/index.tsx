@@ -1,5 +1,6 @@
 import styles from './FacilityTour.module.css';
 import { VisualContent } from '@/lib/visual-data/loadContent';
+import Image from 'next/image';
 
 export default function FacilityTour({ data }: { data: VisualContent['facilityTour'] }) {
   return (
@@ -20,7 +21,7 @@ export default function FacilityTour({ data }: { data: VisualContent['facilityTo
               key={img.id} 
               className={`${styles.galleryItem} ${img.featured ? styles.featuredItem : ''}`}
             >
-              <img src={img.url} alt={img.title} />
+              <Image src={img.url} alt={img.title} fill style={{ objectFit: 'cover' }} sizes="(max-width: 768px) 100vw, 50vw" />
               <div className={styles.overlay}>
                 <h3 className={styles.overlayTitle}>{img.title}</h3>
               </div>

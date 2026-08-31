@@ -1,4 +1,4 @@
-export const dynamic = 'force-dynamic';
+export const revalidate = 60;
 import styles from './NutritionPage.module.css';
 import BmiCalculator from '@/components/BmiCalculator';
 import prisma from "@/lib/prisma";

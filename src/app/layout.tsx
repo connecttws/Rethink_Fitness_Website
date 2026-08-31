@@ -5,8 +5,8 @@ import Footer from "@/components/Footer";
 import Navbar from "@/components/Navbar";
 
 export const metadata: Metadata = {
-  title: "Rethink Fitness | Pushing Limits",
-  description: "The ultimate fitness experience designed to push your boundaries. Modern equipment, elite trainers, and 24/7 access.",
+  title: "Rethink Fitness | Premium Personal Training",
+  description: "Premium Personal Training Specialty Facility & High-End Gym Floor located in Mayur Vihar Phase 1, New Delhi.",
 };
 
 export default function RootLayout({

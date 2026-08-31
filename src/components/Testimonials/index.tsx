@@ -1,5 +1,6 @@
 import styles from './Testimonials.module.css';
 import { VisualContent } from '@/lib/visual-data/loadContent';
+import Image from 'next/image';
 
 export default function Testimonials({ data }: { data: VisualContent['testimonials'] }) {
   return (
@@ -20,7 +21,7 @@ export default function Testimonials({ data }: { data: VisualContent['testimonia
               <div className={styles.quoteIcon}>"</div>
               <p className={styles.reviewText}>{rev.review}</p>
               <div className={styles.authorContainer}>
-                <img src={rev.image} alt={rev.name} className={styles.avatar} />
+                <Image src={rev.image} alt={rev.name} className={styles.avatar} width={50} height={50} />
                 <div className={styles.authorInfo}>
                   <h4 className={styles.name}>{rev.name}</h4>
                   <span className={styles.role}>{rev.role}</span>

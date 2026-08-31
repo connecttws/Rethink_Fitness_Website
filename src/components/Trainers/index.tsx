@@ -1,6 +1,7 @@
 import styles from './Trainers.module.css';
 import Link from 'next/link';
 import { VisualContent } from '@/lib/visual-data/loadContent';
+import Image from 'next/image';
 
 export default function Trainers({ data }: { data: VisualContent['trainers'] }) {
   return (
@@ -19,7 +20,7 @@ export default function Trainers({ data }: { data: VisualContent['trainers'] }) 
           {data.items.map((trainer) => (
             <div key={trainer.id} className={styles.card}>
               <div className={styles.imageWrapper}>
-                <img src={trainer.image} alt={trainer.name} className={styles.image} />
+                <Image src={trainer.image} alt={trainer.name} className={styles.image} fill style={{ objectFit: 'cover' }} sizes="(max-width: 768px) 100vw, 33vw" />
                 <div className={styles.overlay}>
                   <p className={styles.bio}>{trainer.bio}</p>
                   <button className="btn btn-outline" style={{marginTop: '1rem'}}>Book Session</button>

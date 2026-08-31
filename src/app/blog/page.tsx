@@ -1,4 +1,4 @@
-export const dynamic = 'force-dynamic';
+export const revalidate = 60;
 import styles from './BlogPage.module.css';
 import prisma from "@/lib/prisma";
 
