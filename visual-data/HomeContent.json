@@ -1,218 +1,297 @@
 {
   "hero": {
-    "fullText": "Stop Guessing in the Gym. Get Coached 1-on-1.",
-    "subtitle": "Rethink Fitness is Mayur Vihar’s dedicated personal training facility. We eliminate generic workout routines by pairing you with a dedicated coach who programs every rep, monitors your lifting mechanics, and tracks your nutrition daily. Open floor access is also available for independent lifters.",
-    "primaryBtnText": "Book Free Fitness & Biomechanics Assessment",
-    "secondaryBtnText": "Explore Training Options"
+    "fullText": "Rethink\nYour\nLimits",
+    "subtitle": "Premium Personal Training Specialty Facility & High-End Gym Floor..",
+    "primaryBtnText": "Join Now",
+    "secondaryBtnText": "View Classes"
+  },
+  "footer": {
+    "email": "info@rethinkfit.com",
+    "hours": [
+      "Mon - Fri: 5:00 AM - 11:00 PM",
+      "Sat - Sun: 7:00 AM - 9:00 PM"
+    ],
+    "phone": "(555) 123-4567",
+    "address": "123 Fitness Ave, Iron District, NY 10001",
+    "brandDesc": "The ultimate fitness experience designed to push your boundaries. State-of-the-art equipment, elite trainers, and an atmosphere built for champions.",
+    "logoImage": "/Images/Logo/RF LOGO-01.png",
+    "quickLinks": [
+      {
+        "href": "/",
+        "label": "Home"
+      },
+      {
+        "href": "/trainers",
+        "label": "Trainers"
+      },
+      {
+        "href": "/schedule",
+        "label": "Schedule"
+      },
+      {
+        "href": "/pricing",
+        "label": "Pricing"
+      },
+      {
+        "href": "/nutrition",
+        "label": "Nutrition"
+      },
+      {
+        "href": "/blog",
+        "label": "Blog"
+      }
+    ],
+    "copyrightText": "Rethink Fitness. All rights reserved."
+  },
+  "navbar": {
+    "links": [
+      {
+        "href": "/",
+        "label": "Home"
+      },
+      {
+        "href": "/trainers",
+        "label": "1-on-1 Coaching"
+      },
+      {
+        "href": "/pricing",
+        "label": "Floor Access"
+      },
+      {
+        "href": "/schedule",
+        "label": "Class Schedule"
+      },
+      {
+        "href": "/pricing",
+        "label": "Pricing"
+      },
+      {
+        "href": "/nutrition",
+        "label": "Nutrition"
+      },
+      {
+        "href": "/blog",
+        "label": "Blog"
+      }
+    ],
+    "logoImage": "/Images/Logo/RF LOGO-01.png",
+    "ctaBtnText": "Book Free 1-on-1 Assessment"
+  },
+  "pricing": {
+    "btnText": "View Pricing Plans",
+    "bannerDescHtml": "Premium memberships starting at just <strong>$49/month</strong>. No hidden fees. Zero initiation costs.",
+    "bannerTitleAccent": "Commit?",
+    "bannerTitlePrefix": "Ready to"
   },
   "features": {
-    "titlePrefix": "Built for Guided Transformation,",
-    "titleAccent": "Not Crowded Chaos",
-    "description": "Most commercial gyms sell you a membership and leave you on your own. We focus on structured coaching, form accuracy, and measurable progression.",
     "items": [
       {
         "id": "01",
-        "title": "Dedicated 1-on-1 Coaching",
-        "description": "Every session is actively coached. Your trainer manages your sets, corrects joint angles, tracks weights, and ensures progressive overload every single week."
+        "title": "Elite Trainers",
+        "description": "Work with the best in the industry to push your limits and achieve your goals faster."
       },
       {
         "id": "02",
-        "title": "Independent Gym Floor Access",
-        "description": "Prefer training solo? Access our biomechanically precise strength machines, free weight stations, and cardio zone without the usual overcrowding."
+        "title": "Modern Equipment",
+        "description": "Access state-of-the-art machines and free weights designed for peak performance."
       },
       {
         "id": "03",
-        "title": "Small Group Training",
-        "description": "High-energy, coach-led conditioning and functional group batches are launching soon for those who thrive in a team setting."
+        "title": "Open 24/7",
+        "description": "Train on your schedule. Our facilities are open around the clock for your convenience."
       }
-    ]
-  },
-  "facilityTour": {
-    "titlePrefix": "Explore Our",
-    "titleAccent": "Facility",
-    "description": "A 20,000 sq ft playground for fitness enthusiasts.",
-    "images": [
-      { "id": 1, "url": "/Images/Galley/DS9A8000.jpg", "title": "1-on-1 Coaching & Assessment Floor", "featured": true },
-      { "id": 2, "url": "/Images/Galley/DS9A8002.jpg", "title": "Precision Strength & Free Weights", "featured": false },
-      { "id": 3, "url": "/Images/Galley/DS9A8003.jpg", "title": "Functional & Athletic Conditioning", "featured": false },
-      { "id": 4, "url": "/Images/Galley/DS9A8004.jpg", "title": "Cardio & Stamina Bay", "featured": false },
-      { "id": 5, "url": "/Images/Galley/DS9A8020.jpg", "title": "The Studio Arena (Coming Soon)", "featured": false }
     ],
-    "btnText": "Take Virtual Tour"
+    "description": "We provide everything you need to transform your body and mind. No compromises.",
+    "titleAccent": "Us",
+    "titlePrefix": "Why Choose"
   },
   "schedule": {
-    "titlePrefix": "Class",
-    "titleAccent": "Schedule",
-    "description": "Plan your workouts. Never miss a session.",
     "items": [
-      { "time": "06:00 AM", "class": "HIIT Burn", "trainer": "Sarah Jenkins", "duration": "45 Min" },
-      { "time": "07:30 AM", "class": "Powerlifting", "trainer": "Marcus Vance", "duration": "60 Min" },
-      { "time": "09:00 AM", "class": "Yoga Flow", "trainer": "David Chen", "duration": "60 Min" }
+      {
+        "time": "06:00 AM",
+        "class": "HIIT Burn",
+        "trainer": "Sarah Jenkins",
+        "duration": "45 Min"
+      },
+      {
+        "time": "07:30 AM",
+        "class": "Powerlifting",
+        "trainer": "Marcus Vance",
+        "duration": "60 Min"
+      },
+      {
+        "time": "09:00 AM",
+        "class": "Yoga Flow",
+        "trainer": "David Chen",
+        "duration": "60 Min"
+      }
     ],
-    "btnText": "View Full Schedule"
-  },
-  "gatewayTeaser": {
-    "block1": {
-      "title": "Elite Coaching",
-      "desc": "Train with world-class professionals who push your limits.",
-      "btnText": "Meet The Team"
-    },
-    "block2": {
-      "title": "Dynamic Classes",
-      "desc": "From HIIT to Yoga, find the perfect class for your goals.",
-      "btnText": "View Schedule"
-    }
+    "btnText": "View Full Schedule",
+    "description": "Plan your workouts. Never miss a session.",
+    "titleAccent": "Schedule",
+    "titlePrefix": "Class"
   },
   "trainers": {
-    "titlePrefix": "Meet Your",
-    "titleAccent": "Coaches",
-    "description": "Elite professionals dedicated to your transformation.",
     "items": [
       {
         "id": 1,
+        "bio": "Former Olympic weightlifter with 10 years of experience turning beginners into beasts.",
         "name": "Marcus Vance",
-        "specialty": "Strength & Conditioning",
-        "image": "/Images/Galley/DS9A7984.jpg",
-        "bio": "Former Olympic weightlifter with 10 years of experience turning beginners into beasts."
+        "image": "https://res.cloudinary.com/dqcls20dp/image/upload/v1788241803/rethink-gallery/hlknyuwfm3wslvga7zsk.jpg",
+        "specialty": "Strength & Conditioning"
       },
       {
         "id": 2,
+        "bio": "High-energy coach dedicated to pushing your cardiovascular limits and burning fat fast.",
         "name": "Sarah Jenkins",
-        "specialty": "HIIT & Endurance",
-        "image": "/Images/Galley/DS9A7985.jpg",
-        "bio": "High-energy coach dedicated to pushing your cardiovascular limits and burning fat fast."
+        "image": "https://res.cloudinary.com/dqcls20dp/image/upload/v1788241819/rethink-gallery/gof7unqio7dohre0ivin.jpg",
+        "specialty": "HIIT & Endurance"
       },
       {
         "id": 3,
+        "bio": "Focuses on longevity, injury prevention, and building a foundation of true functional strength.",
         "name": "David Chen",
-        "specialty": "Mobility & Recovery",
-        "image": "/Images/Galley/DS9A7986.jpg",
-        "bio": "Focuses on longevity, injury prevention, and building a foundation of true functional strength."
+        "image": "https://res.cloudinary.com/dqcls20dp/image/upload/v1788241835/rethink-gallery/ad8jauvdze1efu1mpi2z.jpg",
+        "specialty": "Mobility & Recovery"
       }
     ],
-    "btnText": "View Full Trainer Profiles"
-  },
-  "testimonials": {
-    "titlePrefix": "Real",
-    "titleAccent": "Results",
-    "description": "Don't just take our word for it. Hear from the champions who grind here every day.",
-    "items": [
-      {
-        "id": 1,
-        "name": "Karan M.",
-        "review": "I wasted two years at commercial gyms doing random workouts with zero results. Within 4 months of 1-on-1 personal training at Rethink, I corrected my lower back posture during deadlifts and dropped 8 kg of fat while gaining visible muscle.",
-        "role": "Personal Training Client",
-        "image": "/Images/Galley/DS9A7987.jpg"
-      },
-      {
-        "id": 2,
-        "name": "Sneha R.",
-        "review": "The personal attention here is unmatched. My coach tracks every single kilo I lift and adjusts my diet week by week. It feels like a private athletic training studio right in Mayur Vihar.",
-        "role": "1-on-1 PT Member",
-        "image": "/Images/Galley/DS9A7988.jpg"
-      },
-      {
-        "id": 3,
-        "name": "Devansh P.",
-        "review": "I use the regular gym access membership for my own strength training. The equipment quality is top tier, and unlike other gyms in the area, the floor isn’t overrun with people standing around.",
-        "role": "Floor Access Member",
-        "image": "/Images/Galley/DS9A7990.jpg"
-      }
-    ]
+    "btnText": "View Full Trainer Profiles",
+    "description": "Elite professionals dedicated to your transformation.",
+    "titleAccent": "Coaches",
+    "titlePrefix": "Meet Your"
   },
   "appTeaser": {
-    "titlePrefix": "Your Gym in",
-    "titleAccent": "Your Pocket",
-    "description": "Download the Rethink Fitness app to book classes, track your progress, and get exclusive workout plans from our elite trainers.",
     "features": [
       "Book Classes Instantly",
       "Track Workouts & PRs",
       "Access Video Tutorials",
       "Connect with Trainers"
-    ]
+    ],
+    "description": "Download the Rethink Fitness app to book classes, track your progress, and get exclusive workout plans from our elite trainers.",
+    "titleAccent": "Your Pocket",
+    "titlePrefix": "Your Gym in"
   },
-  "pricing": {
-    "bannerTitlePrefix": "Ready to",
-    "bannerTitleAccent": "Commit?",
-    "bannerDescHtml": "Premium memberships starting at just <strong>$49/month</strong>. No hidden fees. Zero initiation costs.",
-    "btnText": "View Pricing Plans"
+  "facilityTour": {
+    "images": [
+      {
+        "id": 1,
+        "url": "https://res.cloudinary.com/dqcls20dp/image/upload/v1788241654/rethink-gallery/syhad4oel3vxuakvh4ih.jpg",
+        "title": "Free Weights Zone",
+        "featured": true
+      },
+      {
+        "id": 2,
+        "url": "https://res.cloudinary.com/dqcls20dp/image/upload/v1788241687/rethink-gallery/bhzikfbsb3erzatqadcw.jpg",
+        "title": "Cardio Deck",
+        "featured": false
+      },
+      {
+        "id": 3,
+        "url": "https://res.cloudinary.com/dqcls20dp/image/upload/v1788241717/rethink-gallery/cgeya0su6vcrq5ohdkeq.jpg",
+        "title": "Functional Training",
+        "featured": false
+      },
+      {
+        "id": 4,
+        "url": "https://res.cloudinary.com/dqcls20dp/image/upload/v1788241745/rethink-gallery/gedkju8wusrtlujsgeqo.jpg",
+        "title": "Recovery Lounge",
+        "featured": false
+      },
+      {
+        "id": 5,
+        "url": "https://res.cloudinary.com/dqcls20dp/image/upload/v1788241774/rethink-gallery/eomjfemjxfjadja1zq3a.jpg",
+        "title": "Yoga Studio",
+        "featured": false
+      }
+    ],
+    "btnText": "Take Virtual Tour",
+    "description": "A 20,000 sq ft playground for fitness enthusiasts.",
+    "titleAccent": "Facility",
+    "titlePrefix": "Explore Our"
   },
-  "locationSection": {
-    "titlePrefix": "Find",
-    "titleAccent": "Us",
-    "description": "Centrally located with ample free parking. Your fitness destination is closer than you think.",
-    "address": "3rd Floor, C-23 Market, Near DCB Bank, Block B, Acharya Niketan, Mayur Vihar Phase 1, New Delhi, Delhi 110091",
-    "phone": "+91 83680 52044",
-    "email": "info@rethinkfitness.in",
-    "hoursHtml": "<strong>Monday – Saturday:</strong> 5:00 AM – 10:00 PM<br/><strong>Sunday:</strong> 8:00 AM – 4:00 PM",
-    "mapIframeSrc": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d14008.972230005727!2d77.2917757!3d28.6224357!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390ce4b1c8f1e621%3A0x6b4f7082a5c9ab!2sMayur%20Vihar%20Phase%201%2C%20New%20Delhi%2C%20Delhi%20110091!5e0!3m2!1sen!2sin!4v1715694200000!5m2!1sen!2sin"
+  "testimonials": {
+    "items": [
+      {
+        "id": 1,
+        "name": "James Rodriguez",
+        "role": "Member since 2024",
+        "image": "/Images/Galley/DS9A7987.jpg",
+        "review": "Rethink Fitness completely changed my life. The trainers are world-class and the equipment is always spotless. I lost 30lbs in my first 4 months."
+      },
+      {
+        "id": 2,
+        "name": "Emily Chen",
+        "role": "Pro Member",
+        "image": "/Images/Galley/DS9A7988.jpg",
+        "review": "The energy in this gym is unmatched. From the heavy lifting section to the yoga studio, it feels like a truly premium experience every time I walk in."
+      },
+      {
+        "id": 3,
+        "name": "Marcus Thorne",
+        "role": "Elite Member",
+        "image": "/Images/Galley/DS9A7990.jpg",
+        "review": "Best gym in the city, hands down. The community here pushes you to be your absolute best. The Elite membership is worth every penny."
+      }
+    ],
+    "description": "Don't just take our word for it. Hear from the champions who grind here every day.",
+    "titleAccent": "Results",
+    "titlePrefix": "Real"
+  },
+  "gatewayTeaser": {
+    "block1": {
+      "desc": "Train with world-class professionals who push your limits.",
+      "title": "Elite Coaching",
+      "btnText": "Meet The Team"
+    },
+    "block2": {
+      "desc": "From HIIT to Yoga, find the perfect class for your goals.",
+      "title": "Dynamic Classes",
+      "btnText": "View Schedule"
+    }
   },
   "instagramFeed": {
-    "titlePrefix": "Follow Our",
-    "titleAccent": "Journey",
-    "handle": "@rethinkfitness",
     "posts": [
       {
         "id": 1,
-        "image": "/Images/Galley/DS9A7995.jpg",
         "link": "#",
+        "image": "https://res.cloudinary.com/dqcls20dp/image/upload/v1788241895/rethink-gallery/wppwie79w9cj7gp7j3o6.jpg",
         "likes": "1.2k",
         "comments": "45"
       },
       {
         "id": 2,
-        "image": "/Images/Galley/DS9A7998.jpg",
         "link": "#",
+        "image": "https://res.cloudinary.com/dqcls20dp/image/upload/v1788241909/rethink-gallery/lawsf35egvuevrs54lny.jpg",
         "likes": "856",
         "comments": "23"
       },
       {
         "id": 3,
-        "image": "/Images/Galley/DS9A8021.jpg",
         "link": "#",
+        "image": "https://res.cloudinary.com/dqcls20dp/image/upload/v1788241934/rethink-gallery/wr3xk9var00jqcuds1oi.jpg",
         "likes": "2.1k",
         "comments": "112"
       },
       {
         "id": 4,
-        "image": "/Images/Galley/DS9A8024.jpg",
         "link": "#",
+        "image": "https://res.cloudinary.com/dqcls20dp/image/upload/v1788241955/rethink-gallery/naobkqjugzcbdik12ykq.jpg",
         "likes": "945",
         "comments": "34"
       }
-    ]
+    ],
+    "handle": "@rethinkfitness",
+    "titleAccent": "Journey",
+    "titlePrefix": "Follow Our"
   },
-  "navbar": {
-    "logoImage": "/Images/Logo/RF LOGO-01.png",
-    "links": [
-      { "label": "Home", "href": "/" },
-      { "label": "1-on-1 Coaching", "href": "/trainers" },
-      { "label": "Floor Access", "href": "/pricing" },
-      { "label": "Class Schedule", "href": "/schedule" },
-      { "label": "Pricing", "href": "/pricing" },
-      { "label": "Nutrition", "href": "/nutrition" },
-      { "label": "Blog", "href": "/blog" }
-    ],
-    "ctaBtnText": "Book Free 1-on-1 Assessment"
-  },
-  "footer": {
-    "logoImage": "/Images/Logo/RF LOGO-01.png",
-    "brandDesc": "The ultimate fitness experience designed to push your boundaries. State-of-the-art equipment, elite trainers, and an atmosphere built for champions.",
-    "quickLinks": [
-      { "label": "Home", "href": "/" },
-      { "label": "Trainers", "href": "/trainers" },
-      { "label": "Schedule", "href": "/schedule" },
-      { "label": "Pricing", "href": "/pricing" },
-      { "label": "Nutrition", "href": "/nutrition" },
-      { "label": "Blog", "href": "/blog" }
-    ],
-    "address": "3rd Floor, C-23 Market, Near DCB Bank, Block B, Acharya Niketan, Mayur Vihar Phase 1, New Delhi, Delhi 110091",
-    "phone": "+91 83680 52044",
-    "email": "info@rethinkfitness.in",
-    "hours": [
-      "Mon - Sat: 5:00 AM - 10:00 PM",
-      "Sun: 8:00 AM - 4:00 PM"
-    ],
-    "copyrightText": "Rethink Fitness. All rights reserved."
+  "locationSection": {
+    "email": "info@rethinkfitness.com",
+    "phone": "(555) 123-4567",
+    "address": "Mayur Vihar Phase 1\nNew Delhi, Delhi 110091",
+    "hoursHtml": "<strong>Mon-Fri:</strong> 5:00 AM - 11:00 PM<br/><strong>Sat-Sun:</strong> 7:00 AM - 9:00 PM",
+    "description": "Centrally located with ample free parking. Your fitness destination is closer than you think.",
+    "titleAccent": "Us",
+    "titlePrefix": "Find",
+    "mapIframeSrc": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d14008.972230005727!2d77.2917757!3d28.6224357!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390ce4b1c8f1e621%3A0x6b4f7082a5c9ab!2sMayur%20Vihar%20Phase%201%2C%20New%20Delhi%2C%20Delhi%20110091!5e0!3m2!1sen!2sin!4v1715694200000!5m2!1sen!2sin"
   }
 }

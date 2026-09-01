@@ -1,38 +1,40 @@
-import { createClient } from '@supabase/supabase-js';
+import { PrismaClient } from '@prisma/client';
+import { PrismaPg } from '@prisma/adapter-pg';
+import pg from 'pg';
 import { writeFileSync } from 'fs';
 import { join } from 'path';
 
-const url = process.env.NEXT_PUBLIC_SUPABASE_URL;
-const key = process.env.SUPABASE_SERVICE_ROLE_KEY;
-
-if (!url || !key) {
-  console.error("Missing NEXT_PUBLIC_SUPABASE_URL or SUPABASE_SERVICE_ROLE_KEY in environment.");
-  process.exit(1);
-}
-
-const supabase = createClient(url, key);
-const contentPath = join(process.cwd(), 'visual-data', 'content.json');
+const { Pool } = pg;
+const pool = new Pool({ connectionString: process.env.DATABASE_URL });
+const adapter = new PrismaPg(pool);
+const prisma = new PrismaClient({ adapter });
+const homeContentPath = join(process.cwd(), 'visual-data', 'HomeContent.json');
+const blogContentPath = join(process.cwd(), 'visual-data', 'BlogContent.json');
 
 async function pull() {
-  console.log("Pulling content from Supabase...");
-  const { data, error } = await supabase
-    .from('content_store')
-    .select('data')
-    .eq('id', 'main')
-    .single();
-    
-  if (error) {
-    console.error("Error fetching from Supabase:", error);
-  } else if (data && data.data) {
-    try {
-      writeFileSync(contentPath, JSON.stringify(data.data, null, 2), 'utf8');
-      console.log("Successfully updated visual-data/content.json from Supabase!");
-    } catch (e) {
-      console.error("Failed to write visual-data/content.json", e);
-    }
+  console.log("Pulling content from Prisma Database...");
+
+  const homePage = await prisma.page.findFirst({ where: { is_home_page: true } });
+  if (homePage && homePage.content) {
+    writeFileSync(homeContentPath, JSON.stringify(homePage.content, null, 2), 'utf8');
+    console.log("Successfully updated visual-data/HomeContent.json");
   } else {
-    console.log("No data found for id='main'");
+    console.log("No Home Page data found.");
   }
+
+  const blogPage = await prisma.page.findFirst({ where: { slug: "/blog" } });
+  if (blogPage && blogPage.content) {
+    writeFileSync(blogContentPath, JSON.stringify(blogPage.content, null, 2), 'utf8');
+    console.log("Successfully updated visual-data/BlogContent.json");
+  } else {
+    console.log("No Blog Page data found.");
+  }
+  
+  await prisma.$disconnect();
 }
 
-pull();
+pull().catch(e => {
+  console.error("Failed to pull:", e);
+  prisma.$disconnect();
+  process.exit(1);
+});
