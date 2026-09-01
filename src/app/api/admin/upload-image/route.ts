@@ -2,10 +2,12 @@ import { NextResponse } from "next/server";
 import { v2 as cloudinary } from "cloudinary";
 import { isAdminSession } from "@/lib/auth/session";
 
-// The user specified to use Cloudinary and put the env name here
-// We expect process.env.CLOUDINARY_URL to be set.
-// e.g., CLOUDINARY_URL=cloudinary://my_key:my_secret@my_cloud_name
-
+// Configure Cloudinary with individual credentials
+cloudinary.config({
+  cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
+  api_key: process.env.CLOUDINARY_API_KEY,
+  api_secret: process.env.CLOUDINARY_API_SECRET
+});
 export async function POST(request: Request) {
   if (!(await isAdminSession())) {
     return NextResponse.json({ message: "Unauthorized" }, { status: 401 });
@@ -19,9 +21,9 @@ export async function POST(request: Request) {
       return NextResponse.json({ message: "No file provided" }, { status: 400 });
     }
 
-    if (!process.env.CLOUDINARY_URL) {
+    if (!process.env.CLOUDINARY_CLOUD_NAME || !process.env.CLOUDINARY_API_KEY || !process.env.CLOUDINARY_API_SECRET) {
       return NextResponse.json({ 
-        message: "CLOUDINARY_URL environment variable is not set. Please configure Cloudinary." 
+        message: "Cloudinary credentials (CLOUD_NAME, API_KEY, API_SECRET) are missing. Please configure them in .env." 
       }, { status: 500 });
     }
 
@@ -32,7 +34,7 @@ export async function POST(request: Request) {
     // Upload to Cloudinary using a promise wrapper
     const result = await new Promise((resolve, reject) => {
       const uploadStream = cloudinary.uploader.upload_stream(
-        { folder: "rethink_fitness" },
+        { folder: "Rethink gallery" },
         (error, result) => {
           if (error) reject(error);
           else resolve(result);
