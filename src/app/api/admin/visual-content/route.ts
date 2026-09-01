@@ -34,15 +34,36 @@ export async function POST(request: Request) {
       targetSlug = "/"; // Global components are stored on the home page record
     }
 
-    const page = await prisma.page.findFirst({ 
+    let page = await prisma.page.findFirst({ 
       where: targetSlug === "/" ? { is_home_page: true } : { slug: targetSlug } 
     });
     
     if (!page) {
-      throw new Error(`Page for slug ${targetSlug} not found in database.`);
+      const project = await prisma.liveProject.findFirst();
+      if (!project) {
+        throw new Error(`Page for slug ${targetSlug} not found, and no LiveProject exists to create it.`);
+      }
+
+      // If the page doesn't exist in production DB, create it with local JSON fallback
+      const localData = await loadVisualContent();
+      page = await prisma.page.create({
+        data: {
+          slug: targetSlug,
+          title: targetSlug === "/" ? "Home" : targetSlug,
+          is_home_page: targetSlug === "/",
+          content: localData as any,
+          project_id: project.id
+        }
+      });
     }
     
-    const content = (page.content as Record<string, unknown>) || {};
+    let content = (page.content as Record<string, unknown>) || {};
+    
+    // If the content is somehow empty in the DB, fill it with localData first so we don't wipe it out
+    if (Object.keys(content).length === 0) {
+      const localData = await loadVisualContent();
+      content = localData as Record<string, unknown>;
+    }
     
     // Apply patch
     setByPath(content, path, value);
