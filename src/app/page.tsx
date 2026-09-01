@@ -37,7 +37,7 @@ export default async function Home() {
         <GatewayTeaser data={data.gatewayTeaser} />
         <Trainers data={data.trainers} />
         <Testimonials data={data.testimonials} />
-        <AppTeaser data={data.appTeaser} />
+        {/* <AppTeaser data={data.appTeaser} /> */}
         
         <Pricing data={data.pricing} />
         <LocationSection data={data.locationSection} />
