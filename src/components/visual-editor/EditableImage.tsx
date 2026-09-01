@@ -94,6 +94,14 @@ export function EditableImage({ path, fallback, alt, className = "", imgClassNam
       const payload = await res.json();
       if (!res.ok) throw new Error(payload.message || "Upload failed");
 
+      // 3. Save the new Cloudinary URL to the database
+      const dbRes = await fetch("/api/admin/visual-content", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ path, value: payload.url, slug: pageSlug }),
+      });
+      if (!dbRes.ok) throw new Error("Database save failed");
+
       applyPatch(path, payload.url);
       setStatus("done");
       setTimeout(() => { setShowModal(false); setStatus("idle"); setPreview(null); setSelectedFile(null); }, 1000);
