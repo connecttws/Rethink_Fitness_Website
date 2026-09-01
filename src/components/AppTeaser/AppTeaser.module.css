@@ -82,6 +82,11 @@
   display: flex;
   justify-content: center;
   padding-top: 40px;
+  
+  /* Hardware acceleration to prevent scroll lag from heavy box-shadow */
+  transform: translateZ(0);
+  will-change: transform;
+  backface-visibility: hidden;
 }
 
 .screen {
