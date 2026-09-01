@@ -34,7 +34,7 @@ export async function POST(request: Request) {
     // Upload to Cloudinary using a promise wrapper
     const result = await new Promise((resolve, reject) => {
       const uploadStream = cloudinary.uploader.upload_stream(
-        { folder: "Rethink gallery" },
+        { folder: "rethink-gallery" },
         (error, result) => {
           if (error) reject(error);
           else resolve(result);
@@ -49,10 +49,10 @@ export async function POST(request: Request) {
       message: "Image uploaded successfully", 
       url: secureUrl 
     });
-  } catch (error) {
+  } catch (error: any) {
     console.error("Cloudinary upload error:", error);
     return NextResponse.json(
-      { message: error instanceof Error ? error.message : "Image upload failed" },
+      { message: error?.message || "Image upload failed" },
       { status: 500 }
     );
   }
