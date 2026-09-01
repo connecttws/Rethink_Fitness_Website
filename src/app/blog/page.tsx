@@ -79,6 +79,7 @@ const recentPosts = [
 import { isAdminSession } from "@/lib/auth/session";
 import { EditModeProvider } from "@/components/visual-editor/EditModeContext";
 import { EditorToolbar } from "@/components/visual-editor/EditorToolbar";
+import { EditableText, EditableImage } from "@/components/visual-editor";
 import { getCachedPageContent } from "@/lib/visual-data/loadContent";
 
 export default async function BlogPage() {
@@ -97,10 +98,11 @@ export default async function BlogPage() {
         <section className={styles.hero}>
           <div className="container">
             <h1 className={styles.heroTitle}>
-              Evidence-Based Fitness <span className="text-accent">Insights</span>
+              <EditableText path="heroTitlePrefix" fallback="Evidence-Based Fitness" />{" "}
+              <EditableText path="heroTitleAccent" fallback="Insights" as="span" className="text-accent" />
             </h1>
             <p className={styles.heroDesc}>
-              Expert insights, training tips, nutritional deep-dives, and everything you need to know about crushing your goals.
+              <EditableText path="heroDesc" fallback="Expert insights, training tips, nutritional deep-dives, and everything you need to know about crushing your goals." />
             </p>
           </div>
         </section>
@@ -109,18 +111,26 @@ export default async function BlogPage() {
           <div className="container">
             <a href="#" className={styles.featuredCard}>
               <div className={styles.featuredImageContainer}>
-                 <img src={currentFeaturedPost.image} alt={currentFeaturedPost.title} className={styles.featuredImage} />
+                 <EditableImage path="featuredPost.image" fallback={currentFeaturedPost.image} alt={currentFeaturedPost.title} imgClassName={styles.featuredImage} />
               </div>
               <div className={styles.featuredContent}>
-                <span className={styles.categoryTag}>{currentFeaturedPost.category}</span>
-                <h2 className={styles.featuredTitle}>{currentFeaturedPost.title}</h2>
-                <p className={styles.featuredExcerpt}>{currentFeaturedPost.excerpt}</p>
+                <span className={styles.categoryTag}>
+                  <EditableText path="featuredPost.category" fallback={currentFeaturedPost.category} />
+                </span>
+                <h2 className={styles.featuredTitle}>
+                  <EditableText path="featuredPost.title" fallback={currentFeaturedPost.title} />
+                </h2>
+                <EditableText path="featuredPost.excerpt" fallback={currentFeaturedPost.excerpt} as="p" className={styles.featuredExcerpt} multiline />
                 
                 <div className={styles.articleMeta}>
-                  <img src={currentFeaturedPost.authorImg} alt={currentFeaturedPost.author} className={styles.authorImg} />
+                  <EditableImage path="featuredPost.authorImg" fallback={currentFeaturedPost.authorImg} alt={currentFeaturedPost.author} imgClassName={styles.authorImg} />
                   <div>
-                    <div className={styles.authorName}>{currentFeaturedPost.author}</div>
-                    <div className={styles.publishDate}>{currentFeaturedPost.date}</div>
+                    <div className={styles.authorName}>
+                      <EditableText path="featuredPost.author" fallback={currentFeaturedPost.author} />
+                    </div>
+                    <div className={styles.publishDate}>
+                      <EditableText path="featuredPost.date" fallback={currentFeaturedPost.date} />
+                    </div>
                   </div>
                 </div>
               </div>
@@ -130,23 +140,34 @@ export default async function BlogPage() {
 
         <section className={styles.recentSection}>
           <div className="container">
-            <h3 className={styles.sectionTitle}>Latest <span className="text-accent">Articles</span></h3>
+            <h3 className={styles.sectionTitle}>
+              <EditableText path="latestArticlesPrefix" fallback="Latest" />{" "}
+              <EditableText path="latestArticlesAccent" fallback="Articles" as="span" className="text-accent" />
+            </h3>
             <div className={styles.grid}>
-              {currentRecentPosts.map((post: any) => (
-                <a href="#" key={post.id} className={styles.card}>
+              {currentRecentPosts.map((post: any, idx: number) => (
+                <a href="#" key={post.id || idx} className={styles.card}>
                   <div className={styles.imageContainer}>
-                    <img src={post.image} alt={post.title} className={styles.image} />
+                    <EditableImage path={`recentPosts.${idx}.image`} fallback={post.image} alt={post.title} imgClassName={styles.image} />
                   </div>
                   <div className={styles.content}>
-                    <span className={styles.categoryTag}>{post.category}</span>
-                    <h4 className={styles.title}>{post.title}</h4>
-                    <p className={styles.excerpt}>{post.excerpt}</p>
+                    <span className={styles.categoryTag}>
+                      <EditableText path={`recentPosts.${idx}.category`} fallback={post.category} />
+                    </span>
+                    <h4 className={styles.title}>
+                      <EditableText path={`recentPosts.${idx}.title`} fallback={post.title} />
+                    </h4>
+                    <EditableText path={`recentPosts.${idx}.excerpt`} fallback={post.excerpt} as="p" className={styles.excerpt} multiline />
                     
                     <div className={styles.articleMeta}>
-                      <img src={post.authorImg} alt={post.author} className={styles.authorImg} />
+                      <EditableImage path={`recentPosts.${idx}.authorImg`} fallback={post.authorImg} alt={post.author} imgClassName={styles.authorImg} />
                       <div>
-                        <div className={styles.authorName}>{post.author}</div>
-                        <div className={styles.publishDate}>{post.date}</div>
+                        <div className={styles.authorName}>
+                          <EditableText path={`recentPosts.${idx}.author`} fallback={post.author} />
+                        </div>
+                        <div className={styles.publishDate}>
+                          <EditableText path={`recentPosts.${idx}.date`} fallback={post.date} />
+                        </div>
                       </div>
                     </div>
                   </div>
@@ -159,9 +180,12 @@ export default async function BlogPage() {
         <section className={styles.newsletterSection}>
           <div className="container">
             <div className={styles.newsletterContent}>
-              <h2 className={styles.newsletterTitle}>Never Miss An <span className="text-accent">Update</span></h2>
+              <h2 className={styles.newsletterTitle}>
+                <EditableText path="newsletterTitlePrefix" fallback="Never Miss An" />{" "}
+                <EditableText path="newsletterTitleAccent" fallback="Update" as="span" className="text-accent" />
+              </h2>
               <p className={styles.newsletterDesc}>
-                Join 5,000+ athletes who receive our weekly newsletter containing actionable training advice and nutritional insights.
+                <EditableText path="newsletterDesc" fallback="Join 5,000+ athletes who receive our weekly newsletter containing actionable training advice and nutritional insights." />
               </p>
               <form className={styles.newsletterForm}>
                 <input 

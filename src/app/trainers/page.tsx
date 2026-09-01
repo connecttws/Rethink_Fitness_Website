@@ -32,6 +32,7 @@ const detailedTrainers = [
 import { isAdminSession } from "@/lib/auth/session";
 import { EditModeProvider } from "@/components/visual-editor/EditModeContext";
 import { EditorToolbar } from "@/components/visual-editor/EditorToolbar";
+import { EditableText, EditableImage } from "@/components/visual-editor";
 import { getCachedPageContent } from "@/lib/visual-data/loadContent";
 
 export default async function TrainersPage() {
@@ -50,32 +51,39 @@ export default async function TrainersPage() {
         <section className={styles.hero}>
           <div className="container">
             <h1 className={styles.heroTitle}>
-              Personal Training Designed Around Your <span className="text-accent">Biomechanics</span>
+              <EditableText path="heroTitlePrefix" fallback="Personal Training Designed Around Your" />{" "}
+              <EditableText path="heroTitleAccent" fallback="Biomechanics" as="span" className="text-accent" />
             </h1>
             <p className={styles.heroDesc}>
-              Stop wasting hours on exercises that cause joint pain and deliver slow results. Our certified personal trainers build a roadmap tailored specifically to your metabolic rate, mobility limitations, and physique goals.
+              <EditableText path="heroDesc" fallback="Stop wasting hours on exercises that cause joint pain and deliver slow results. Our certified personal trainers build a roadmap tailored specifically to your metabolic rate, mobility limitations, and physique goals." />
             </p>
           </div>
         </section>
 
         <section className={styles.trainersList}>
           <div className={`container ${styles.trainersContainer}`}>
-            {currentTrainers.map((trainer: any) => (
-              <div key={trainer.id} className={styles.trainerRow}>
+            {currentTrainers.map((trainer: any, idx: number) => (
+              <div key={trainer.id || idx} className={styles.trainerRow}>
                 <div className={styles.imageContainer}>
-                  <img src={trainer.image} alt={trainer.name} className={styles.image} />
+                  <EditableImage path={`detailedTrainers.${idx}.image`} fallback={trainer.image} alt={trainer.name} imgClassName={styles.image} />
                 </div>
                 <div className={styles.infoContainer}>
-                  <h2 className={styles.name}>{trainer.name}</h2>
-                  <p className={styles.specialty}>{trainer.specialty}</p>
+                  <h2 className={styles.name}>
+                    <EditableText path={`detailedTrainers.${idx}.name`} fallback={trainer.name} />
+                  </h2>
+                  <p className={styles.specialty}>
+                    <EditableText path={`detailedTrainers.${idx}.specialty`} fallback={trainer.specialty} />
+                  </p>
                   
-                  <p className={styles.bio}>{trainer.bio}</p>
+                  <EditableText path={`detailedTrainers.${idx}.bio`} fallback={trainer.bio} as="p" className={styles.bio} multiline />
                   
                   <div className={styles.certifications}>
                     <h3 className={styles.certTitle}>Credentials</h3>
                     <div className={styles.certList}>
-                      {trainer.certifications.map((cert: any, idx: number) => (
-                        <span key={idx} className={styles.certBadge}>{cert}</span>
+                      {trainer.certifications.map((cert: any, certIdx: number) => (
+                        <span key={certIdx} className={styles.certBadge}>
+                          <EditableText path={`detailedTrainers.${idx}.certifications.${certIdx}`} fallback={cert} />
+                        </span>
                       ))}
                     </div>
                   </div>

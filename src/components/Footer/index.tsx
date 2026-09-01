@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import styles from './Footer.module.css';
 import { VisualContent } from '@/lib/visual-data/loadContent';
-import { EditableText } from '../visual-editor';
+import { EditableText, EditableImage } from '../visual-editor';
 
 export default function Footer({ data }: { data: VisualContent['footer'] }) {
   if (!data) return null; // Safe fallback
@@ -11,7 +11,7 @@ export default function Footer({ data }: { data: VisualContent['footer'] }) {
       <div className={`container ${styles.container}`}>
         <div className={styles.brandCol}>
           <Link href="/" className={styles.logo}>
-            <img src={data.logoImage} alt="RethinkFit Logo" className={styles.logoImg} />
+            <EditableImage path="footer.logoImage" fallback={data.logoImage} alt="RethinkFit Logo" imgClassName={styles.logoImg} />
           </Link>
           <EditableText 
             path="footer.brandDesc" 

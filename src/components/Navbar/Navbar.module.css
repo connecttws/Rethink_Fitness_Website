@@ -46,6 +46,11 @@
   color: var(--accent-color);
 }
 
+.activeLink {
+  color: var(--accent-color) !important;
+  font-weight: 700;
+}
+
 .hamburger {
   display: none;
   background: transparent;

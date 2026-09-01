@@ -1,9 +1,10 @@
 import styles from './Trainers.module.css';
 import Link from 'next/link';
 import { VisualContent } from '@/lib/visual-data/loadContent';
-import { EditableText, EditableImage } from '@/components/visual-editor';
+import { EditableText, EditableGroup } from '@/components/visual-editor';
 
 export default function Trainers({ data }: { data: VisualContent['trainers'] }) {
+
   return (
     <section id="trainers" className={styles.trainersSection}>
       <div className={`container ${styles.container}`}>
@@ -22,33 +23,44 @@ export default function Trainers({ data }: { data: VisualContent['trainers'] }) 
         </div>
 
         <div className={styles.grid}>
-          {data.items.map((trainer, idx) => (
-            <div key={trainer.id} className={styles.card}>
-              <div className={styles.imageWrapper}>
-                <EditableImage 
-                  path={`trainers.items.${idx}.image`}
-                  fallback={trainer.image}
-                  alt={trainer.name}
-                  className={`w-full h-full absolute inset-0 ${styles.image}`}
-                  imgClassName="w-full h-full object-cover"
-                />
-                <div className={styles.overlay}>
-                  <EditableText 
-                    path={`trainers.items.${idx}.bio`} 
-                    fallback={trainer.bio} 
-                    as="p" 
-                    className={styles.bio} 
-                    multiline 
+          {data.items.map((trainer, idx) => {
+            const cardContent = (
+              <>
+                <div className={styles.imageWrapper}>
+                  <img 
+                    src={trainer.image}
+                    alt={trainer.name}
+                    className={`w-full h-full absolute inset-0 object-cover ${styles.image}`}
                   />
-                  <button className="btn btn-outline" style={{marginTop: '1rem'}}>Book Session</button>
+                  <div className={styles.overlay}>
+                    <p className={styles.bio}>{trainer.bio}</p>
+                    <button className="btn btn-outline" style={{marginTop: '1rem'}}>Book Session</button>
+                  </div>
                 </div>
+                <div className={styles.info}>
+                  <h3 className={styles.name}>{trainer.name}</h3>
+                  <p className={styles.specialty}>{trainer.specialty}</p>
+                </div>
+              </>
+            );
+
+            return (
+              <div key={trainer.id} className={styles.card}>
+                <EditableGroup
+                  basePath={`trainers.items.${idx}`}
+                  schema={[
+                    { key: 'image', label: 'Trainer Photo', type: 'image' },
+                    { key: 'name', label: 'Name', type: 'text' },
+                    { key: 'specialty', label: 'Specialty', type: 'text' },
+                    { key: 'bio', label: 'Biography', type: 'textarea' }
+                  ]}
+                  className="w-full h-full block"
+                >
+                  {cardContent}
+                </EditableGroup>
               </div>
-              <div className={styles.info}>
-                <EditableText path={`trainers.items.${idx}.name`} fallback={trainer.name} as="h3" className={styles.name} />
-                <EditableText path={`trainers.items.${idx}.specialty`} fallback={trainer.specialty} as="p" className={styles.specialty} />
-              </div>
-            </div>
-          ))}
+            );
+          })}
         </div>
         
         <div style={{ textAlign: 'center', marginTop: '4rem' }}>

@@ -3,6 +3,7 @@
 import { useState } from 'react';
 import styles from './SchedulePage.module.css';
 import BookingModal from '@/components/BookingModal';
+import { EditableText } from '@/components/visual-editor';
 
 export default function ScheduleClient({ fullScheduleData, classDescriptions }: { fullScheduleData: any, classDescriptions: any }) {
   const [isModalOpen, setModalOpen] = useState(false);
@@ -12,10 +13,11 @@ export default function ScheduleClient({ fullScheduleData, classDescriptions }: 
       <section className={styles.hero}>
         <div className="container">
           <h1 className={styles.heroTitle}>
-            Find Your Next <span className="text-accent">Challenge</span>
+            <EditableText path="heroTitlePrefix" fallback="Find Your Next" />{" "}
+            <EditableText path="heroTitleAccent" fallback="Challenge" as="span" className="text-accent" />
           </h1>
           <p className={styles.heroDesc}>
-            From high-intensity intervals to deep mobility work, our diverse schedule has something to push you out of your comfort zone.
+            <EditableText path="heroDesc" fallback="From high-intensity intervals to deep mobility work, our diverse schedule has something to push you out of your comfort zone." />
           </p>
         </div>
       </section>
@@ -45,10 +47,18 @@ export default function ScheduleClient({ fullScheduleData, classDescriptions }: 
               <tbody>
                 {fullScheduleData.map((item: any, idx: number) => (
                   <tr key={idx}>
-                    <td className={styles.timeCell}>{item.time}</td>
-                    <td className={styles.classCell}>{item.class}</td>
-                    <td className={styles.trainerCell}>{item.trainer}</td>
-                    <td className={styles.durationCell}>{item.duration}</td>
+                    <td className={styles.timeCell}>
+                      <EditableText path={`fullScheduleData.${idx}.time`} fallback={item.time} />
+                    </td>
+                    <td className={styles.classCell}>
+                      <EditableText path={`fullScheduleData.${idx}.class`} fallback={item.class} />
+                    </td>
+                    <td className={styles.trainerCell}>
+                      <EditableText path={`fullScheduleData.${idx}.trainer`} fallback={item.trainer} />
+                    </td>
+                    <td className={styles.durationCell}>
+                      <EditableText path={`fullScheduleData.${idx}.duration`} fallback={item.duration} />
+                    </td>
                     <td style={{ color: item.spots === 0 ? 'var(--accent-color)' : 'var(--text-secondary)' }}>
                       {item.spots === 0 ? 'Waitlist' : `${item.spots} Spots Left`}
                     </td>
@@ -71,13 +81,20 @@ export default function ScheduleClient({ fullScheduleData, classDescriptions }: 
 
       <section className={styles.descriptionsSection}>
         <div className="container">
-          <h2 className={styles.descTitle}>Class <span className="text-accent">Descriptions</span></h2>
+          <h2 className={styles.descTitle}>
+            <EditableText path="descTitlePrefix" fallback="Class" />{" "}
+            <EditableText path="descTitleAccent" fallback="Descriptions" as="span" className="text-accent" />
+          </h2>
           <div className={styles.descGrid}>
             {classDescriptions.map((desc: any, idx: number) => (
               <div key={idx} className={styles.descCard}>
-                <h3 className={styles.className}>{desc.name}</h3>
-                <span className={styles.intensity}>{desc.intensity}</span>
-                <p className={styles.classDetails}>{desc.description}</p>
+                <h3 className={styles.className}>
+                  <EditableText path={`classDescriptions.${idx}.name`} fallback={desc.name} />
+                </h3>
+                <span className={styles.intensity}>
+                  <EditableText path={`classDescriptions.${idx}.intensity`} fallback={desc.intensity} />
+                </span>
+                <EditableText path={`classDescriptions.${idx}.description`} fallback={desc.description} as="p" className={styles.classDetails} multiline />
               </div>
             ))}
           </div>

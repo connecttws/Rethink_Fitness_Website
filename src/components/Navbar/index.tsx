@@ -2,15 +2,17 @@
 
 import { useState } from 'react';
 import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 import BookingModal from '../BookingModal';
 import { LoginForm } from '../dev-cms/LoginForm';
 import styles from './Navbar.module.css';
 import { VisualContent } from '@/lib/visual-data/loadContent';
-import { EditableText } from '../visual-editor';
+import { EditableText, EditableImage } from '../visual-editor';
 
 export default function Navbar({ data }: { data: VisualContent['navbar'] }) {
   const [isModalOpen, setModalOpen] = useState(false);
   const [isMobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const pathname = usePathname();
 
   const toggleMobileMenu = () => setMobileMenuOpen(!isMobileMenuOpen);
   const closeMobileMenu = () => setMobileMenuOpen(false);
@@ -24,18 +26,21 @@ export default function Navbar({ data }: { data: VisualContent['navbar'] }) {
         <div className={`container ${styles.container}`}>
           <Link href="/" className={styles.logo} onClick={closeMobileMenu}>
             <div onDoubleClick={() => setLoginOpen(true)}>
-              <img src={data.logoImage} alt="RethinkFit Logo" className={styles.logoImg} />
+              <EditableImage path="navbar.logoImage" fallback={data.logoImage} alt="RethinkFit Logo" imgClassName={styles.logoImg} />
             </div>
           </Link>
           
           {/* Desktop Menu */}
           <div className={styles.desktopMenu}>
             <div className={styles.navLinks}>
-              {data.links.map((link, i) => (
-                <Link key={i} href={link.href}>
-                  <EditableText path={`navbar.links.${i}.label`} fallback={link.label} />
-                </Link>
-              ))}
+              {data.links.map((link, i) => {
+                const isActive = pathname === link.href;
+                return (
+                  <Link key={i} href={link.href} className={isActive ? styles.activeLink : ''}>
+                    <EditableText path={`navbar.links.${i}.label`} fallback={link.label} />
+                  </Link>
+                );
+              })}
             </div>
             <button 
               className="btn" 
@@ -56,11 +61,14 @@ export default function Navbar({ data }: { data: VisualContent['navbar'] }) {
       {/* Full Screen Mobile Menu */}
       <div className={`${styles.mobileMenu} ${isMobileMenuOpen ? styles.mobileMenuOpen : ''}`}>
         <div className={styles.mobileLinks}>
-          {data.links.map((link, i) => (
-            <Link key={i} href={link.href} onClick={closeMobileMenu}>
-              <EditableText path={`navbar.links.${i}.label`} fallback={link.label} />
-            </Link>
-          ))}
+          {data.links.map((link, i) => {
+            const isActive = pathname === link.href;
+            return (
+              <Link key={i} href={link.href} onClick={closeMobileMenu} className={isActive ? styles.activeLink : ''}>
+                <EditableText path={`navbar.links.${i}.label`} fallback={link.label} />
+              </Link>
+            );
+          })}
         </div>
         <button 
           className="btn" 

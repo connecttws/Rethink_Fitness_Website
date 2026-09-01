@@ -1,8 +1,9 @@
 import styles from './FacilityTour.module.css';
 import { VisualContent } from '@/lib/visual-data/loadContent';
-import { EditableText, EditableImage } from '@/components/visual-editor';
+import { EditableText, EditableGroup } from '@/components/visual-editor';
 
 export default function FacilityTour({ data }: { data: VisualContent['facilityTour'] }) {
+
   return (
     <section className={styles.tourSection}>
       <div className="container">
@@ -21,28 +22,38 @@ export default function FacilityTour({ data }: { data: VisualContent['facilityTo
         </div>
 
         <div className={styles.gallery}>
-          {data.images.map((img, index) => (
-            <div 
-              key={img.id} 
-              className={`${styles.galleryItem} ${img.featured ? styles.featuredItem : ''}`}
-            >
-              <EditableImage 
-                path={`facilityTour.images.${index}.url`}
-                fallback={img.url}
-                alt={img.title}
-                className="w-full h-full absolute inset-0"
-                imgClassName="w-full h-full object-cover"
-              />
-              <div className={styles.overlay}>
-                <EditableText 
-                  path={`facilityTour.images.${index}.title`} 
-                  fallback={img.title} 
-                  as="h3" 
-                  className={styles.overlayTitle} 
+          {data.images.map((img, index) => {
+            const cardContent = (
+              <>
+                <img 
+                  src={img.url}
+                  alt={img.title}
+                  className="w-full h-full absolute inset-0 object-cover"
                 />
+                <div className={styles.overlay}>
+                  <h3 className={styles.overlayTitle}>{img.title}</h3>
+                </div>
+              </>
+            );
+
+            return (
+              <div 
+                key={img.id} 
+                className={`${styles.galleryItem} ${img.featured ? styles.featuredItem : ''}`}
+              >
+                <EditableGroup 
+                  basePath={`facilityTour.images.${index}`}
+                  schema={[
+                    { key: 'url', label: 'Background Image', type: 'image' },
+                    { key: 'title', label: 'Overlay Title', type: 'text' }
+                  ]}
+                  className="h-full w-full"
+                >
+                  {cardContent}
+                </EditableGroup>
               </div>
-            </div>
-          ))}
+            );
+          })}
         </div>
       </div>
     </section>

@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 import styles from './PricingPage.module.css';
+import { EditableText } from '@/components/visual-editor';
 
 export default function PricingClient({ pricingPlans, featureComparison, faqs }: { pricingPlans: any, featureComparison: any, faqs: any }) {
   const [isAnnual, setIsAnnual] = useState(false);
@@ -11,10 +12,11 @@ export default function PricingClient({ pricingPlans, featureComparison, faqs }:
       <section className={styles.hero}>
         <div className="container">
           <h1 className={styles.heroTitle}>
-            Transparent Coaching & Floor Access <span className="text-accent">Plans</span>
+            <EditableText path="heroTitlePrefix" fallback="Transparent Coaching & Floor Access" />{" "}
+            <EditableText path="heroTitleAccent" fallback="Plans" as="span" className="text-accent" />
           </h1>
           <p className={styles.heroDesc}>
-            Transparent pricing. No hidden fees. Choose the membership tier that fits your goals and start your transformation today.
+            <EditableText path="heroDesc" fallback="Transparent pricing. No hidden fees. Choose the membership tier that fits your goals and start your transformation today." />
           </p>
 
           <div className={styles.toggleContainer}>
@@ -44,23 +46,27 @@ export default function PricingClient({ pricingPlans, featureComparison, faqs }:
       <section className={styles.pricingSection}>
         <div className="container">
           <div className={styles.grid}>
-            {pricingPlans.map((plan: any) => (
-              <div key={plan.id} className={`${styles.card} ${plan.isPopular ? styles.popular : ''}`}>
+            {pricingPlans.map((plan: any, planIdx: number) => (
+              <div key={plan.id || planIdx} className={`${styles.card} ${plan.isPopular ? styles.popular : ''}`}>
                 {plan.isPopular && <div className={styles.badge}>Most Popular</div>}
-                <h3 className={styles.planName}>{plan.name}</h3>
+                <h3 className={styles.planName}>
+                  <EditableText path={`pricingPlans.${planIdx}.name`} fallback={plan.name} />
+                </h3>
                 
                 <div className={styles.priceContainer}>
-                  <span className={styles.price}>${isAnnual ? plan.annualPrice : plan.monthlyPrice}</span>
+                  <span className={styles.price}>
+                    $<EditableText path={`pricingPlans.${planIdx}.${isAnnual ? 'annualPrice' : 'monthlyPrice'}`} fallback={isAnnual ? plan.annualPrice.toString() : plan.monthlyPrice.toString()} />
+                  </span>
                   <span className={styles.period}>/month</span>
                 </div>
                 
                 <ul className={styles.featureList}>
-                  {plan.features.map((feature: any, idx: number) => (
-                    <li key={idx} className={styles.featureItem}>
+                  {plan.features.map((feature: any, featureIdx: number) => (
+                    <li key={featureIdx} className={styles.featureItem}>
                       <svg className={styles.checkIcon} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                         <polyline points="20 6 9 17 4 12"></polyline>
                       </svg>
-                      {feature}
+                      <EditableText path={`pricingPlans.${planIdx}.features.${featureIdx}`} fallback={feature} />
                     </li>
                   ))}
                 </ul>
@@ -76,7 +82,10 @@ export default function PricingClient({ pricingPlans, featureComparison, faqs }:
 
       <section className={styles.comparisonSection}>
         <div className="container">
-          <h2 className={styles.sectionTitle}>Compare <span className="text-accent">Features</span></h2>
+          <h2 className={styles.sectionTitle}>
+            <EditableText path="compareTitlePrefix" fallback="Compare" />{" "}
+            <EditableText path="compareTitleAccent" fallback="Features" as="span" className="text-accent" />
+          </h2>
           <div className={styles.tableContainer}>
             <table className={styles.table}>
               <thead>
@@ -116,12 +125,17 @@ export default function PricingClient({ pricingPlans, featureComparison, faqs }:
 
       <section className={styles.faqSection}>
         <div className="container">
-          <h2 className={styles.sectionTitle}>Frequently Asked <span className="text-accent">Questions</span></h2>
+          <h2 className={styles.sectionTitle}>
+            <EditableText path="faqTitlePrefix" fallback="Frequently Asked" />{" "}
+            <EditableText path="faqTitleAccent" fallback="Questions" as="span" className="text-accent" />
+          </h2>
           <div className={styles.faqGrid}>
             {faqs.map((faq: any, idx: number) => (
               <div key={idx} className={styles.faqItem}>
-                <h3 className={styles.faqQuestion}>{faq.q}</h3>
-                <p className={styles.faqAnswer}>{faq.a}</p>
+                <h3 className={styles.faqQuestion}>
+                  <EditableText path={`faqs.${idx}.q`} fallback={faq.q} />
+                </h3>
+                <EditableText path={`faqs.${idx}.a`} fallback={faq.a} as="p" className={styles.faqAnswer} multiline />
               </div>
             ))}
           </div>
