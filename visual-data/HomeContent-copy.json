@@ -1,19 +1,19 @@
 {
   "hero": {
     "fullText": "Rethink\nYour\nLimits",
-    "subtitle": "Train Different. Think Different. Become Different. Premium Personal Training Specialty Facility & High-End Gym Floor.",
+    "subtitle": "Train Different. Think Different. Become Different.",
     "primaryBtnText": "Join Now",
     "secondaryBtnText": "View Classes"
   },
   "footer": {
-    "email": "info@rethinkfitness.com",
+    "email": "info@rethinkfit.com",
     "hours": [
       "Mon - Fri: 5:00 AM - 11:00 PM",
       "Sat - Sun: 7:00 AM - 9:00 PM"
     ],
     "phone": "(555) 123-4567",
-    "address": "Mayur Vihar Phase 1, New Delhi, Delhi 110091",
-    "brandDesc": "Train Different. Think Different. Become Different. Everything you need to train with purpose, make progress, and become stronger — physically and mentally.",
+    "address": "123 Fitness Ave, Iron District, NY 10001",
+    "brandDesc": "The ultimate fitness experience designed to push your boundaries. State-of-the-art equipment, elite trainers, and an atmosphere built for champions.",
     "logoImage": "/Images/Logo/RF LOGO-01.png",
     "quickLinks": [
       {
@@ -21,16 +21,20 @@
         "label": "Home"
       },
       {
-        "href": "/coaching",
-        "label": "1-on-1 Coaching"
+        "href": "/trainers",
+        "label": "Trainers"
       },
       {
-        "href": "/memberships",
-        "label": "Memberships"
+        "href": "/schedule",
+        "label": "Schedule"
       },
       {
-        "href": "/about",
-        "label": "About Us"
+        "href": "/pricing",
+        "label": "Pricing"
+      },
+      {
+        "href": "/nutrition",
+        "label": "Nutrition"
       },
       {
         "href": "/blog",
@@ -46,16 +50,24 @@
         "label": "Home"
       },
       {
-        "href": "/coaching",
+        "href": "/trainers",
         "label": "1-on-1 Coaching"
       },
       {
-        "href": "/memberships",
-        "label": "Memberships"
+        "href": "/pricing",
+        "label": "Floor Access"
       },
       {
-        "href": "/about",
-        "label": "About Us"
+        "href": "/schedule",
+        "label": "Class Schedule"
+      },
+      {
+        "href": "/pricing",
+        "label": "Pricing"
+      },
+      {
+        "href": "/nutrition",
+        "label": "Nutrition"
       },
       {
         "href": "/blog",
@@ -63,11 +75,11 @@
       }
     ],
     "logoImage": "/Images/Logo/RF LOGO-01.png",
-    "ctaBtnText": "Start Your Journey"
+    "ctaBtnText": "Book Free 1-on-1 Assessment"
   },
   "pricing": {
-    "btnText": "Start Your Journey",
-    "bannerDescHtml": "Take the first step towards training with purpose and having a plan built around you. Get in touch with our team today.",
+    "btnText": "View Pricing Plans",
+    "bannerDescHtml": "Premium memberships starting at just <strong>$49/month</strong>. No hidden fees. Zero initiation costs.",
     "bannerTitleAccent": "Commit?",
     "bannerTitlePrefix": "Ready to"
   },
@@ -75,23 +87,23 @@
     "items": [
       {
         "id": "01",
-        "title": "Expert Coaching",
-        "description": "Get guidance from experienced coaches who understand your goals and know how to help you progress."
+        "title": "Elite Trainers",
+        "description": "Work with the best in the industry to push your limits and achieve your goals faster."
       },
       {
         "id": "02",
-        "title": "Premium Training Environment",
-        "description": "Train with quality equipment, thoughtfully designed spaces, and an environment built for serious results."
+        "title": "Modern Equipment",
+        "description": "Access state-of-the-art machines and free weights designed for peak performance."
       },
       {
         "id": "03",
-        "title": "Built Around You",
-        "description": "Whether you're starting out, getting back on track, or pushing your limits, your training should fit your goals."
+        "title": "Open 7 Days",
+        "description": "Train on your schedule. Our facilities are open around the clock for your convenience."
       }
     ],
-    "description": "Everything you need to train with purpose, make progress, and become stronger — physically and mentally.",
-    "titleAccent": "Fitness?",
-    "titlePrefix": "Why Rethink"
+    "description": "We provide everything you need to transform your body and mind. No compromises.",
+    "titleAccent": "Us",
+    "titlePrefix": "Why Choose"
   },
   "schedule": {
     "items": [
@@ -123,30 +135,30 @@
     "items": [
       {
         "id": 1,
-        "bio": "Marcus is a former Olympic weightlifter with over 10 years of experience turning beginners into absolute beasts.",
+        "bio": "Former Olympic weightlifter with 10 years of experience turning beginners into beasts.",
         "name": "Marcus Vance",
         "image": "https://res.cloudinary.com/dqcls20dp/image/upload/v1788241803/rethink-gallery/hlknyuwfm3wslvga7zsk.jpg",
         "specialty": "Strength & Conditioning"
       },
       {
         "id": 2,
-        "bio": "Sarah brings an infectious high-energy approach to every session. She specializes in pushing your cardiovascular limits and incinerating fat fast.",
+        "bio": "High-energy coach dedicated to pushing your cardiovascular limits and burning fat fast.",
         "name": "Sarah Jenkins",
         "image": "https://res.cloudinary.com/dqcls20dp/image/upload/v1788241819/rethink-gallery/gof7unqio7dohre0ivin.jpg",
         "specialty": "HIIT & Endurance"
       },
       {
         "id": 3,
-        "bio": "David focuses on longevity, injury prevention, and building a foundation of true functional strength.",
+        "bio": "Focuses on longevity, injury prevention, and building a foundation of true functional strength.",
         "name": "David Chen",
         "image": "https://res.cloudinary.com/dqcls20dp/image/upload/v1788241835/rethink-gallery/ad8jauvdze1efu1mpi2z.jpg",
         "specialty": "Mobility & Recovery"
       }
     ],
-    "btnText": "Get to Know the Team",
-    "description": "Great results start with the right people around you. Get to know the coaches and team members who make Rethink Fitness different.",
-    "titleAccent": "Team",
-    "titlePrefix": "Meet Our"
+    "btnText": "View Full Trainer Profiles",
+    "description": "Elite professionals dedicated to your transformation.",
+    "titleAccent": "Coaches",
+    "titlePrefix": "Meet Your"
   },
   "appTeaser": {
     "features": [
@@ -192,8 +204,8 @@
         "featured": false
       }
     ],
-    "btnText": "Take a Look Inside",
-    "description": "From the equipment you train on to the environment around you, every detail at Rethink Fitness is designed with your training experience in mind.",
+    "btnText": "Take Virtual Tour",
+    "description": "A 2,000 sq ft playground for fitness enthusiasts.",
     "titleAccent": "Facility",
     "titlePrefix": "Explore Our"
   },
@@ -234,7 +246,7 @@
     "block2": {
       "desc": "From HIIT to Yoga, find the perfect class for your goals.",
       "title": "Dynamic Classes",
-      "btnText": "Explore Memberships"
+      "btnText": "View Schedule"
     }
   },
   "instagramFeed": {
@@ -273,8 +285,8 @@
     "titlePrefix": "Follow Our"
   },
   "locationSection": {
-    "email": "info@rethinkfitness.com",
-    "phone": "(555) 123-4567",
+    "email": "info@rethinkfitness.in",
+    "phone": "+91 83680 52044",
     "address": "Mayur Vihar Phase 1\nNew Delhi, Delhi 110091",
     "hoursHtml": "<strong>Mon-Fri:</strong> 5:00 AM - 11:00 PM<br/><strong>Sat-Sun:</strong> 7:00 AM - 9:00 PM",
     "description": "Centrally located with ample free parking. Your fitness destination is closer than you think.",

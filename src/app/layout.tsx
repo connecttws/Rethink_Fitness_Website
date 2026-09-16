@@ -5,8 +5,8 @@ import Footer from "@/components/Footer";
 import Navbar from "@/components/Navbar";
 
 export const metadata: Metadata = {
-  title: "Rethink Fitness | Premium Personal Training",
-  description: "Premium Personal Training Specialty Facility & High-End Gym Floor located in Mayur Vihar Phase 1, New Delhi.",
+  title: "Rethink Fitness | Train Different. Think Different. Become Different.",
+  description: "Train Different. Think Different. Become Different. Premium Personal Training Specialty Facility & High-End Gym Floor located in Mayur Vihar Phase 1, New Delhi.",
 };
 
 import { loadVisualContent } from "@/lib/visual-data/loadContent";

@@ -9,6 +9,30 @@ const nextConfig: NextConfig = {
       },
     ],
   },
+  async redirects() {
+    return [
+      {
+        source: '/trainers',
+        destination: '/coaching',
+        permanent: true,
+      },
+      {
+        source: '/pricing',
+        destination: '/memberships',
+        permanent: true,
+      },
+      {
+        source: '/nutrition',
+        destination: '/memberships',
+        permanent: true,
+      },
+      {
+        source: '/schedule',
+        destination: '/',
+        permanent: false,
+      },
+    ];
+  },
 };
 
 export default nextConfig;

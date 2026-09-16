@@ -3,18 +3,19 @@ import { VisualContent } from '@/lib/visual-data/loadContent';
 import { EditableText, EditableGroup } from '@/components/visual-editor';
 
 export default function FacilityTour({ data }: { data: VisualContent['facilityTour'] }) {
+  const images = data?.images || [];
 
   return (
     <section className={styles.tourSection}>
       <div className="container">
         <div className={styles.header}>
           <h2 className={styles.sectionTitle}>
-            <EditableText path="facilityTour.titlePrefix" fallback={data.titlePrefix} />{" "}
-            <EditableText path="facilityTour.titleAccent" fallback={data.titleAccent} as="span" className="text-accent" />
+            <EditableText path="facilityTour.titlePrefix" fallback={data?.titlePrefix || "Explore Our"} />{" "}
+            <EditableText path="facilityTour.titleAccent" fallback={data?.titleAccent || "Facility"} as="span" className="text-accent" />
           </h2>
           <EditableText 
             path="facilityTour.description" 
-            fallback={data.description} 
+            fallback={data?.description || "From the equipment you train on to the environment around you, every detail at Rethink Fitness is designed with your training experience in mind."} 
             as="p" 
             className={styles.sectionDesc} 
             multiline 
@@ -22,7 +23,7 @@ export default function FacilityTour({ data }: { data: VisualContent['facilityTo
         </div>
 
         <div className={styles.gallery}>
-          {data.images.map((img, index) => {
+          {images.map((img, index) => {
             const cardContent = (
               <>
                 <img 

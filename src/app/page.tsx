@@ -2,7 +2,6 @@ export const revalidate = 60;
 import Hero from "@/components/Hero";
 import Features from "@/components/Features";
 import FacilityTour from "@/components/FacilityTour";
-import Schedule from "@/components/Schedule";
 import GatewayTeaser from "@/components/GatewayTeaser";
 import Trainers from "@/components/Trainers";
 import Testimonials from "@/components/Testimonials";
@@ -33,7 +32,6 @@ export default async function Home() {
         <Hero data={data.hero} />
         <Features data={data.features} />
         <FacilityTour data={data.facilityTour} />
-        <Schedule data={data.schedule} />
         <GatewayTeaser data={data.gatewayTeaser} />
         <Trainers data={data.trainers} />
         <Testimonials data={data.testimonials} />

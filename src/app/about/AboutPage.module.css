@@ -1,0 +1,179 @@
+.pageContainer {
+  background-color: var(--bg-color);
+  color: var(--text-primary);
+  overflow-x: hidden;
+}
+
+/* Hero */
+.hero {
+  padding: 8rem 0 5rem;
+  background: radial-gradient(circle at 50% 15%, rgba(229, 9, 20, 0.12) 0%, rgba(5, 5, 5, 0.98) 75%);
+  text-align: center;
+  position: relative;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.heroTitle {
+  font-size: clamp(2.5rem, 6vw, 4.4rem);
+  font-family: var(--font-heading);
+  letter-spacing: 0.04em;
+  line-height: 1.1;
+  margin-bottom: 1.5rem;
+}
+
+.heroDesc {
+  font-size: clamp(1.1rem, 2vw, 1.35rem);
+  color: var(--text-secondary);
+  max-width: 760px;
+  margin: 0 auto;
+  line-height: 1.6;
+}
+
+/* Story Section */
+.storySection {
+  padding: 6.5rem 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.storyGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4.5rem;
+  align-items: center;
+}
+
+.storyImageWrapper {
+  position: relative;
+  height: 520px;
+  border-radius: 14px;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6);
+}
+
+.storyImage {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.storyContent {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.sectionTitle {
+  font-size: clamp(2.2rem, 5vw, 3.4rem);
+  font-family: var(--font-heading);
+  letter-spacing: 0.04em;
+  line-height: 1.15;
+}
+
+.storyParagraph {
+  font-size: 1.125rem;
+  color: var(--text-secondary);
+  line-height: 1.75;
+}
+
+.highlightParagraph {
+  font-size: 1.25rem;
+  color: #ffffff;
+  font-weight: 500;
+  border-left: 3px solid var(--accent-color);
+  padding-left: 1.25rem;
+  margin: 0.5rem 0;
+  line-height: 1.6;
+}
+
+/* Philosophy Section */
+.philosophySection {
+  padding: 6.5rem 0;
+  background-color: #0a0a0a;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.centerHeader {
+  text-align: center;
+  max-width: 700px;
+  margin: 0 auto 4rem;
+}
+
+.pillarsGrid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 2rem;
+}
+
+.pillarCard {
+  background-color: var(--surface-color);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 12px;
+  padding: 3rem 2.5rem;
+  position: relative;
+  transition: all 0.35s ease;
+  display: flex;
+  flex-direction: column;
+}
+
+.pillarCard:hover {
+  transform: translateY(-6px);
+  border-color: rgba(229, 9, 20, 0.45);
+  box-shadow: 0 16px 36px rgba(0, 0, 0, 0.6);
+}
+
+.pillarNumber {
+  font-size: 2.75rem;
+  font-family: var(--font-heading);
+  color: var(--accent-color);
+  line-height: 1;
+  margin-bottom: 1.25rem;
+}
+
+.pillarTitle {
+  font-size: 1.75rem;
+  margin-bottom: 0.75rem;
+  font-family: var(--font-heading);
+  line-height: 1.2;
+}
+
+.pillarDesc {
+  color: var(--text-secondary);
+  font-size: 1.05rem;
+  line-height: 1.65;
+}
+
+/* Final CTA Section */
+.finalCtaSection {
+  padding: 7rem 0;
+  text-align: center;
+  background: radial-gradient(circle at 50% 100%, rgba(229, 9, 20, 0.15) 0%, rgba(5, 5, 5, 1) 75%);
+}
+
+.ctaBox {
+  max-width: 680px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.ctaSubtitle {
+  font-size: 1.25rem;
+  color: var(--text-secondary);
+  line-height: 1.6;
+}
+
+@media (max-width: 992px) {
+  .storyGrid {
+    grid-template-columns: 1fr;
+    gap: 3rem;
+  }
+  .storyImageWrapper {
+    height: 380px;
+  }
+  .pillarsGrid {
+    grid-template-columns: 1fr;
+  }
+}

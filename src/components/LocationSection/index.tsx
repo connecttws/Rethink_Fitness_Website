@@ -3,17 +3,19 @@ import { VisualContent } from '@/lib/visual-data/loadContent';
 import { EditableText, EditableIframe } from '@/components/visual-editor';
 
 export default function LocationSection({ data }: { data: VisualContent['locationSection'] }) {
+  if (!data) return null;
+
   return (
     <section id="location" className={styles.locationSection}>
       <div className={`container`}>
         <div className={styles.header}>
           <h2 className={styles.sectionTitle}>
-            <EditableText path="locationSection.titlePrefix" fallback={data.titlePrefix} />{" "}
-            <EditableText path="locationSection.titleAccent" fallback={data.titleAccent} as="span" className="text-accent" />
+            <EditableText path="locationSection.titlePrefix" fallback={data.titlePrefix || "Find"} />{" "}
+            <EditableText path="locationSection.titleAccent" fallback={data.titleAccent || "Us"} as="span" className="text-accent" />
           </h2>
           <EditableText 
             path="locationSection.description" 
-            fallback={data.description} 
+            fallback={data.description || "Centrally located with ample free parking. Your fitness destination is closer than you think."} 
             as="p" 
             className={styles.sectionDesc} 
             multiline 

@@ -1,0 +1,58 @@
+{
+  "hero": {
+    "titlePrefix": "Your Goals. Your Plan.",
+    "titleAccent": "Your Progress.",
+    "subtitle": "Personalized training, expert guidance, and a plan designed around your goals — because your training should be as individual as you are.",
+    "ctaBtnText": "Start Your Journey"
+  },
+  "moreThanPT": {
+    "titlePrefix": "More Than Just",
+    "titleAccent": "Personal Training",
+    "desc": "1-on-1 coaching at Rethink Fitness is built around you — your goals, your current ability, and your progress. Every part of your training is intentional, from the plan you follow to the way you perform each movement.",
+    "includes": [
+      "Personalized Training Plan",
+      "1-on-1 Coach Guidance",
+      "Progress Tracking",
+      "Exercise & Technique Coaching",
+      "Accountability & Support"
+    ]
+  },
+  "howItWorks": {
+    "titlePrefix": "How Your Coaching",
+    "titleAccent": "Journey Works",
+    "steps": [
+      {
+        "step": "01",
+        "title": "Understand",
+        "desc": "We start by understanding your goals, experience, lifestyle, and where you are today."
+      },
+      {
+        "step": "02",
+        "title": "Plan",
+        "desc": "Your coach creates a training approach designed specifically around you and your goals."
+      },
+      {
+        "step": "03",
+        "title": "Train",
+        "desc": "You train with your coach, learning the right techniques and building strength, confidence, and consistency."
+      },
+      {
+        "step": "04",
+        "title": "Progress",
+        "desc": "Your progress is tracked and your training evolves as you get stronger and your goals develop."
+      }
+    ]
+  },
+  "coachesSection": {
+    "titlePrefix": "The Right Coach",
+    "titleAccent": "Changes Everything.",
+    "desc": "Training becomes different when you have someone who knows your goals, understands your journey, and knows when to push you and when to adapt.",
+    "ctaBtnText": "Meet Our Coaches"
+  },
+  "finalCta": {
+    "titlePrefix": "Ready to Start",
+    "titleAccent": "Your Journey?",
+    "desc": "Take the first step towards training with purpose and having a plan built around you.",
+    "btnText": "Start Your Journey"
+  }
+}

@@ -1,0 +1,49 @@
+{
+  "hero": {
+    "titlePrefix": "We Built Rethink Because",
+    "titleAccent": "Fitness Needed To Be Rethought.",
+    "subtitle": "A training environment built for people who want to do more than just work out — they want to become better."
+  },
+  "story": {
+    "titlePrefix": "It Started With",
+    "titleAccent": "A Simple Idea.",
+    "paragraphs": [
+      "What if a gym could be more than a place you visit?",
+      "What if it could be a place where you actually learned how to train, surrounded yourself with the right people, and built something that lasted?",
+      "That idea became Rethink Fitness.",
+      "Today, our goal remains the same: to create a training environment where every person who walks through our doors has the opportunity to become stronger, healthier, and more confident."
+    ]
+  },
+  "philosophy": {
+    "titlePrefix": "The Rethink",
+    "titleAccent": "Philosophy",
+    "pillars": [
+      {
+        "id": "01",
+        "title": "Rethink How You Train.",
+        "description": "Understand what you're doing and why you're doing it."
+      },
+      {
+        "id": "02",
+        "title": "Rethink What Progress Means.",
+        "description": "Progress isn't always about the number on the scale. It's about becoming stronger, fitter, and more capable."
+      },
+      {
+        "id": "03",
+        "title": "Rethink What You're Capable Of.",
+        "description": "Challenge the limits you've placed on yourself."
+      },
+      {
+        "id": "04",
+        "title": "Rethink What A Gym Can Be.",
+        "description": "A place to train, learn, connect, and become better."
+      }
+    ]
+  },
+  "finalCta": {
+    "titlePrefix": "Ready to Rethink",
+    "titleAccent": "Your Fitness?",
+    "subtitle": "Start training with purpose and discover a different way to approach fitness.",
+    "ctaBtnText": "Start Your Journey"
+  }
+}

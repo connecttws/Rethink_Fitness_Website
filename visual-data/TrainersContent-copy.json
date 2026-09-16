@@ -1,0 +1,28 @@
+{
+  "detailedTrainers": [
+    {
+      "id": 1,
+      "bio": "Marcus is a former Olympic weightlifter with over 10 years of experience turning beginners into absolute beasts. His philosophy is rooted in mastering the basic compound movements before progressing to complex lifts.",
+      "name": "Marcus Vance",
+      "image": "https://res.cloudinary.com/dqcls20dp/image/upload/v1788248626/rethink-gallery/g6y7ohjoyvczynvmniqb.jpg",
+      "specialty": "Strength & Conditioning",
+      "certifications": [
+        "Olympic Weightlifting L2",
+        "NASM CPT",
+        "Precision Nutrition L1"
+      ]
+    },
+    {
+      "id": 2,
+      "bio": "Sarah brings an infectious high-energy approach to every session. She specializes in pushing your cardiovascular limits and incinerating fat fast.",
+      "name": "Sarah Jenkins",
+      "image": "https://res.cloudinary.com/dqcls20dp/image/upload/v1788248644/rethink-gallery/fg2qzwvh5lwxibmlwjhc.jpg",
+      "specialty": "HIIT & Endurance",
+      "certifications": [
+        "CrossFit L2",
+        "ACE Certified Personal Trainer",
+        "Kettlebell Athletics"
+      ]
+    }
+  ]
+}

@@ -3,21 +3,24 @@ import { VisualContent } from '@/lib/visual-data/loadContent';
 import { EditableText, EditableGroup } from '@/components/visual-editor';
 
 export default function InstagramFeed({ data }: { data: VisualContent['instagramFeed'] }) {
+  if (!data) return null;
+  const posts = data.posts || [];
+
   return (
     <section className={styles.instaSection}>
       <div className="container">
         <div className={styles.header}>
           <h2 className={styles.sectionTitle}>
-            <EditableText path="instagramFeed.titlePrefix" fallback={data.titlePrefix} />{" "}
-            <EditableText path="instagramFeed.titleAccent" fallback={data.titleAccent} as="span" className="text-accent" />
+            <EditableText path="instagramFeed.titlePrefix" fallback={data.titlePrefix || "Follow Our"} />{" "}
+            <EditableText path="instagramFeed.titleAccent" fallback={data.titleAccent || "Journey"} as="span" className="text-accent" />
           </h2>
           <p className={styles.sectionDesc}>
-            Tag us in your workouts <EditableText path="instagramFeed.handle" fallback={data.handle} />
+            Tag us in your workouts <EditableText path="instagramFeed.handle" fallback={data.handle || "@rethinkfitness"} />
           </p>
         </div>
 
         <div className={styles.feedGrid}>
-          {data.posts.map((post, idx) => (
+          {posts.map((post, idx) => (
             <div key={post.id} className={styles.post}>
               <EditableGroup
                 basePath={`instagramFeed.posts.${idx}`}

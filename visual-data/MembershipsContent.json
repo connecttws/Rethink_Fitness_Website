@@ -1,0 +1,43 @@
+{
+  "hero": {
+    "titlePrefix": "Find the Membership",
+    "titleAccent": "That Fits You.",
+    "subtitle": "Whether you're looking for independent training or dedicated coaching, find the option that works best for your goals."
+  },
+  "sectionHeader": {
+    "titlePrefix": "Choose How You",
+    "titleAccent": "Want to Train"
+  },
+  "options": [
+    {
+      "id": "01",
+      "tag": "01 — GYM ACCESS",
+      "title": "Train Independently.",
+      "description": "Access the Rethink Fitness facility and train on your own schedule with the equipment and environment you need to stay consistent.",
+      "idealFor": "Independent training",
+      "ctaText": "Enquire About Gym Access"
+    },
+    {
+      "id": "02",
+      "tag": "02 — TRANSFORMATION PLANS",
+      "title": "Have a Goal. Follow a Plan. See the Change.",
+      "description": "A structured approach designed around your transformation goal, with the guidance, accountability, and direction needed to stay on track.",
+      "idealFor": "Fat loss • Muscle gain • Body recomposition • Overall transformation",
+      "ctaText": "Start Your Transformation"
+    },
+    {
+      "id": "03",
+      "tag": "03 — PERSONALISED 1-ON-1 COACHING",
+      "title": "Your Training. Completely Personalised.",
+      "description": "Dedicated coaching built around your goals, abilities, progress, and individual needs — with your coach guiding you throughout the journey.",
+      "idealFor": "Maximum personal attention & dedicated coaching",
+      "ctaText": "Enquire About 1-on-1 Coaching"
+    }
+  ],
+  "finalLeadCapture": {
+    "titlePrefix": "Not sure which option",
+    "titleAccent": "is right for you?",
+    "subtitle": "Tell us about your goals and our team will help you find the right way to train at Rethink Fitness.",
+    "ctaText": "Find My Membership"
+  }
+}

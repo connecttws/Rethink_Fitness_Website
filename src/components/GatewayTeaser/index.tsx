@@ -12,7 +12,7 @@ export default function GatewayTeaser({ data }: { data: VisualContent['gatewayTe
           <div className={styles.content}>
             <EditableText path="gatewayTeaser.block1.title" fallback={data.block1.title} as="h2" className={styles.title} />
             <EditableText path="gatewayTeaser.block1.desc" fallback={data.block1.desc} as="p" className={styles.desc} multiline />
-            <Link href="/trainers" className="btn">
+            <Link href="/coaching" className="btn">
               <EditableText path="gatewayTeaser.block1.btnText" fallback={data.block1.btnText} />
             </Link>
           </div>
@@ -23,7 +23,7 @@ export default function GatewayTeaser({ data }: { data: VisualContent['gatewayTe
           <div className={styles.content}>
             <EditableText path="gatewayTeaser.block2.title" fallback={data.block2.title} as="h2" className={styles.title} />
             <EditableText path="gatewayTeaser.block2.desc" fallback={data.block2.desc} as="p" className={styles.desc} multiline />
-            <Link href="/schedule" className="btn btn-outline">
+            <Link href="/memberships" className="btn btn-outline">
               <EditableText path="gatewayTeaser.block2.btnText" fallback={data.block2.btnText} />
             </Link>
           </div>

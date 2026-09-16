@@ -4,18 +4,19 @@ import { VisualContent } from '@/lib/visual-data/loadContent';
 import { EditableText, EditableGroup } from '@/components/visual-editor';
 
 export default function Trainers({ data }: { data: VisualContent['trainers'] }) {
+  const items = data?.items || [];
 
   return (
     <section id="trainers" className={styles.trainersSection}>
       <div className={`container ${styles.container}`}>
         <div className={styles.header}>
           <h2 className={styles.sectionTitle}>
-            <EditableText path="trainers.titlePrefix" fallback={data.titlePrefix} />{" "}
-            <EditableText path="trainers.titleAccent" fallback={data.titleAccent} as="span" className="text-accent" />
+            <EditableText path="trainers.titlePrefix" fallback={data?.titlePrefix || "Meet Our"} />{" "}
+            <EditableText path="trainers.titleAccent" fallback={data?.titleAccent || "Team"} as="span" className="text-accent" />
           </h2>
           <EditableText 
             path="trainers.description" 
-            fallback={data.description} 
+            fallback={data?.description || "Great results start with the right people around you. Get to know the coaches and team members who make Rethink Fitness different."} 
             as="p" 
             className={styles.sectionDesc} 
             multiline 
@@ -23,7 +24,7 @@ export default function Trainers({ data }: { data: VisualContent['trainers'] }) 
         </div>
 
         <div className={styles.grid}>
-          {data.items.map((trainer, idx) => {
+          {items.map((trainer, idx) => {
             const cardContent = (
               <>
                 <div className={styles.imageWrapper}>
@@ -64,7 +65,7 @@ export default function Trainers({ data }: { data: VisualContent['trainers'] }) 
         </div>
         
         <div style={{ textAlign: 'center', marginTop: '4rem' }}>
-          <Link href="/trainers" className="btn">
+          <Link href="/coaching#coaches" className="btn">
             <EditableText path="trainers.btnText" fallback={data.btnText} />
           </Link>
         </div>

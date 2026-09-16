@@ -3,17 +3,19 @@ import { VisualContent } from '@/lib/visual-data/loadContent';
 import { EditableText, EditableImage } from '@/components/visual-editor';
 
 export default function Testimonials({ data }: { data: VisualContent['testimonials'] }) {
+  const items = data?.items || [];
+
   return (
     <section className={styles.testimonialSection}>
       <div className={`container ${styles.container}`}>
         <div className={styles.header}>
           <h2 className={styles.sectionTitle}>
-            <EditableText path="testimonials.titlePrefix" fallback={data.titlePrefix} />{" "}
-            <EditableText path="testimonials.titleAccent" fallback={data.titleAccent} as="span" className="text-accent" />
+            <EditableText path="testimonials.titlePrefix" fallback={data?.titlePrefix || "Real"} />{" "}
+            <EditableText path="testimonials.titleAccent" fallback={data?.titleAccent || "Results"} as="span" className="text-accent" />
           </h2>
           <EditableText 
             path="testimonials.description" 
-            fallback={data.description} 
+            fallback={data?.description || "Don't just take our word for it. Hear from the champions who grind here every day."} 
             as="p" 
             className={styles.sectionDesc} 
             multiline 
@@ -21,7 +23,7 @@ export default function Testimonials({ data }: { data: VisualContent['testimonia
         </div>
         
         <div className={styles.grid}>
-          {data.items.map((rev, idx) => (
+          {items.map((rev, idx) => (
             <div key={rev.id} className={styles.card}>
               <div className={styles.quoteIcon}>"</div>
               <EditableText path={`testimonials.items.${idx}.review`} fallback={rev.review} as="p" className={styles.reviewText} multiline />

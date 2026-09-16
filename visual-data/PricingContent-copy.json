@@ -1,0 +1,68 @@
+{
+  "faqs": [
+    {
+      "a": "No! We believe in transparent pricing. The price you see is the price you pay. There are zero initiation, maintenance, or hidden fees.",
+      "q": "Are there any hidden initiation fees?"
+    }
+  ],
+  "pricingPlans": [
+    {
+      "id": "basic",
+      "name": "QUATERLY ",
+      "features": [
+        "Access to gym equipment",
+        "Locker room access",
+        "1 Group class per week"
+      ],
+      "isPopular": false,
+      "annualPrice": 39,
+      "monthlyPrice": "8000"
+    },
+    {
+      "id": "pro",
+      "name": "SEMI ANNUAL",
+      "features": [
+        "Unlimited gym access",
+        "Unlimited group classes",
+        "Sauna & Spa access",
+        "1 PT session per month"
+      ],
+      "isPopular": true,
+      "annualPrice": 75,
+      "monthlyPrice": "12000"
+    },
+    {
+      "id": "elite",
+      "name": "ANNUAL",
+      "features": [
+        "Everything in Pro",
+        "4 PT sessions per month",
+        "Custom Nutrition plan",
+        "Priority class booking"
+      ],
+      "isPopular": false,
+      "annualPrice": 125,
+      "monthlyPrice": "18000"
+    }
+  ],
+  "featureComparison": [
+    {
+      "pro": true,
+      "basic": true,
+      "elite": true,
+      "feature": "Open Gym Access"
+    },
+    {
+      "pro": true,
+      "basic": true,
+      "elite": true,
+      "feature": "Locker & Showers"
+    },
+    {
+      "pro": "Unlimited",
+      "basic": "1/week",
+      "elite": "Unlimited",
+      "feature": "Group Classes"
+    }
+  ]
+}

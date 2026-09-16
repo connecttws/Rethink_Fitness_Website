@@ -25,6 +25,9 @@ async function main() {
     // 2. Define the missing pages
     const missingPages = [
       { slug: '/blog', title: 'Blog' },
+      { slug: '/coaching', title: '1-on-1 Coaching' },
+      { slug: '/memberships', title: 'Memberships' },
+      { slug: '/about', title: 'About Us' },
       { slug: '/nutrition', title: 'Nutrition' },
       { slug: '/pricing', title: 'Pricing' },
       { slug: '/schedule', title: 'Schedule' },
