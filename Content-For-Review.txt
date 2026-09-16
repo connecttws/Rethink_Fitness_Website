@@ -1,0 +1,370 @@
+======================================
+     WEBSITE CONTENT FOR REVIEW
+======================================
+
+
+
+################################################################################
+##
+##   SCHEDULE PAGE
+##
+################################################################################
+
+
+[ FULLSCHEDULEDATA ]
+Item 1:
+- time: 06:00 AM
+- class: HIIT Burn
+- trainer: Sarah Jenkins
+- duration: 45 Min
+
+Item 2:
+- time: 07:30 AM
+- class: Powerlifting
+- trainer: Marcus Vance
+- duration: 60 Min
+
+Item 3:
+- time: 09:00 AM
+- class: Yoga Flow
+- trainer: David Chen
+- duration: 60 Min
+
+Item 4:
+- time: 12:00 PM
+- class: Lunchtime Express
+- trainer: Sarah Jenkins
+- duration: 30 Min
+
+
+[ CLASSDESCRIPTIONS ]
+Item 1:
+- name: HIIT Burn
+- intensity: High Intensity
+- description: A 45-minute high-intensity interval training session designed to torch calories and build cardiovascular endurance. Expect fast-paced rounds of burpees, sprints, and kettlebell swings.
+
+
+
+################################################################################
+##
+##   TRAINERS PAGE
+##
+################################################################################
+
+
+[ DETAILEDTRAINERS ]
+Item 1:
+- bio: Marcus is a former Olympic weightlifter with over 10 years of experience turning beginners into absolute beasts. His philosophy is rooted in mastering the basic compound movements before progressing to complex lifts.
+- name: Marcus Vance
+- specialty: Strength & Conditioning
+
+Item 2:
+- bio: Sarah brings an infectious high-energy approach to every session. She specializes in pushing your cardiovascular limits and incinerating fat fast.
+- name: Sarah Jenkins
+- specialty: HIIT & Endurance
+
+
+
+################################################################################
+##
+##   NUTRITION PAGE
+##
+################################################################################
+
+(No visual content found for this page)
+
+
+################################################################################
+##
+##   HOMEPAGE
+##
+################################################################################
+
+
+[ HERO ]
+- fullText: Rethink Your Limits
+- subtitle: Premium Personal Training Specialty Facility & High-End Gym Floor..
+- primaryBtnText: Join Now
+- secondaryBtnText: View Classes
+
+[ FOOTER ]
+- email: info@rethinkfit.com
+
+hours:
+  - Mon - Fri: 5:00 AM - 11:00 PM
+  - Sat - Sun: 7:00 AM - 9:00 PM
+- phone: (555) 123-4567
+- address: 123 Fitness Ave, Iron District, NY 10001
+- brandDesc: The ultimate fitness experience designed to push your boundaries. State-of-the-art equipment, elite trainers, and an atmosphere built for champions.
+
+quickLinks:
+  Item 1:
+  - label: Home
+  Item 2:
+  - label: Trainers
+  Item 3:
+  - label: Schedule
+  Item 4:
+  - label: Pricing
+  Item 5:
+  - label: Nutrition
+  Item 6:
+  - label: Blog
+- copyrightText: Rethink Fitness. All rights reserved.
+
+[ NAVBAR ]
+
+links:
+  Item 1:
+  - label: Home
+  Item 2:
+  - label: 1-on-1 Coaching
+  Item 3:
+  - label: Floor Access
+  Item 4:
+  - label: Class Schedule
+  Item 5:
+  - label: Pricing
+  Item 6:
+  - label: Nutrition
+  Item 7:
+  - label: Blog
+- ctaBtnText: Book Free 1-on-1 Assessment
+
+[ PRICING ]
+- btnText: View Pricing Plans
+- bannerDescHtml: Premium memberships starting at just <strong>$49/month</strong>. No hidden fees. Zero initiation costs.
+- bannerTitleAccent: Commit?
+- bannerTitlePrefix: Ready to
+
+[ FEATURES ]
+
+items:
+  Item 1:
+  - id: 01
+  - title: Elite Trainers
+  - description: Work with the best in the industry to push your limits and achieve your goals faster.
+  Item 2:
+  - id: 02
+  - title: Modern Equipment
+  - description: Access state-of-the-art machines and free weights designed for peak performance.
+  Item 3:
+  - id: 03
+  - title: Open 24/7
+  - description: Train on your schedule. Our facilities are open around the clock for your convenience.
+- description: We provide everything you need to transform your body and mind. No compromises.
+- titleAccent: Us
+- titlePrefix: Why Choose
+
+[ SCHEDULE ]
+
+items:
+  Item 1:
+  - time: 06:00 AM
+  - class: HIIT Burn
+  - trainer: Sarah Jenkins
+  - duration: 45 Min
+  Item 2:
+  - time: 07:30 AM
+  - class: Powerlifting
+  - trainer: Marcus Vance
+  - duration: 60 Min
+  Item 3:
+  - time: 09:00 AM
+  - class: Yoga Flow
+  - trainer: David Chen
+  - duration: 60 Min
+- btnText: View Full Schedule
+- description: Plan your workouts. Never miss a session.
+- titleAccent: Schedule
+- titlePrefix: Class
+
+[ TRAINERS ]
+
+items:
+  Item 1:
+  - bio: Former Olympic weightlifter with 10 years of experience turning beginners into beasts.
+  - name: Marcus Vance
+  - specialty: Strength & Conditioning
+  Item 2:
+  - bio: High-energy coach dedicated to pushing your cardiovascular limits and burning fat fast.
+  - name: Sarah Jenkins
+  - specialty: HIIT & Endurance
+  Item 3:
+  - bio: Focuses on longevity, injury prevention, and building a foundation of true functional strength.
+  - name: David Chen
+  - specialty: Mobility & Recovery
+- btnText: View Full Trainer Profiles
+- description: Elite professionals dedicated to your transformation.
+- titleAccent: Coaches
+- titlePrefix: Meet Your
+
+[ APPTEASER ]
+
+features:
+  - Book Classes Instantly
+  - Track Workouts & PRs
+  - Access Video Tutorials
+  - Connect with Trainers
+- description: Download the Rethink Fitness app to book classes, track your progress, and get exclusive workout plans from our elite trainers.
+- titleAccent: Your Pocket
+- titlePrefix: Your Gym in
+
+[ FACILITYTOUR ]
+
+images:
+  Item 1:
+  - title: Free Weights Zone
+  Item 2:
+  - title: Cardio Deck
+  Item 3:
+  - title: Functional Training
+  Item 4:
+  - title: Recovery Lounge
+  Item 5:
+  - title: Yoga Studio
+- btnText: Take Virtual Tour
+- description: A 20,000 sq ft playground for fitness enthusiasts.
+- titleAccent: Facility
+- titlePrefix: Explore Our
+
+[ TESTIMONIALS ]
+
+items:
+  Item 1:
+  - name: James Rodriguez
+  - role: Member since 2024
+  - review: Rethink Fitness completely changed my life. The trainers are world-class and the equipment is always spotless. I lost 30lbs in my first 4 months.
+  Item 2:
+  - name: Emily Chen
+  - role: Pro Member
+  - review: The energy in this gym is unmatched. From the heavy lifting section to the yoga studio, it feels like a truly premium experience every time I walk in.
+  Item 3:
+  - name: Marcus Thorne
+  - role: Elite Member
+  - review: Best gym in the city, hands down. The community here pushes you to be your absolute best. The Elite membership is worth every penny.
+- description: Don't just take our word for it. Hear from the champions who grind here every day.
+- titleAccent: Results
+- titlePrefix: Real
+
+[ GATEWAYTEASER ]
+
+block1:
+  - desc: Train with world-class professionals who push your limits.
+  - title: Elite Coaching
+  - btnText: Meet The Team
+
+block2:
+  - desc: From HIIT to Yoga, find the perfect class for your goals.
+  - title: Dynamic Classes
+  - btnText: View Schedule
+
+[ INSTAGRAMFEED ]
+
+posts:
+  Item 1:
+  - link: #
+  - likes: 1.2k
+  - comments: 45
+  Item 2:
+  - link: #
+  - likes: 856
+  - comments: 23
+  Item 3:
+  - link: #
+  - likes: 2.1k
+  - comments: 112
+  Item 4:
+  - link: #
+  - likes: 945
+  - comments: 34
+- handle: @rethinkfitness
+- titleAccent: Journey
+- titlePrefix: Follow Our
+
+[ LOCATIONSECTION ]
+- email: info@rethinkfitness.com
+- phone: (555) 123-4567
+- address: Mayur Vihar Phase 1 New Delhi, Delhi 110091
+- hoursHtml: <strong>Mon-Fri:</strong> 5:00 AM - 11:00 PM<br/><strong>Sat-Sun:</strong> 7:00 AM - 9:00 PM
+- description: Centrally located with ample free parking. Your fitness destination is closer than you think.
+- titleAccent: Us
+- titlePrefix: Find
+- mapIframeSrc: https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d14008.972230005727!2d77.2917757!3d28.6224357!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390ce4b1c8f1e621%3A0x6b4f7082a5c9ab!2sMayur%20Vihar%20Phase%201%2C%20New%20Delhi%2C%20Delhi%20110091!5e0!3m2!1sen!2sin!4v1715694200000!5m2!1sen!2sin
+
+
+################################################################################
+##
+##   PRICING PAGE
+##
+################################################################################
+
+
+[ FAQS ]
+Item 1:
+- a: No! We believe in transparent pricing. The price you see is the price you pay. There are zero initiation, maintenance, or hidden fees.
+- q: Are there any hidden initiation fees?
+
+
+[ PRICINGPLANS ]
+Item 1:
+- id: basic
+- name: Basic
+
+Item 2:
+- id: pro
+- name: Pro
+
+Item 3:
+- id: elite
+- name: Elite
+
+
+[ FEATURECOMPARISON ]
+Item 1:
+- feature: Open Gym Access
+
+Item 2:
+- feature: Locker & Showers
+
+Item 3:
+- pro: Unlimited
+- basic: 1/week
+- elite: Unlimited
+- feature: Group Classes
+
+
+
+################################################################################
+##
+##   BLOG PAGE
+##
+################################################################################
+
+
+[ RECENTPOSTS ]
+Item 1:
+- date: August 08, 2026
+- title: The Ultimate Guide to Pre-Workout Fueling
+- author: Sarah Jenkins
+- excerpt: Stop eating heavy meals 30 minutes before training. Discover the optimal timing and macro ratios to ensure maximum energy without the sluggishness.
+- category: Nutrition
+- authorImg: /Images/Galley/DS9A7985.jpg
+
+Item 2:
+- date: August 03, 2026
+- title: Why Sleep is Your Strongest Performance Enhancer
+- author: David Chen
+- excerpt: You break muscle down in the gym, but you build it in bed. A deep dive into sleep architecture and how to optimize your circadian rhythm.
+- category: Recovery
+- authorImg: /Images/Galley/DS9A7986.jpg
+
+
+[ FEATUREDPOST ]
+- id: feat-1
+- date: August 12, 2026
+- title: 5 Myths About Hypertrophy You Need to Stop Believing
+- author: Marcus Vance
+- excerpt: Are you still training in the "hypertrophy zone" of 8-12 reps exclusively? Our head coach breaks down the latest sports science research on muscle growth and why you might be leaving gains on the table.
+- category: Training
+- authorImg: /Images/Galley/DS9A7984.jpg
