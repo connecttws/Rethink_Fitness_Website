@@ -23,7 +23,7 @@ export default async function RootLayout({
     <html lang="en">
       <body>
         <Script
-          src="https://clientcrmsystem.vercel.app/crm-lead-tracker.js"
+          src="/crm-lead-tracker.js"
           data-crm-key="bcl_pub_booclient-team_rethink-website-91b2f2"
           data-api-url="https://clientcrmsystem.vercel.app/api/public/leads"
           strategy="afterInteractive"
