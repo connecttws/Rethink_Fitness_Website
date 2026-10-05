@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Script from "next/script";
 import "./globals.css";
 import "@/components/visual-editor/editor-chrome.css";
 import Footer from "@/components/Footer";
@@ -21,6 +22,12 @@ export default async function RootLayout({
   return (
     <html lang="en">
       <body>
+        <Script
+          src="https://clientcrmsystem.vercel.app/crm-lead-tracker.js"
+          data-crm-key="bcl_pub_booclient-team_rethink-website-91b2f2"
+          data-api-url="https://clientcrmsystem.vercel.app/api/public/leads"
+          strategy="afterInteractive"
+        />
         <Navbar data={data.navbar} />
         {children}
         <Footer data={data.footer} />
