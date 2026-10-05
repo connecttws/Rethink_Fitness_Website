@@ -23,36 +23,6 @@ export async function POST(request: Request) {
       preferredContactTime: preferredContactTime || "N/A",
     });
 
-    // Server-side forward to CRM
-    try {
-      const summaryParts = [
-        fitnessGoal ? `Fitness Goal: ${fitnessGoal}` : null,
-        preferredOption ? `Preferred Option: ${preferredOption}` : null,
-        preferredContactTime ? `Preferred Contact Time: ${preferredContactTime}` : null,
-        sourcePage ? `Source: ${sourcePage}` : null,
-      ].filter(Boolean);
-
-      await fetch("https://clientcrmsystem.vercel.app/api/public/leads", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          landingPageKey: "bcl_pub_booclient-team_rethink-website-91b2f2",
-          name,
-          phone,
-          email: email || undefined,
-          message: summaryParts.length > 0 ? summaryParts.join(" | ") : undefined,
-          formData: {
-            fitnessGoal,
-            preferredOption,
-            preferredContactTime,
-            sourcePage,
-          },
-          landingPageUrl: "https://rethink-fitness-website.vercel.app",
-        }),
-      });
-    } catch (crmErr) {
-      console.warn("[CRM Forward Warning]:", crmErr);
-    }
 
     return NextResponse.json({
       success: true,
