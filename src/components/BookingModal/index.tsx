@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import styles from './BookingModal.module.css';
 
 interface BookingModalProps {
@@ -20,6 +20,27 @@ export default function BookingModal({ isOpen, onClose, title = "Start Your Jour
   const [loading, setLoading] = useState(false);
   const [submitted, setSubmitted] = useState(false);
   const [errorMessage, setErrorMessage] = useState('');
+
+  useEffect(() => {
+    if (!isOpen) return;
+
+    // Prevent body scrolling behind modal
+    const originalOverflow = document.body.style.overflow;
+    document.body.style.overflow = 'hidden';
+
+    // Close on Escape key
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') {
+        onClose();
+      }
+    };
+
+    window.addEventListener('keydown', handleKeyDown);
+    return () => {
+      document.body.style.overflow = originalOverflow;
+      window.removeEventListener('keydown', handleKeyDown);
+    };
+  }, [isOpen, onClose]);
 
   if (!isOpen) return null;
 
@@ -64,7 +85,7 @@ export default function BookingModal({ isOpen, onClose, title = "Start Your Jour
   return (
     <div className={styles.modalOverlay} onClick={onClose}>
       <div className={styles.modalContent} onClick={e => e.stopPropagation()}>
-        <button className={styles.closeBtn} onClick={onClose}>&times;</button>
+        <button className={styles.closeBtn} onClick={onClose} aria-label="Close modal">&times;</button>
         
         {submitted ? (
           <div className={styles.successState}>
@@ -78,7 +99,7 @@ export default function BookingModal({ isOpen, onClose, title = "Start Your Jour
             <p className={styles.modalDesc}>Take the first step towards training with purpose. Tell us about your goals.</p>
             
             {errorMessage && (
-              <p style={{ color: '#ff8088', marginBottom: '1rem', fontSize: '0.9rem' }}>
+              <p style={{ color: '#ff8088', marginBottom: '0.75rem', fontSize: '0.85rem' }}>
                 {errorMessage}
               </p>
             )}
@@ -136,16 +157,7 @@ export default function BookingModal({ isOpen, onClose, title = "Start Your Jour
                   name="preferredOption" 
                   value={formData.preferredOption} 
                   onChange={handleChange}
-                  style={{
-                    padding: '12px 16px',
-                    backgroundColor: 'var(--bg-color)',
-                    border: '1px solid rgba(255, 255, 255, 0.1)',
-                    borderRadius: '4px',
-                    color: 'var(--text-primary)',
-                    fontFamily: 'var(--font-body)',
-                    fontSize: '1rem',
-                    outline: 'none'
-                  }}
+                  className={styles.selectInput}
                 >
                   <option value="Personalised 1-on-1 Coaching">Personalised 1-on-1 Coaching</option>
                   <option value="Transformation Plan">Transformation Plan</option>
